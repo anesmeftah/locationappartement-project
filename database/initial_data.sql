@@ -6,7 +6,7 @@ VALUES
 ('Jane', 'Smith', 'jane.smith@example.com', 2, '0987654321', 'password456', 0),
 ('Alice', 'Johnson', 'alice.johnson@example.com', 3, '1122334455', 'password789', 0),
 ('Bob', 'Brown', 'bob.brown@example.com', 4, '6677889900', 'password111', 0),
-('anas', 'meftah', 'anas.meftah@example.com', 6, '+21697846830', 'password123',1);
+('anas', 'meftah', 'anas.meftah@example.com', 5, '+21697846830', 'password123',1);
 
 -- APPARTEMENT
 INSERT INTO APPARTEMENT (ID, ADDRESS, PRIX, DESCRIP, STATUT)
