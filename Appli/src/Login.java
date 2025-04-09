@@ -85,8 +85,8 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(157, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Message, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(121, 121, 121))
+                .addComponent(Message, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +189,13 @@ public class Login extends javax.swing.JFrame {
             }
         }
         catch(SQLException err){
-            System.out.println(err.getMessage());
+            if ("23505".equals(err.getSQLState())) { // SQLState 23505: Unique constraint violation
+            Message.setText("L'email est déjà utilisé. Veuillez en choisir un autre.");
+            }
+            else{
+                System.out.println(err.getMessage());
+            }
+            
         }
     }//GEN-LAST:event_creer
 
