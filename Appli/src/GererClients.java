@@ -170,7 +170,7 @@ public class GererClients extends javax.swing.JFrame {
             public void run() {
             new GererClients().setVisible(true);
             try{
-                String host = "jdbc:derby://localhost:1527/LocAPP";
+                String host = "jdbc:derby://localhost:1527/LocAppartement";
                 String uName = "Root";
                 String uPass = "root";
 
