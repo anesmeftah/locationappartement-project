@@ -25,29 +25,30 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jLabel7" max="32767" attributes="0"/>
-                  <Component id="jLabel4" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel3" max="32767" attributes="0"/>
-                      <Component id="jLabel1" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel7" max="32767" attributes="0"/>
+                          <Component id="jLabel4" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel3" max="32767" attributes="0"/>
+                              <Component id="jLabel1" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel6" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jLabel5" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="LastNameL" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jLabel6" alignment="1" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel2" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="FirstNameL" min="-2" pref="80" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="Tele" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="Numero" pref="200" max="32767" attributes="0"/>
-                          <Component id="motdp" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="ChNum" max="32767" attributes="0"/>
-                          <Component id="Password" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="EmailL" alignment="0" max="32767" attributes="0"/>
@@ -56,8 +57,23 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="ChEmail" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="Numero" alignment="0" pref="200" max="32767" attributes="0"/>
+                          <Component id="motdp" alignment="0" max="32767" attributes="0"/>
+                          <Component id="FirstNameF" alignment="1" max="32767" attributes="0"/>
+                          <Component id="LastNameF" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="ChNum" max="32767" attributes="0"/>
+                          <Component id="Password" max="32767" attributes="0"/>
+                          <Component id="FirstNameB" alignment="0" max="32767" attributes="0"/>
+                          <Component id="LastNameB" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace pref="9" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -92,7 +108,21 @@
                   <Component id="Password" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="motdp" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="100" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="FirstNameF" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="FirstNameB" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="FirstNameL" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="LastNameF" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="LastNameB" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="LastNameL" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -117,9 +147,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter Email"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EmailActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -140,9 +167,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter Num"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NumeroActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="ChEmail">
       <Properties>
@@ -177,6 +201,52 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
       </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="FirstName : "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="LastName : "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="FirstNameF">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter First Name"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="LastNameF">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter Last Name"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="FirstNameB">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Change"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ChangerFirstNameB"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="LastNameB">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Change"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ChangerLastNameB"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="FirstNameL">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="First"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LastNameL">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Last"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

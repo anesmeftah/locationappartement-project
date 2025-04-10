@@ -48,6 +48,14 @@ public class GererCompte extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         Password = new javax.swing.JButton();
         motdp = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        FirstNameF = new javax.swing.JTextField();
+        LastNameF = new javax.swing.JTextField();
+        FirstNameB = new javax.swing.JButton();
+        LastNameB = new javax.swing.JButton();
+        FirstNameL = new javax.swing.JLabel();
+        LastNameL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,11 +66,6 @@ public class GererCompte extends javax.swing.JFrame {
         jLabel3.setText("New Email : ");
 
         Email.setText("Enter Email");
-        Email.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmailActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Current Numero : ");
 
@@ -71,11 +74,6 @@ public class GererCompte extends javax.swing.JFrame {
         jLabel6.setText("New Numero : ");
 
         Numero.setText("Enter Num");
-        Numero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumeroActionPerformed(evt);
-            }
-        });
 
         ChEmail.setText("Change");
         ChEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -100,37 +98,76 @@ public class GererCompte extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("FirstName : ");
+
+        jLabel5.setText("LastName : ");
+
+        FirstNameF.setText("Enter First Name");
+
+        LastNameF.setText("Enter Last Name");
+
+        FirstNameB.setText("Change");
+        FirstNameB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangerFirstNameB(evt);
+            }
+        });
+
+        LastNameB.setText("Change");
+        LastNameB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangerLastNameB(evt);
+            }
+        });
+
+        FirstNameL.setText("First");
+
+        LastNameL.setText("Last");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Tele, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Numero, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(motdp))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LastNameL, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ChNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(FirstNameL, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Tele, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(EmailL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Email, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ChEmail)))
-                .addContainerGap(9, Short.MAX_VALUE))
+                        .addComponent(ChEmail))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Numero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(motdp, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(FirstNameF)
+                            .addComponent(LastNameF))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ChNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(FirstNameB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(LastNameB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +195,19 @@ public class GererCompte extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(Password)
                     .addComponent(motdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(FirstNameF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FirstNameB)
+                    .addComponent(FirstNameL))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(LastNameF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LastNameB)
+                    .addComponent(LastNameL))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         motdp.getAccessibleContext().setAccessibleName("");
@@ -168,14 +217,6 @@ public class GererCompte extends javax.swing.JFrame {
 
     
     
-    private void EmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EmailActionPerformed
-
-    private void NumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NumeroActionPerformed
-
     private void ChangeEmail(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeEmail
         String NEMAIL = Email.getText();
         try{
@@ -254,6 +295,59 @@ public class GererCompte extends javax.swing.JFrame {
             System.out.println(err.getMessage());
         }
     }//GEN-LAST:event_ChangerPassword
+
+    private void ChangerFirstNameB(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangerFirstNameB
+        String Text = FirstNameF.getText(); 
+        try{
+            String host = "jdbc:derby://localhost:1527/LocAppartement";
+            String uName = "Root";
+            String uPass = "root";
+            
+            Connection con = DriverManager.getConnection(host, uName, uPass);
+            Statement stmt = con.createStatement();
+            String Cookies = GetCookie();
+            String SQLMDP = "UPDATE CLIENTS SET FIRSTNAME = '" + Text + "' WHERE COOKIE = '" + Cookies + "'";
+            
+            int affected = stmt.executeUpdate(SQLMDP);
+            if(affected > 0){
+                UpdateLabel("FIRSTNAME",FirstNameL);
+            }
+            else{
+                System.out.println("!done");
+            }
+            
+        }
+        catch(SQLException err){
+            System.out.println(err.getMessage());
+        }
+        
+    }//GEN-LAST:event_ChangerFirstNameB
+
+    private void ChangerLastNameB(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangerLastNameB
+        String Text = LastNameF.getText(); 
+        try{
+            String host = "jdbc:derby://localhost:1527/LocAppartement";
+            String uName = "Root";
+            String uPass = "root";
+            
+            Connection con = DriverManager.getConnection(host, uName, uPass);
+            Statement stmt = con.createStatement();
+            String Cookies = GetCookie();
+            String SQLMDP = "UPDATE CLIENTS SET LASTNAME = '" + Text + "' WHERE COOKIE = '" + Cookies + "'";
+            
+            int affected = stmt.executeUpdate(SQLMDP);
+            if(affected > 0){
+                UpdateLabel("LASTNAME",LastNameL);
+            }
+            else{
+                System.out.println("!done");
+            }
+            
+        }
+        catch(SQLException err){
+            System.out.println(err.getMessage());
+        }
+    }//GEN-LAST:event_ChangerLastNameB
 
     /**
      * @param args the command line arguments
@@ -338,6 +432,8 @@ public class GererCompte extends javax.swing.JFrame {
                 frame.setVisible(true);
                 frame.UpdateLabel("EMAIL",frame.EmailL);
                 frame.UpdateLabel("TELEPHONE",frame.Tele);
+                frame.UpdateLabel("FIRSTNAME",frame.FirstNameL);
+                frame.UpdateLabel("LASTNAME",frame.LastNameL);
                 
             }   
         });
@@ -348,12 +444,20 @@ public class GererCompte extends javax.swing.JFrame {
     private javax.swing.JButton ChNum;
     private javax.swing.JTextField Email;
     private javax.swing.JLabel EmailL;
+    private javax.swing.JButton FirstNameB;
+    private javax.swing.JTextField FirstNameF;
+    private javax.swing.JLabel FirstNameL;
+    private javax.swing.JButton LastNameB;
+    private javax.swing.JTextField LastNameF;
+    private javax.swing.JLabel LastNameL;
     private javax.swing.JTextField Numero;
     private javax.swing.JButton Password;
     private javax.swing.JLabel Tele;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPasswordField motdp;
