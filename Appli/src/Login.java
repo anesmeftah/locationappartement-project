@@ -126,7 +126,7 @@ public class Login extends javax.swing.JFrame {
         String pass = new String(Password.getPassword());
         
         try{
-            String host = "jdbc:derby://localhost:1527/LocAPP";
+            String host = "jdbc:derby://localhost:1527/LocAppartement";
             String uName = "Root";
             String uPass = "root";
             
@@ -161,7 +161,7 @@ public class Login extends javax.swing.JFrame {
         String pass = new String(Password.getPassword());
         
         try{
-            String host = "jdbc:derby://localhost:1527/LocAPP";
+            String host = "jdbc:derby://localhost:1527/LocAppartement";
             String uName = "Root";
             String uPass = "root";
             
