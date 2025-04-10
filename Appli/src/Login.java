@@ -13,6 +13,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Random;
+
 
 public class Login extends javax.swing.JFrame {
 
@@ -141,6 +145,32 @@ public class Login extends javax.swing.JFrame {
             
             if(rs.next()){
                 Message.setText("login");
+                
+                try(FileWriter cookie = new FileWriter("cookie.txt");){
+                    
+                    String SQLCOOKIE = "SELECT EMAIL FROM CLIENTS WHERE EMAIL = '" + user + "' AND MDP = '" + pass + "'";
+                    ResultSet rsCookie = stmt.executeQuery(SQLCOOKIE);
+                    if(rsCookie.next()){
+                        Random random = new Random();
+                        
+                        String Cookies = rsCookie.getString("EMAIL") + (random.nextInt(1000)+1);
+                        cookie.write(Cookies);
+                        int affected = stmt.executeUpdate("UPDATE CLIENTS SET COOKIE = '" + Cookies + "' WHERE EMAIL = '" + rsCookie.getString("EMAIL") + "'");
+                        if(affected > 0){
+                            System.out.println("done");
+                        }
+                        else{
+                            System.out.println("!done");
+                        }
+                    }
+                    
+
+                    
+                    
+                }
+                catch(IOException e){
+                    System.out.println(e.getMessage());
+                }
             }
             else{
                 Message.setText("Email ou mot de passe invalide");
