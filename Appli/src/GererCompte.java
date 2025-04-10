@@ -46,8 +46,8 @@ public class GererCompte extends javax.swing.JFrame {
         ChEmail = new javax.swing.JButton();
         ChNum = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         Password = new javax.swing.JButton();
+        motdp = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,12 +93,10 @@ public class GererCompte extends javax.swing.JFrame {
 
         jLabel7.setText("New Password : ");
 
-        jTextField1.setText("Enter Password");
-
         Password.setText("Change");
         Password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordActionPerformed(evt);
+                ChangerPassword(evt);
             }
         });
 
@@ -119,9 +117,9 @@ public class GererCompte extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Tele, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Numero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Numero, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(motdp))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ChNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -158,10 +156,12 @@ public class GererCompte extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Password))
+                    .addComponent(Password)
+                    .addComponent(motdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(100, Short.MAX_VALUE))
         );
+
+        motdp.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -184,13 +184,49 @@ public class GererCompte extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ChNumActionPerformed
 
-    private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordActionPerformed
+    private void ChangerPassword(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangerPassword
+        String NMDP = new String(motdp.getPassword());
+        try{
+            String host = "jdbc:derby://localhost:1527/LocAppartement";
+            String uName = "Root";
+            String uPass = "root";
+            
+            Connection con = DriverManager.getConnection(host, uName, uPass);
+            Statement stmt = con.createStatement();
+            String Cookies = GetCookie();
+            String SQLMDP = "UPDATE CLIENTS SET MDP = '" + NMDP + "' WHERE COOKIE = '" + Cookies + "'";
+            
+            int affected = stmt.executeUpdate(SQLMDP);
+            if(affected > 0){
+                System.out.println("done");
+            }
+            else{
+                System.out.println("!done");
+            }
+            
+        }
+        catch(SQLException err){
+            System.out.println(err.getMessage());
+        }
+    }//GEN-LAST:event_ChangerPassword
 
     /**
      * @param args the command line arguments
      */
+    String GetCookie(){
+        try{
+                File myObj = new File("cookie.txt");
+                Scanner Reader = new Scanner(myObj);
+                String cookies = Reader.nextLine();
+                Reader.close();
+                return cookies;
+            }
+            catch(FileNotFoundException e){
+                System.out.println(e.getMessage());
+                return ("-1");
+            }
+        } 
+    
     void UpdateLabel(String column, javax.swing.JLabel label){
         
                 
@@ -201,13 +237,14 @@ public class GererCompte extends javax.swing.JFrame {
 
             Connection con = DriverManager.getConnection(host, uName, uPass);
             Statement stmt = con.createStatement();
-            try{
-                File myObj = new File("cookie.txt");
-                Scanner Reader = new Scanner(myObj);
-                String cookies = Reader.nextLine();
-                System.out.println("works");
-                Reader.close();
+            String cookies = GetCookie();
+            if(cookies.equals("-1")){
 
+                label.setText("You Have to login");
+
+            }
+            else{
+                
                 String SQL = "SELECT " + column + " FROM CLIENTS WHERE COOKIE = '" + cookies + "'";
                 ResultSet rs = stmt.executeQuery(SQL);
                 if(rs.next()){
@@ -216,10 +253,6 @@ public class GererCompte extends javax.swing.JFrame {
                 else{
                     label.setText("You Have to login");
                 }
-
-            }
-            catch(FileNotFoundException e){
-                label.setText("You Have to login");
             }  
         }
         catch(SQLException err){
@@ -278,6 +311,6 @@ public class GererCompte extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField motdp;
     // End of variables declaration//GEN-END:variables
 }
