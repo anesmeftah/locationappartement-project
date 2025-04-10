@@ -80,14 +80,14 @@ public class GererCompte extends javax.swing.JFrame {
         ChEmail.setText("Change");
         ChEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChEmailActionPerformed(evt);
+                ChangeEmail(evt);
             }
         });
 
         ChNum.setText("Change");
         ChNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChNumActionPerformed(evt);
+                ChangeNum(evt);
             }
         });
 
@@ -176,13 +176,58 @@ public class GererCompte extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_NumeroActionPerformed
 
-    private void ChEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ChEmailActionPerformed
+    private void ChangeEmail(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeEmail
+        String NEMAIL = Email.getText();
+        try{
+            String host = "jdbc:derby://localhost:1527/LocAppartement";
+            String uName = "Root";
+            String uPass = "root";
+            
+            Connection con = DriverManager.getConnection(host, uName, uPass);
+            Statement stmt = con.createStatement();
+            String Cookies = GetCookie();
+            String SQLMDP = "UPDATE CLIENTS SET EMAIL = '" + NEMAIL + "' WHERE COOKIE = '" + Cookies + "'";
+            
+            int affected = stmt.executeUpdate(SQLMDP);
+            if(affected > 0){
+                System.out.println("done");
+                UpdateLabel("EMAIL",EmailL);
+            }
+            else{
+                System.out.println("!done");
+            }
+            
+        }
+        catch(SQLException err){
+            System.out.println(err.getMessage());
+        }
+    }//GEN-LAST:event_ChangeEmail
 
-    private void ChNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChNumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ChNumActionPerformed
+    private void ChangeNum(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeNum
+        String Num = Numero.getText(); //verification du numero
+        try{
+            String host = "jdbc:derby://localhost:1527/LocAppartement";
+            String uName = "Root";
+            String uPass = "root";
+            
+            Connection con = DriverManager.getConnection(host, uName, uPass);
+            Statement stmt = con.createStatement();
+            String Cookies = GetCookie();
+            String SQLMDP = "UPDATE CLIENTS SET TELEPHONE = '" + Num + "' WHERE COOKIE = '" + Cookies + "'";
+            
+            int affected = stmt.executeUpdate(SQLMDP);
+            if(affected > 0){
+                UpdateLabel("TELEPHONE",Tele);
+            }
+            else{
+                System.out.println("!done");
+            }
+            
+        }
+        catch(SQLException err){
+            System.out.println(err.getMessage());
+        }
+    }//GEN-LAST:event_ChangeNum
 
     private void ChangerPassword(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangerPassword
         String NMDP = new String(motdp.getPassword());
