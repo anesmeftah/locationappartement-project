@@ -189,7 +189,7 @@ public class Login extends javax.swing.JFrame {
             }
         }
         catch(SQLException err){
-            if ("23505".equals(err.getSQLState())) { // SQLState 23505: Unique constraint violation
+            if ("23505".equals(err.getSQLState())) {
             Message.setText("L'email est déjà utilisé. Veuillez en choisir un autre.");
             }
             else{
