@@ -220,8 +220,8 @@ public class GererCompte extends javax.swing.JFrame {
     private void ChangeEmail(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeEmail
         String NEMAIL = Email.getText();
         try{
-            String host = "jdbc:derby://localhost:1527/LocAppartement";
-            String uName = "Root";
+            String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
+            String uName = "root";
             String uPass = "root";
             
             Connection con = DriverManager.getConnection(host, uName, uPass);
@@ -247,8 +247,8 @@ public class GererCompte extends javax.swing.JFrame {
     private void ChangeNum(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeNum
         String Num = Numero.getText(); //verification du numero
         try{
-            String host = "jdbc:derby://localhost:1527/LocAppartement";
-            String uName = "Root";
+            String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
+            String uName = "root";
             String uPass = "root";
             
             Connection con = DriverManager.getConnection(host, uName, uPass);
@@ -273,8 +273,8 @@ public class GererCompte extends javax.swing.JFrame {
     private void ChangerPassword(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangerPassword
         String NMDP = new String(motdp.getPassword());
         try{
-            String host = "jdbc:derby://localhost:1527/LocAppartement";
-            String uName = "Root";
+            String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
+            String uName = "root";
             String uPass = "root";
             
             Connection con = DriverManager.getConnection(host, uName, uPass);
@@ -299,8 +299,8 @@ public class GererCompte extends javax.swing.JFrame {
     private void ChangerFirstNameB(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangerFirstNameB
         String Text = FirstNameF.getText(); 
         try{
-            String host = "jdbc:derby://localhost:1527/LocAppartement";
-            String uName = "Root";
+            String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
+            String uName = "root";
             String uPass = "root";
             
             Connection con = DriverManager.getConnection(host, uName, uPass);
@@ -326,8 +326,8 @@ public class GererCompte extends javax.swing.JFrame {
     private void ChangerLastNameB(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangerLastNameB
         String Text = LastNameF.getText(); 
         try{
-            String host = "jdbc:derby://localhost:1527/LocAppartement";
-            String uName = "Root";
+            String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
+            String uName = "root";
             String uPass = "root";
             
             Connection con = DriverManager.getConnection(host, uName, uPass);
@@ -370,8 +370,8 @@ public class GererCompte extends javax.swing.JFrame {
         
                 
         try{
-            String host = "jdbc:derby://localhost:1527/LocAppartement";
-            String uName = "Root";
+            String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
+            String uName = "root";
             String uPass = "root";
 
             Connection con = DriverManager.getConnection(host, uName, uPass);

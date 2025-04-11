@@ -192,8 +192,8 @@ public class BecomeHost extends javax.swing.JFrame {
         String Desc = DescF.getText();
         
         try{
-            String host = "jdbc:derby://localhost:1527/LocAppartement";
-            String uName = "Root";
+            String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
+            String uName = "root";
             String uPass = "root";
 
             Connection con = DriverManager.getConnection(host, uName, uPass);
