@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 /**
  *
  * @author motaz
@@ -60,6 +61,11 @@ public class GererClients extends javax.swing.JFrame {
         supprimerClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 supprimerClientActionPerformed(evt);
+            }
+        });
+        supprimerClient.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                supprimerClientPropertyChange(evt);
             }
         });
 
@@ -131,12 +137,103 @@ public class GererClients extends javax.swing.JFrame {
     }//GEN-LAST:event_showListActionPerformed
 
     private void supprimerClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerClientActionPerformed
-        /*
-        java.awt.Component [] C = List.getComponents();
-        List.getL
-        for(int i=0;i<C.length;i++){}*/
+        String txt = supprimerClient.getText();
+        if(txt.equals("Supprimer Clients")){
+        supprimerClient.setText("Confirmer");
+    }else{if(txt.equals("Confirmer")){
+        try{
+                String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
+                String uName = "root";
+                String uPass = "root";
+
+                Connection con = DriverManager.getConnection(host, uName, uPass);
+
+
+
+
+
+                java.awt.Component [] C = List.getComponents();
+                for(int i=0;i<C.length;i++){
+                if(C[i] instanceof javax.swing.JPanel){
+                    javax.swing.JPanel pan = (javax.swing.JPanel)C[i];
+                    java.awt.Component [] L = pan.getComponents();
+                    String value = null;
+                    Boolean verif = null;
+                    if(L[0] instanceof javax.swing.JLabel){
+                            javax.swing.JLabel lab = (javax.swing.JLabel)L[0];
+                            value = lab.getText();
+                    }
+                    if(L[1] instanceof javax.swing.JCheckBox){
+                            javax.swing.JCheckBox check = (javax.swing.JCheckBox)L[1];
+                            verif = check.isSelected();
+                    }
+                    if(verif){
+                String sql = "DELETE FROM CLIENTS WHERE email = ?";
+                PreparedStatement stmt = con.prepareStatement(sql);
+
+                stmt.setString(1, value);
+
+                int rowsAffected = stmt.executeUpdate();
+
+                System.out.println("Deleted rows: " + rowsAffected);
+}
+                    
+}
+}
+    supprimerClient.setText("Supprimer Clients");
+}            catch(SQLException err){
+                System.out.println(err.getMessage());
+            }
+}
+}
+
 
     }//GEN-LAST:event_supprimerClientActionPerformed
+    private void updateList(){
+try{
+                String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
+                String uName = "root";
+                String uPass = "root";
+
+                Connection con = DriverManager.getConnection(host, uName, uPass);
+                Statement stmt = con.createStatement();
+                String SQL = "SELECT * FROM CLIENTS";
+                ResultSet rs = stmt.executeQuery(SQL);
+                List.removeAll();
+                List.setLayout(new javax.swing.BoxLayout(List, javax.swing.BoxLayout.Y_AXIS));
+                while(rs.next()){
+                    String email = rs.getString("EMAIL");
+                    javax.swing.JPanel pan = new javax.swing.JPanel();
+                    javax.swing.JLabel Label = new javax.swing.JLabel();
+                    javax.swing.JCheckBox check = new javax.swing.JCheckBox();
+                    System.out.println("Lable added");
+                    Label.setLocation(0, 0);
+                    java.awt.Dimension MINDIM = new java.awt.Dimension(200,30);
+                    Label.setMinimumSize(MINDIM);
+                    Label.setBackground(Color.red);
+                    Label.setText(email);
+                    Label.setVisible(true);
+                    pan.add(Label);
+                    pan.add(check);
+                    List.add(pan);
+                    
+            }
+            List.revalidate();
+            List.repaint();
+            }
+
+            catch(SQLException err){
+                System.out.println(err.getMessage());
+            }
+}
+
+
+
+    private void supprimerClientPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_supprimerClientPropertyChange
+        if(supprimerClient.getText().equals("Supprimer Clients")){
+    updateList();
+}
+    }//GEN-LAST:event_supprimerClientPropertyChange
 
     /**
      * @param args the command line arguments
@@ -169,43 +266,12 @@ public class GererClients extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
             new GererClients().setVisible(true);
-            try{
-                String host = "jdbc:derby://localhost:1527/LocAppartement";
-                String uName = "Root";
-                String uPass = "root";
+            System.out.println("in");
+            List.setVisible(false);
+            supprimerClient.setVisible(false);
+            updateList();
 
-                Connection con = DriverManager.getConnection(host, uName, uPass);
-                Statement stmt = con.createStatement();
-                System.out.println("in");
-                List.setVisible(false);
-                supprimerClient.setVisible(false);
-                String SQL = "SELECT * FROM CLIENTS";
-                ResultSet rs = stmt.executeQuery(SQL);
-                List.setLayout(new javax.swing.BoxLayout(List, javax.swing.BoxLayout.Y_AXIS));
-                while(rs.next()){
-                    String email = rs.getString("EMAIL");
-                    javax.swing.JPanel pan = new javax.swing.JPanel();
-                    javax.swing.JLabel Label = new javax.swing.JLabel();
-                    javax.swing.JCheckBox check = new javax.swing.JCheckBox();
-                    System.out.println("Lable added");
-                    Label.setLocation(0, 0);
-                    java.awt.Dimension MINDIM = new java.awt.Dimension(200,30);
-                    Label.setMinimumSize(MINDIM);
-                    Label.setBackground(Color.red);
-                    Label.setText(email);
-                    Label.setVisible(true);
-                    pan.add(Label);
-                    pan.add(check);
-                    List.add(pan);
-                    
-            }
-            List.revalidate();
-            List.repaint();
-            }
-
-            catch(SQLException err){
-                System.out.println(err.getMessage());
-            }
+            
         }});
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
