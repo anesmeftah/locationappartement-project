@@ -8,9 +8,11 @@
  * @author anasm
  */
 
+import java.awt.Color;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -226,6 +228,7 @@ public class RechercheAppartement extends javax.swing.JFrame {
         String DO = DayOut.getText();
         String MO = MonthOut.getText();
         String YO = YearOut.getText();
+        String Loc = LocF.getText();
         
         try{
             
@@ -245,6 +248,21 @@ public class RechercheAppartement extends javax.swing.JFrame {
             Statement stmt = con.createStatement();
             
             
+            String SQL ="SELECT * " +
+             "FROM appartement a " +
+             "WHERE a.ADDRESS LIKE '%" + Loc + "%' " +
+             "  AND NOT EXISTS ( " +
+             "      SELECT 1 " +
+             "      FROM reservation r2 " +
+             "      WHERE r2.ID_APPARTEMENT = a.ID " +
+             "        AND ( " +
+             "            (r2.DATEDEBUT BETWEEN '" + date + "' AND '" + outdate + "') " +
+             "        ) " +
+             "  )";
+            
+            ResultSet rs = stmt.executeQuery(SQL);
+            new SearchResult(rs).setVisible(true);
+            dispose();
         }
         catch(Exception e){
             ErrorMsg.setText(e.getMessage());
