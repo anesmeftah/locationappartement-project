@@ -37,6 +37,7 @@ public class GererClients extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         showList = new javax.swing.JButton();
         supprimerClient = new javax.swing.JButton();
+        scroll = new javax.swing.JScrollPane();
         List = new javax.swing.JPanel();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
@@ -63,11 +64,6 @@ public class GererClients extends javax.swing.JFrame {
                 supprimerClientActionPerformed(evt);
             }
         });
-        supprimerClient.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                supprimerClientPropertyChange(evt);
-            }
-        });
 
         List.setBackground(new java.awt.Color(242, 242, 5));
 
@@ -75,33 +71,31 @@ public class GererClients extends javax.swing.JFrame {
         List.setLayout(ListLayout);
         ListLayout.setHorizontalGroup(
             ListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 324, Short.MAX_VALUE)
+            .addGap(0, 340, Short.MAX_VALUE)
         );
         ListLayout.setVerticalGroup(
             ListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
+            .addGap(0, 297, Short.MAX_VALUE)
         );
+
+        scroll.setViewportView(List);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 134, Short.MAX_VALUE)
-                                .addComponent(showList)
-                                .addGap(4, 4, 4)
-                                .addComponent(supprimerClient))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(List, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(showList)
+                        .addGap(4, 4, 4)
+                        .addComponent(supprimerClient)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -114,8 +108,8 @@ public class GererClients extends javax.swing.JFrame {
                     .addComponent(showList)
                     .addComponent(supprimerClient))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(List, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -125,11 +119,11 @@ public class GererClients extends javax.swing.JFrame {
         String text = showList.getText();
         if(text.equals("Show List")){
         supprimerClient.setVisible(true);
-        List.setVisible(true);
+        scroll.setVisible(true);
         showList.setText("Hide List");
         }else{
         supprimerClient.setVisible(false);
-        List.setVisible(false);
+        scroll.setVisible(false);
         showList.setText("Show List");
             }
         }
@@ -199,6 +193,12 @@ try{
                 Statement stmt = con.createStatement();
                 String SQL = "SELECT * FROM CLIENTS";
                 ResultSet rs = stmt.executeQuery(SQL);
+                java.beans.PropertyChangeListener listener =new java.beans.PropertyChangeListener() {
+                public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                supprimerClientPropertyChange(evt);
+                }
+                };
+                supprimerClient.addPropertyChangeListener(listener);
                 List.removeAll();
                 List.setLayout(new javax.swing.BoxLayout(List, javax.swing.BoxLayout.Y_AXIS));
                 while(rs.next()){
@@ -206,6 +206,17 @@ try{
                     javax.swing.JPanel pan = new javax.swing.JPanel();
                     javax.swing.JLabel Label = new javax.swing.JLabel();
                     javax.swing.JCheckBox check = new javax.swing.JCheckBox();
+                    java.awt.event.ItemListener updateButton = e ->{
+                    if(supprimerClient.getText().equals("Confirmer")){
+                        if(e.getStateChange() == java.awt.event.ItemEvent.SELECTED){
+                            
+                            supprimerClient.removePropertyChangeListener(listener);
+                            supprimerClient.setText("Supprimer Clients");
+                            supprimerClient.addPropertyChangeListener(listener);
+                        }
+                    }
+};
+                    check.addItemListener(updateButton);
                     System.out.println("Lable added");
                     Label.setLocation(0, 0);
                     java.awt.Dimension MINDIM = new java.awt.Dimension(200,30);
@@ -227,14 +238,11 @@ try{
             }
 }
 
-
-
-    private void supprimerClientPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_supprimerClientPropertyChange
+    private void supprimerClientPropertyChange(java.beans.PropertyChangeEvent evt) {                                               
         if(supprimerClient.getText().equals("Supprimer Clients")){
     updateList();
 }
-    }//GEN-LAST:event_supprimerClientPropertyChange
-
+    }  
     /**
      * @param args the command line arguments
      */
@@ -267,7 +275,7 @@ try{
             public void run() {
             new GererClients().setVisible(true);
             System.out.println("in");
-            List.setVisible(false);
+            scroll.setVisible(false);
             supprimerClient.setVisible(false);
             updateList();
 
@@ -280,6 +288,7 @@ try{
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane scroll;
     private javax.swing.JButton showList;
     private javax.swing.JButton supprimerClient;
     // End of variables declaration//GEN-END:variables
