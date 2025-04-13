@@ -1,11 +1,16 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -25,12 +30,15 @@ public class SearchResult extends javax.swing.JFrame {
         initComponents();
     }
 
-    SearchResult(ResultSet rs) {
+    SearchResult(ResultSet rs, String Checkin, String Checkout) {
         initComponents(); // Initialize components first
+        
+        // Replace the JList with a JPanel
+        JPanel contentPanel = new JPanel();
+        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(contentPanel);
+        
         try {
-            // Clear list and set layout
-            List.removeAll();
-            List.setLayout(new BoxLayout(List, BoxLayout.Y_AXIS));
             boolean hasResults = false;
             
             // Add apartment details from result set
@@ -48,6 +56,7 @@ public class SearchResult extends javax.swing.JFrame {
                 apartmentPanel.setMaximumSize(new Dimension(650, 50));
                 apartmentPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(200, 200, 200)));
                 apartmentPanel.setBackground(Color.white);
+                apartmentPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
                 
                 // Create label for apartment info
                 JLabel infoLabel = new JLabel();
@@ -55,14 +64,25 @@ public class SearchResult extends javax.swing.JFrame {
                 infoLabel.setText("ID: " + id + " - " + address + ", " + size + " - $" + price + "\n" + description);
                 
                 apartmentPanel.add(infoLabel);
-                List.add(apartmentPanel);
+                
+                // Create Reserve button
+                JButton reserveButton = new JButton("Reserve");
+                reserveButton.setFont(new Font("Bahnschrift", Font.PLAIN, 14));
+                reserveButton.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        new ConfirmReservation(id, Checkin, Checkout).setVisible();
+                    }
+                });
+                
+                apartmentPanel.add(reserveButton);
+                contentPanel.add(apartmentPanel);
                 
                 // Add some space between items
                 JPanel spacer = new JPanel();
                 spacer.setPreferredSize(new Dimension(650, 5));
                 spacer.setMaximumSize(new Dimension(650, 5));
                 spacer.setOpaque(false);
-                List.add(spacer);
+                contentPanel.add(spacer);
                 
                 System.out.println("Added apartment: " + address);
             }
@@ -78,12 +98,12 @@ public class SearchResult extends javax.swing.JFrame {
                 noResultsLabel.setForeground(Color.RED);
                 
                 noResultsPanel.add(noResultsLabel);
-                List.add(noResultsPanel);
+                contentPanel.add(noResultsPanel);
             }
             
             // Update UI
-            List.revalidate();
-            List.repaint();
+            contentPanel.revalidate();
+            contentPanel.repaint();
         }
         catch(SQLException err){
             System.out.println("SQL Error: " + err.getMessage());
@@ -100,12 +120,8 @@ public class SearchResult extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        List = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        List.setLayout(new javax.swing.BoxLayout(List, javax.swing.BoxLayout.Y_AXIS));
-        jScrollPane1.setViewportView(List);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,7 +136,7 @@ public class SearchResult extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(122, Short.MAX_VALUE))
         );
 
@@ -163,7 +179,6 @@ public class SearchResult extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel List;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
