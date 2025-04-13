@@ -36,7 +36,7 @@ public class Admin extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(173, 17, 17));
         jLabel1.setText("Admin :");
 
-        adminName.setText("Current Admin has'nt set a username");
+        adminName.setText("Current Admin");
 
         clienButton.setText("Gérer Clients");
         clienButton.addActionListener(new java.awt.event.ActionListener() {

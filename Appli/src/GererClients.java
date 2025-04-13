@@ -49,7 +49,7 @@ public class GererClients extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Gestion de clients");
+        jLabel1.setText("ADMIN");
 
         showList.setText("Show List");
         showList.addActionListener(new java.awt.event.ActionListener() {
@@ -85,13 +85,12 @@ public class GererClients extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel1)
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(showList)
                         .addGap(4, 4, 4)
@@ -205,6 +204,7 @@ try{
                     String email = rs.getString("EMAIL");
                     javax.swing.JPanel pan = new javax.swing.JPanel();
                     javax.swing.JLabel Label = new javax.swing.JLabel();
+                    javax.swing.JButton button = new javax.swing.JButton();
                     javax.swing.JCheckBox check = new javax.swing.JCheckBox();
                     java.awt.event.ItemListener updateButton = e ->{
                     if(supprimerClient.getText().equals("Confirmer")){
@@ -224,8 +224,15 @@ try{
                     Label.setBackground(Color.red);
                     Label.setText(email);
                     Label.setVisible(true);
+                    button.setText("Modifier");
+                    button.addActionListener(e->{
+                        new ModifierClients(email).setVisible(true);
+                        java.awt.Window window = javax.swing.SwingUtilities.getWindowAncestor(button);
+                        if (window != null) window.dispose();
+                    });
                     pan.add(Label);
                     pan.add(check);
+                    pan.add(button);
                     List.add(pan);
                     
             }

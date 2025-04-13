@@ -79,7 +79,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="adminName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Current Admin has&apos;nt set a username"/>
+        <Property name="text" type="java.lang.String" value="Current Admin"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="clienButton">
