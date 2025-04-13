@@ -217,7 +217,7 @@ public class Login extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection(host, uName, uPass);
             Statement stmt = con.createStatement();
 
-            String SQLID = "SELECT COUNT(*) FROM CLIENTS";
+            String SQLID = "SELECT MAX(ID) FROM CLIENTS";
             ResultSet rs = stmt.executeQuery(SQLID);
             int ID;
             if (rs.next()) {
