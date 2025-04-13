@@ -27,3 +27,9 @@ VALUES
 
 SELECT * From appartement;
 SELECT * FROM CLIENTS;
+
+
+UPDATE `locationappartement`.`appartement` SET `NumberOfRooms` = '2', `SizeInSquareMeters` = '150' WHERE (`ID` = '1');
+UPDATE `locationappartement`.`appartement` SET `NumberOfRooms` = '4', `SizeInSquareMeters` = '250' WHERE (`ID` = '2');
+UPDATE `locationappartement`.`appartement` SET `NumberOfRooms` = '2', `SizeInSquareMeters` = '80' WHERE (`ID` = '3');
+UPDATE `locationappartement`.`appartement` SET `NumberOfRooms` = '1', `SizeInSquareMeters` = '50' WHERE (`ID` = '4');

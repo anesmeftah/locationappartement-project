@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 
 public class Login extends javax.swing.JFrame {
@@ -217,7 +218,7 @@ public class Login extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection(host, uName, uPass);
             Statement stmt = con.createStatement();
 
-            String SQLID = "SELECT COUNT(*) FROM CLIENTS";
+            String SQLID = "SELECT MAX(ID) FROM CLIENTS";
             ResultSet rs = stmt.executeQuery(SQLID);
             int ID;
             if (rs.next()) {
@@ -231,7 +232,7 @@ public class Login extends javax.swing.JFrame {
             int rowsAffected = stmt.executeUpdate(SQL);
             
             if(rowsAffected > 0){
-                Msg.setText("Vous pouvez s'authentifier");
+                JOptionPane.showMessageDialog(null,"Vous pouvez s'authentifier");
             }
             else{
                 Msg.setText("Une erreur s'est produite");

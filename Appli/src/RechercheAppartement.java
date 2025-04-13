@@ -261,7 +261,7 @@ public class RechercheAppartement extends javax.swing.JFrame {
              "  )";
             
             ResultSet rs = stmt.executeQuery(SQL);
-            new SearchResult(rs).setVisible(true);
+            new SearchResult(rs,date,outdate).setVisible(true);
             dispose();
         }
         catch(Exception e){
