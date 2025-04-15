@@ -31,9 +31,9 @@ public class SearchResult extends javax.swing.JFrame {
     }
 
     SearchResult(ResultSet rs, String Checkin, String Checkout) {
-        initComponents(); // Initialize components first
+        initComponents(); 
         
-        // Replace the JList with a JPanel
+        
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         jScrollPane1.setViewportView(contentPanel);
@@ -41,7 +41,7 @@ public class SearchResult extends javax.swing.JFrame {
         try {
             boolean hasResults = false;
             
-            // Add apartment details from result set
+            
             while(rs.next()){
                 hasResults = true;
                 String id = rs.getString("ID");
@@ -50,7 +50,7 @@ public class SearchResult extends javax.swing.JFrame {
                 String size = rs.getString("SizeInSquareMeters");
                 String description = rs.getString("DESCRIP");
                 
-                // Create panel for this apartment
+                
                 JPanel apartmentPanel = new JPanel();
                 apartmentPanel.setPreferredSize(new Dimension(650, 50));
                 apartmentPanel.setMaximumSize(new Dimension(650, 50));
@@ -58,14 +58,14 @@ public class SearchResult extends javax.swing.JFrame {
                 apartmentPanel.setBackground(Color.white);
                 apartmentPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
                 
-                // Create label for apartment info
+                
                 JLabel infoLabel = new JLabel();
                 infoLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 14));
                 infoLabel.setText("ID: " + id + " - " + address + ", " + size + " - $" + price + "\n" + description);
                 
                 apartmentPanel.add(infoLabel);
                 
-                // Create Reserve button
+                
                 JButton reserveButton = new JButton("Reserve");
                 reserveButton.setFont(new Font("Bahnschrift", Font.PLAIN, 14));
                 reserveButton.addActionListener(new ActionListener() {
@@ -77,7 +77,7 @@ public class SearchResult extends javax.swing.JFrame {
                 apartmentPanel.add(reserveButton);
                 contentPanel.add(apartmentPanel);
                 
-                // Add some space between items
+                
                 JPanel spacer = new JPanel();
                 spacer.setPreferredSize(new Dimension(650, 5));
                 spacer.setMaximumSize(new Dimension(650, 5));
@@ -101,7 +101,6 @@ public class SearchResult extends javax.swing.JFrame {
                 contentPanel.add(noResultsPanel);
             }
             
-            // Update UI
             contentPanel.revalidate();
             contentPanel.repaint();
         }
