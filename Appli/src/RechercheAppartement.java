@@ -256,7 +256,7 @@ public class RechercheAppartement extends javax.swing.JFrame {
              "      FROM reservation r2 " +
              "      WHERE r2.ID_APPARTEMENT = a.ID " +
              "        AND ( " +
-             "            (r2.DATEDEBUT BETWEEN '" + date + "' AND '" + outdate + "') " +
+             "            ( " + date + " BETWEEN r2.DATEDEBUT AND r2.DATEFIN) OR (" + outdate + " r2.DATEDEBUT AND r2.DATEFIN" +
              "        ) " +
              "  )";
             

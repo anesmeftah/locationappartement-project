@@ -164,7 +164,8 @@ public class Login extends javax.swing.JFrame {
             ResultSet rs = stmt.executeQuery(SQL);
             
             if(rs.next()){
-                Msg.setText("login");
+                new HomePage().setVisible(true);
+                
                 
                 try(FileWriter cookie = new FileWriter("cookie.txt");){
                     
@@ -191,6 +192,7 @@ public class Login extends javax.swing.JFrame {
                 catch(IOException e){
                     System.out.println(e.getMessage());
                 }
+                dispose();
             }
             else{
                 Msg.setText("Email ou mot de passe invalide");
