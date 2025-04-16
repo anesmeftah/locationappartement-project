@@ -248,7 +248,7 @@ public class RechercheAppartement extends javax.swing.JFrame {
             Statement stmt = con.createStatement();
             
             
-            String SQL ="SELECT * " +
+            String SQL = "SELECT * " +
              "FROM appartement a " +
              "WHERE a.ADDRESS LIKE '%" + Loc + "%' " +
              "  AND NOT EXISTS ( " +
@@ -256,7 +256,10 @@ public class RechercheAppartement extends javax.swing.JFrame {
              "      FROM reservation r2 " +
              "      WHERE r2.ID_APPARTEMENT = a.ID " +
              "        AND ( " +
-             "            ( " + date + " BETWEEN r2.DATEDEBUT AND r2.DATEFIN) OR (" + outdate + " r2.DATEDEBUT AND r2.DATEFIN" +
+             "            ('" + date + "' BETWEEN r2.DATEDEBUT AND r2.DATEFIN) OR " +
+             "            ('" + outdate + "' BETWEEN r2.DATEDEBUT AND r2.DATEFIN) OR " +
+             "            (r2.DATEDEBUT BETWEEN '" + date + "' AND '" + outdate + "') OR " +
+             "            (r2.DATEFIN BETWEEN '" + date + "' AND '" + outdate + "') " +
              "        ) " +
              "  )";
             
