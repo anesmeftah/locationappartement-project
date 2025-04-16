@@ -1,3 +1,6 @@
+
+import javax.swing.JFrame;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -92,11 +95,18 @@ public class Admin2 extends javax.swing.JPanel {
     }//GEN-LAST:event_appartementButtontoAppartementTab
 
     private void clienButtontoClientTab(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienButtontoClientTab
-        javax.swing.JFrame main = (javax.swing.JFrame)javax.swing.SwingUtilities.getWindowAncestor(this);
-        main.getContentPane();
-        main.getContentPane().remove(this);
-        main.revalidate();
-        main.repaint();
+        JFrame mainFrame = (JFrame)javax.swing.SwingUtilities.getWindowAncestor(this);
+        GererClients2 search = new GererClients2();
+        search.init();
+        mainFrame.getContentPane().removeAll();
+                mainFrame.getContentPane().add(search);
+                
+                
+                
+                mainFrame.setLayout(new java.awt.FlowLayout());
+                mainFrame.setLocationRelativeTo(null);   // Center the window
+                mainFrame.revalidate();
+                mainFrame.repaint();
     }//GEN-LAST:event_clienButtontoClientTab
 
 

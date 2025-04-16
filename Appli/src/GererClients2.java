@@ -215,9 +215,16 @@ try{
                     Label.setVisible(true);
                     button.setText("Modifier");
                     button.addActionListener(e->{
-                        new ModifierClients(email).setVisible(true);
-                        java.awt.Window window = javax.swing.SwingUtilities.getWindowAncestor(button);
-                        if (window != null) window.dispose();
+                        ModifierClients2 mc = new ModifierClients2(email);
+                        JFrame mainFrame = (JFrame)javax.swing.SwingUtilities.getWindowAncestor(button);
+                        mainFrame.getContentPane().removeAll();
+                        mainFrame.getContentPane().add(mc);
+                
+                
+                        mainFrame.pack();                        // Resize to fit content
+                        mainFrame.setLayout(new java.awt.FlowLayout());
+                        mainFrame.setLocationRelativeTo(null);   // Center the window
+                        
                     });
                     pan.add(Label);
                     pan.add(check);

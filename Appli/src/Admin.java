@@ -81,7 +81,7 @@ public class Admin extends javax.swing.JFrame {
         
         
         mainFrame.pack();                        // Resize to fit content
-        mainFrame.setLayout(new java.awt.FlowLayout());
+        mainFrame.setLayout(new java.awt.CardLayout());
         mainFrame.setLocationRelativeTo(null);   // Center the window
         mainFrame.setVisible(true);              // Show the window
     });/*

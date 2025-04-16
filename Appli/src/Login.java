@@ -164,7 +164,31 @@ public class Login extends javax.swing.JFrame {
             ResultSet rs = stmt.executeQuery(SQL);
             
             if(rs.next()){
-                new HomePage().setVisible(true);
+                Login mainFrame = this;
+                int Class = rs.getInt("class");
+                if(Class ==2){
+                Admin2 admin = new Admin2();
+                mainFrame.getContentPane().removeAll();
+                mainFrame.getContentPane().add(admin);
+                
+                
+                
+                mainFrame.setLayout(new java.awt.FlowLayout());
+                mainFrame.setLocationRelativeTo(null);   // Center the window
+                mainFrame.repaint();
+                mainFrame.revalidate();
+                }else{
+                HomePage2 home = new HomePage2();
+                mainFrame.getContentPane().removeAll();
+                mainFrame.getContentPane().add(home);
+                
+                
+                
+                mainFrame.setLayout(new java.awt.FlowLayout());
+                mainFrame.setLocationRelativeTo(null);   // Center the window
+                mainFrame.repaint();
+                mainFrame.revalidate();
+                }                                       
                 
                 
                 try(FileWriter cookie = new FileWriter("cookie.txt");){
@@ -192,7 +216,6 @@ public class Login extends javax.swing.JFrame {
                 catch(IOException e){
                     System.out.println(e.getMessage());
                 }
-                dispose();
             }
             else{
                 Msg.setText("Email ou mot de passe invalide");
@@ -279,11 +302,19 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> {
+        Login mainFrame = new Login();           // Create your main JFrame
+        
+        
+        
+
+        
+        
+        
+        mainFrame.pack();                        // Resize to fit content
+        mainFrame.setLocationRelativeTo(null);   // Center the window
+        mainFrame.setVisible(true);              // Show the window
+    });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
