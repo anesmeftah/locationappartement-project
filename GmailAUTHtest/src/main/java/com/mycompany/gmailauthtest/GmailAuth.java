@@ -36,7 +36,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.io.FileReader;
 
 import java.security.GeneralSecurityException;
 import java.util.Collections;
@@ -52,16 +54,17 @@ import java.io.InputStreamReader;
  * @author motaz
  */
 public class GmailAuth {
-    private static final String CLIENT_SECRET_FILE = "C:/Users/motaz/OneDrive/Bureau/JAVAPROJECT/test gmail auth/client_secret.json";
+    private static final String CLIENT_SECRET_FILE = "C:\\Users\\motaz\\OneDrive\\Bureau\\Locations app\\locationappartement-project\\GmailAUTHtest\\src\\main\\resources\\client_secret.json";
     private static final String APPLICATION_NAME = "Your App Name";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static final List<String> SCOPES = Collections.singletonList(GmailScopes.GMAIL_READONLY);
     private static GoogleClientSecrets getClientSecrets() throws IOException {
-            InputStream in = GmailAuth.class.getResourceAsStream(CLIENT_SECRET_FILE);
+            File client_s = new File(CLIENT_SECRET_FILE);
+            /*InputStream in = GmailAuth.class.getResourceAsStream(CLIENT_SECRET_FILE);
             if (in == null) {
                 throw new FileNotFoundException("Resource not found: "+CLIENT_SECRET_FILE);
-            }
-            return GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
+            }*/
+            return GoogleClientSecrets.load(JSON_FACTORY, new FileReader(client_s));
         }
     public static void main(String[] args) throws Exception {
         // Build the authorization code flow
