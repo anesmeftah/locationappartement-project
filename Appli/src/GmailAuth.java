@@ -2,28 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.gmailauthtest;
 
-import java.util.List;
+import com.google.api.client.json.JsonFactory;
+import com.google.api.client.util.store.FileDataStoreFactory;
+import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.ListMessagesResponse;
-import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
+import com.google.api.services.oauth2.Oauth2;
+import com.google.api.services.oauth2.model.Userinfo;
+
 
 import javax.mail.*;
 import javax.mail.internet.*;
+
+
+import java.util.List;
 import java.util.Properties;
 import java.util.Base64;
 
-import com.google.api.services.oauth2.Oauth2;
-import com.google.api.services.oauth2.model.Userinfo;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,17 +39,16 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import java.io.ByteArrayOutputStream;
-
 /**
  *
  * @author motaz
  */
 public class GmailAuth {
-    private static final String CLIENT_SECRET_FILE = "C:\\Users\\motaz\\OneDrive\\Bureau\\Locations app\\locationappartement-project\\GmailAUTHtest\\src\\main\\resources\\client_secret.json";
-    private static final String APPLICATION_NAME = "Your App Name";
-    private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
-    private static final List<String> SCOPES = Arrays.asList("https://www.googleapis.com/auth/userinfo.email","https://www.googleapis.com/auth/gmail.readonly","https://www.googleapis.com/auth/gmail.modify","https://www.googleapis.com/auth/gmail.compose","https://www.googleapis.com/auth/gmail.send"); // Email scope
-    private static GoogleClientSecrets getClientSecrets() throws IOException {
+    public static final String CLIENT_SECRET_FILE = "C:\\Users\\motaz\\OneDrive\\Bureau\\Locations app\\locationappartement-project\\GmailAUTHtest\\src\\main\\resources\\client_secret.json";
+    public static final String APPLICATION_NAME = "Rentry";
+    public static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+    public static final List<String> SCOPES = Arrays.asList("https://www.googleapis.com/auth/userinfo.email","https://www.googleapis.com/auth/gmail.readonly","https://www.googleapis.com/auth/gmail.modify","https://www.googleapis.com/auth/gmail.compose","https://www.googleapis.com/auth/gmail.send"); // Email scope
+    public static GoogleClientSecrets getClientSecrets() throws IOException {
             File client_s = new File(CLIENT_SECRET_FILE);
             /*InputStream in = GmailAuth.class.getResourceAsStream(CLIENT_SECRET_FILE);
             if (in == null) {
@@ -112,7 +113,7 @@ public class GmailAuth {
                 clientSecrets,
                 SCOPES
         )
-        .setDataStoreFactory(new FileDataStoreFactory(new java.io.File("C:\\Users\\motaz\\OneDrive\\Bureau\\Locations app\\locationappartement-project\\GmailAUTHtest\\tokens")))
+        .setDataStoreFactory(new FileDataStoreFactory(new java.io.File("C:\\Users\\motaz\\OneDrive\\Bureau\\Locations app\\locationappartement-project\\Appli\\tokens")))
         .setAccessType("offline")
         .build();
 
@@ -148,7 +149,7 @@ public class GmailAuth {
                 JSON_FACTORY,
                 clientSecrets,
                 SCOPES)
-                .setDataStoreFactory(new FileDataStoreFactory(new java.io.File("C:\\Users\\motaz\\OneDrive\\Bureau\\Locations app\\locationappartement-project\\GmailAUTHtest\\tokens")))
+                .setDataStoreFactory(new FileDataStoreFactory(new java.io.File("C:\\Users\\motaz\\OneDrive\\Bureau\\Locations app\\locationappartement-project\\Appli\\tokens")))
                 .setAccessType("offline")
                 .build();
 
