@@ -268,17 +268,20 @@ public class RechercheAppartement2 extends javax.swing.JPanel {
             Connection con = DriverManager.getConnection(host, uName, uPass);
             Statement stmt = con.createStatement();
 
-            String SQL ="SELECT * " +
-            "FROM appartement a " +
-            "WHERE a.ADDRESS LIKE '%" + Loc + "%' " +
-            "  AND NOT EXISTS ( " +
-            "      SELECT 1 " +
-            "      FROM reservation r2 " +
-            "      WHERE r2.ID_APPARTEMENT = a.ID " +
-            "        AND ( " +
-            "            ( " + date + " BETWEEN r2.DATEDEBUT AND r2.DATEFIN) OR (" + outdate + " r2.DATEDEBUT AND r2.DATEFIN" +
-            "        ) " +
-            "  )";
+            String SQL = "SELECT * " +
+             "FROM appartement a " +
+             "WHERE a.ADDRESS LIKE '%" + Loc + "%' " +
+             "  AND NOT EXISTS ( " +
+             "      SELECT 1 " +
+             "      FROM reservation r2 " +
+             "      WHERE r2.ID_APPARTEMENT = a.ID " +
+             "        AND ( " +
+             "            ('" + date + "' BETWEEN r2.DATEDEBUT AND r2.DATEFIN) OR " +
+             "            ('" + outdate + "' BETWEEN r2.DATEDEBUT AND r2.DATEFIN) OR " +
+             "            (r2.DATEDEBUT BETWEEN '" + date + "' AND '" + outdate + "') OR " +
+             "            (r2.DATEFIN BETWEEN '" + date + "' AND '" + outdate + "') " +
+             "        ) " +
+             "  )";
 
             ResultSet rs = stmt.executeQuery(SQL);
             new SearchResult(rs,date,outdate).setVisible(true);
