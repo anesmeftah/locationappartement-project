@@ -7,6 +7,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 /**
  *
  * @author motaz
@@ -171,10 +173,23 @@ public class BecomeHost2 extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
+        JFrame mainFrame = (JFrame)javax.swing.SwingUtilities.getWindowAncestor(this);
+        HomePage2 back = new HomePage2();
+        mainFrame.getContentPane().removeAll();
+                mainFrame.getContentPane().add(back);
+                
+                
+                
+                mainFrame.setLayout(new java.awt.FlowLayout());
+                mainFrame.setLocationRelativeTo(null);   // Center the window
+                mainFrame.repaint();
+                mainFrame.revalidate();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
         // TODO add your handling code here:
+        JFrame mainFrame = (JFrame)javax.swing.SwingUtilities.getWindowAncestor(this);
         String Adr = LocF.getText();
         double price = Double.parseDouble(PriceF.getText());
         int Num = Integer.parseInt(NumberF.getText());
@@ -200,10 +215,20 @@ public class BecomeHost2 extends javax.swing.JPanel {
             String SQL = "INSERT INTO APPARTEMENT(ID,ADDRESS,PRIX,DESCRIP,NUMBEROFROOMS,SIZEINSQUAREMETERS,STATUT) VALUES (" + ID + ", '" + Adr + "', " + price + ", '" + Desc + "', " + Num + ", " + Size + ", 'pending')";
             int affected = stmt.executeUpdate(SQL);
             if(affected > 0){
-                //Add Confirmation Message here
+                JOptionPane.showMessageDialog(null,"Host added. Waiting for acceptance.");
+                HomePage2 home = new HomePage2();
+                mainFrame.getContentPane().removeAll();
+                mainFrame.getContentPane().add(home);
+                
+                
+                
+                mainFrame.setLayout(new java.awt.FlowLayout());
+                mainFrame.setLocationRelativeTo(null);   // Center the window
+                mainFrame.repaint();
+                mainFrame.revalidate();
             }
             else{
-                //error message here
+                JOptionPane.showMessageDialog(null,"An error occurred. Please try again");
             }
 
         }

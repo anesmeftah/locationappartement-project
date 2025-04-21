@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import javax.swing.JFrame;
 /**
  *
  * @author motaz
@@ -284,7 +285,19 @@ public class RechercheAppartement2 extends javax.swing.JPanel {
              "  )";
 
             ResultSet rs = stmt.executeQuery(SQL);
-            new SearchResult(rs,date,outdate).setVisible(true);
+            
+            
+            JFrame mainFrame = (JFrame)javax.swing.SwingUtilities.getWindowAncestor(this);
+            SearchResult2 search = new SearchResult2(rs,date,outdate);
+            mainFrame.getContentPane().removeAll();
+            mainFrame.getContentPane().add(search);
+                
+                
+                
+            mainFrame.setLayout(new java.awt.FlowLayout());
+            mainFrame.setLocationRelativeTo(null);   // Center the window
+            mainFrame.repaint();
+            mainFrame.revalidate();
             
         }
         catch(Exception e){
