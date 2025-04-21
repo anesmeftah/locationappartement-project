@@ -206,52 +206,42 @@ public class ConfirmReservation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
-        // TODO add your handling code here:
-        try{
+        try {
             String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
             String uName = "root";
             String uPass = "root";
-            
+
             Connection con = DriverManager.getConnection(host, uName, uPass);
             Statement stmt = con.createStatement();
-            
+
             String cookies = GetCookie();
-            if(cookies.equals("-1")){
-
-                JOptionPane.showMessageDialog(null,"You have to login first");
-
-            }
-            else{
-                String SQLID = "SELECT MAX(ID) FROM appartement";
-                ResultSet rsid = stmt.executeQuery(SQLID);
-                int ID;
-                if (rsid.next()) {
-                    ID = rsid.getInt(1) + 1;
-
-                } else {
-                    ID = 1;
-                }
-                
+            if (cookies.equals("-1")) {
+                JOptionPane.showMessageDialog(null, "You have to login first");
+            } else {
                 String SQL = "SELECT ID FROM CLIENTS WHERE COOKIE = '" + cookies + "'";
                 ResultSet rs = stmt.executeQuery(SQL);
-                if(rs.next()){
-                    String SQLI = "INSERT INTO reservation(ID, ID_CLIENT, ID_APPARTEMENT, DATEDEBUT, DATEFIN) VALUES (" + ID + ", "
+                if (rs.next()) {
+                    String SQLI = "INSERT INTO reservation(ID_CLIENT, ID_APPARTEMENT, DATEDEBUT, DATEFIN) VALUES ("
                             + rs.getString("ID") + ", " + IDL.getText() + ", '"
                             + CheckinF.getText() + "', '"
                             + CheckoutF.getText() + "')";
-                    stmt.executeUpdate(SQLI);
-                    JOptionPane.showMessageDialog(null, "Reservation confirmed successfully!");
+                    stmt.executeUpdate(SQLI, Statement.RETURN_GENERATED_KEYS);
+
+                    ResultSet generatedKeys = stmt.getGeneratedKeys();
+                    if (generatedKeys.next()) {
+                        int reservationId = generatedKeys.getInt(1);
+                        new Payment(reservationId, CheckinF.getText(), CheckoutF.getText()).setVisible(true);
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Failed to retrieve reservation ID.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "You have to login first");
                 }
-                else{
-                    JOptionPane.showMessageDialog(null,"You have to login first");
-                }
-            }  
-            
-        }
-        catch(SQLException err){
+            }
+        } catch (SQLException err) {
             System.out.println(err.getMessage());
         }
-        
     }//GEN-LAST:event_checkActionPerformed
 
     /**
