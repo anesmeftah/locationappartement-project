@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 /**
  *
  * @author motaz
@@ -21,13 +22,9 @@ public class ModifierClients2 extends javax.swing.JPanel {
     public ModifierClients2() {
         initComponents();
     }
-    public ModifierClients2(String mail){
-        System.out.println(mail+"1");
-        this.email=mail;
-        initComponents();
-        System.out.println(email+"2");
-                System.out.println("in");
-                try{
+    private void update(){
+    
+        try{
                 String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
                 String uName = "root";
                 String uPass = "root";
@@ -50,6 +47,15 @@ public class ModifierClients2 extends javax.swing.JPanel {
                 }catch(SQLException err){
                 System.out.println(err.getMessage());
             }
+        
+    }
+    public ModifierClients2(String mail){
+        initComponents();
+        System.out.println(mail+"1");
+        this.email=mail;
+        System.out.println(email+"2");
+                System.out.println("in");
+        this.update();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,7 +108,12 @@ public class ModifierClients2 extends javax.swing.JPanel {
 
         jLabel5.setText("ADMIN");
 
-        ClassF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ClassF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "       0", "       1", "       2" }));
+        ClassF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClassFActionPerformed(evt);
+            }
+        });
 
         classL.setText("class");
 
@@ -193,11 +204,41 @@ public class ModifierClients2 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ChangerIdB(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangerIdB
-        // TODO add your handling code here:
+        try{
+                int ID = Integer.parseInt(IdF.getText());
+                String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
+                String uName = "root";
+                String uPass = "root";
+
+                Connection con = DriverManager.getConnection(host, uName, uPass);
+                
+                String sql = "UPDATE CLIENTS SET ID = ? WHERE EMAIL = ?";
+                PreparedStatement pstmt = con.prepareStatement(sql);
+
+                // Set the new email and the id of the client you want to update
+                pstmt.setString(2, this.email);
+                pstmt.setInt(1, ID); // e.g., client with ID 1
+
+                int rowsAffected = pstmt.executeUpdate();
+                System.out.println("Updated rows: " + rowsAffected);
+
+                pstmt.close();
+                con.close();
+                
+                
+                
+                
+                
+            }catch(SQLException err){
+                System.out.println(err.getMessage());
+            }
+            this.update();
     }//GEN-LAST:event_ChangerIdB
 
     private void IdFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IdFMouseClicked
-        IdF.setText("");
+        
+        if(IdF.getText().equals("")){
+            IdF.setText("New ID");}
     }//GEN-LAST:event_IdFMouseClicked
 
     private void IdFMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IdFMouseExited
@@ -210,8 +251,55 @@ public class ModifierClients2 extends javax.swing.JPanel {
     }//GEN-LAST:event_IdFActionPerformed
 
     private void ChangerClassB(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangerClassB
+        try{
+                int cl = Integer.parseInt(classL.getText());
+                Object classSelected = ClassF.getSelectedItem();
+                String classString =classSelected.toString();
+                classString = classString.strip();
+                System.out.println(classString);
+                
+                try{
+                cl = Integer.parseInt(classString);
+                }catch(Exception e){
+                System.out.println("Sad life");
+            }
+                
+                String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
+                String uName = "root";
+                String uPass = "root";
 
+                Connection con = DriverManager.getConnection(host, uName, uPass);
+                
+                
+                System.out.println(cl);
+                String sql = "UPDATE CLIENTS SET CLASS = ? WHERE EMAIL = ?";
+                PreparedStatement pstmt = con.prepareStatement(sql);
+
+                // Set the new email and the id of the client you want to update
+                pstmt.setString(2, this.email);
+                pstmt.setInt(1, cl); // e.g., client with ID 1
+
+                int rowsAffected = pstmt.executeUpdate();
+                System.out.println("Updated rows: " + rowsAffected);
+
+                pstmt.close();
+                con.close();
+                
+                
+                
+                
+                
+                
+                
+            }catch(SQLException err){
+                System.out.println(err.getMessage());
+            }
+        this.update();
     }//GEN-LAST:event_ChangerClassB
+
+    private void ClassFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClassFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ClassFActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -72,7 +72,8 @@ public class Admin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
         Admin mainFrame = new Admin();           // Create your main JFrame
-        ConfirmReservation2 pan = new ConfirmReservation2();
+        GererReservations pan = new GererReservations();
+        pan.init();
         
         mainFrame.getContentPane().add(pan);
         

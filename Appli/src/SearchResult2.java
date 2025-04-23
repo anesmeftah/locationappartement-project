@@ -27,7 +27,7 @@ public class SearchResult2 extends javax.swing.JPanel {
     public SearchResult2() {
         initComponents();
     }
-    SearchResult2(ResultSet rs, String Checkin, String Checkout) {
+    public SearchResult2(ResultSet rs, String Checkin, String Checkout) {
         initComponents(); 
         
         
