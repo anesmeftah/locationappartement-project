@@ -14,6 +14,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 /**
  *
@@ -29,7 +30,6 @@ public class SearchResult2 extends javax.swing.JPanel {
     }
     public SearchResult2(ResultSet rs, String Checkin, String Checkout) {
         initComponents(); 
-        
         
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
@@ -68,6 +68,7 @@ public class SearchResult2 extends javax.swing.JPanel {
                 reserveButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         new ConfirmReservation(id, Checkin, Checkout).setVisible();
+                        
                     }
                 });
                 
