@@ -132,12 +132,12 @@ public class GererReservations extends javax.swing.JPanel {
                             javax.swing.JLabel lab = (javax.swing.JLabel)L[0];
                             value = lab.getText();
                         }
-                        if(L[1] instanceof javax.swing.JCheckBox){
-                            javax.swing.JCheckBox check = (javax.swing.JCheckBox)L[1];
+                        if(L[2] instanceof javax.swing.JCheckBox ){
+                            javax.swing.JCheckBox check = (javax.swing.JCheckBox)L[2];
                             verif = check.isSelected();
                         }
                         if(verif){
-                            String sql = "DELETE FROM RESERVATIONS WHERE id = ?";
+                            String sql = "DELETE FROM RESERVATION WHERE id = ?";
                             PreparedStatement stmt = con.prepareStatement(sql);
 
                             stmt.setString(1, value);
@@ -189,6 +189,7 @@ try{
 
                 Connection con = DriverManager.getConnection(host, uName, uPass);
                 Statement stmt = con.createStatement();
+                Statement stmt2 = con.createStatement();
                 String SQL = "SELECT * FROM RESERVATION";
                 ResultSet rs = stmt.executeQuery(SQL);
                 java.beans.PropertyChangeListener listener =new java.beans.PropertyChangeListener() {
@@ -200,12 +201,15 @@ try{
                 List.removeAll();
                 List.setLayout(new javax.swing.BoxLayout(List, javax.swing.BoxLayout.Y_AXIS));
                 while(rs.next()){
+                    String adr = null;
                     String ID = rs.getString("ID");
                     String id_adr = rs.getString("ID_APPARTEMENT");
                     String SQL2 = "SELECT * FROM APPARTEMENT WHERE ID ="+id_adr;
-                    ResultSet rs2 = stmt.executeQuery(SQL2);
-                    rs2.next();
-                    String adr = rs2.getString("ADDRESS");
+                    ResultSet rs2 = stmt2.executeQuery(SQL2);
+                    while(rs2.next()){
+                    adr = rs2.getString("ADDRESS");
+                    }
+                    rs2.close();
                     javax.swing.JPanel pan = new javax.swing.JPanel();
                     javax.swing.JLabel id = new javax.swing.JLabel();
                     javax.swing.JLabel adress = new javax.swing.JLabel();
@@ -218,9 +222,7 @@ try{
                             supprimerClient.removePropertyChangeListener(listener);
                             supprimerClient.setText("Supprimer Reservations");
                             supprimerClient.addPropertyChangeListener(listener);
-                        }
-                    }
-};
+                        }}};
                     check.addItemListener(updateButton);
                     
                     labelSetup(id,ID);
@@ -228,8 +230,8 @@ try{
                     
                     
                     button.setText("Check");
-                    button.addActionListener(e->{
-                        InfoReservation mc = new InfoReservation();
+                    button.addActionListener(e2->{
+                        InfoReservation mc = new InfoReservation(Integer.parseInt(ID));
                         JFrame mainFrame = (JFrame)javax.swing.SwingUtilities.getWindowAncestor(button);
                         mainFrame.getContentPane().removeAll();
                         mainFrame.getContentPane().add(mc);
@@ -246,7 +248,10 @@ try{
                     pan.add(button);
                     List.add(pan);
                     
-            }
+            
+                }
+            rs.close();
+            stmt.close();
             List.revalidate();
             List.repaint();
             }

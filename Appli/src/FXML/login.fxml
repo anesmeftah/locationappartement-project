@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/stylesheet.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/stylesheet.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loginController">
 
    <children>
       <!-- Background Image / Side Illustration -->
@@ -24,16 +24,16 @@
       <Text layoutX="390.0" layoutY="54.0" styleClass="label-title" text="Login" />
 
       <!-- Username Input -->
-      <TextField layoutX="320.0" layoutY="90.0" promptText="Username or Email" styleClass="text-field" />
+      <TextField fx:id="Username" layoutX="320.0" layoutY="90.0" promptText="Username or Email" styleClass="text-field" />
 
       <!-- Password Input -->
-      <PasswordField layoutX="320.0" layoutY="140.0" promptText="Password" styleClass="password-field" />
+      <PasswordField fx:id="Password" layoutX="320.0" layoutY="140.0" promptText="Password" styleClass="password-field" />
 
       <!-- Login Button -->
-      <Button layoutX="320.0" layoutY="190.0" prefHeight="35.0" prefWidth="250.0" styleClass="login-button" text="Login" />
+      <Button fx:id="Login" layoutX="320.0" layoutY="190.0" onAction="#Login" prefHeight="35.0" prefWidth="250.0" styleClass="login-button" text="Login" />
 
       <!-- Google Login Button -->
-      <Button layoutX="320.0" layoutY="240.0" prefHeight="35.0" prefWidth="250.0" styleClass="google-button" text="Login with Google">
+      <Button fx:id="Gmail" layoutX="320.0" layoutY="240.0" onAction="#gmailActionPerformed" prefHeight="35.0" prefWidth="250.0" styleClass="google-button" text="Login with Google">
          <graphic>
             <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
                <image>
@@ -45,7 +45,7 @@
 
       <!-- Signup Prompt -->
       <Label layoutX="320.0" layoutY="290.0" text="Don't have an account?" />
-      <Hyperlink layoutX="445.0" layoutY="290.0" styleClass="signup-link" text="Sign Up" />
+      <Hyperlink fx:id="SignUp" layoutX="445.0" layoutY="290.0" onAction="#creer" styleClass="signup-link" text="Sign Up" />
 
       <!-- Logo on top right -->
       <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="510.0" layoutY="10.0" preserveRatio="true">
