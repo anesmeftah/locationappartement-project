@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="RechercheAppartement2"
+            stylesheets="/CSS/stylesheet.css,/CSS/RechercheAppartement2.css">
+    <top>
+        <Label text="Search Apartments" styleClass="page-title"/>
+    </top>
+    <center>
+        <VBox spacing="10" alignment="CENTER">
+            <!-- search form fields -->
+            <Button text="Search" styleClass="main-button"/>
+        </VBox>
+    </center>
+</BorderPane>

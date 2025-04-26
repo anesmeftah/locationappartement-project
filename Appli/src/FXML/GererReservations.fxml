@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GererReservations"
+            stylesheets="/CSS/stylesheet.css,/CSS/GererReservations.css">
+    <top>
+        <Label text="Manage Reservations" styleClass="page-title"/>
+    </top>
+    <center>
+        <TableView fx:id="reservationsTable" prefWidth="600" prefHeight="300">
+            <!-- columns: Date, Client, Apartment, Status -->
+        </TableView>
+    </center>
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_RIGHT" padding="10">
+            <Button text="Add" styleClass="main-button"/>
+            <Button text="Edit" styleClass="main-button"/>
+            <Button text="Cancel" styleClass="main-button"/>
+        </HBox>
+    </bottom>
+</BorderPane>

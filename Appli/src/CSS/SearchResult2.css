@@ -1,0 +1,9 @@
+/* SearchResult2.css */
+.page-title {
+    -fx-font-size: 26px;
+    -fx-text-fill: #2c3e50;
+}
+.main-button {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+}

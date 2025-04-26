@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="SearchResult2"
+            stylesheets="/CSS/stylesheet.css,/CSS/SearchResult2.css">
+    <top>
+        <Label text="Search Results" styleClass="page-title"/>
+    </top>
+    <center>
+        <ListView fx:id="resultsList" prefWidth="400" prefHeight="300"/>
+    </center>
+    <bottom>
+        <Button text="Back" styleClass="main-button"/>
+    </bottom>
+</BorderPane>

@@ -1,4 +1,3 @@
-USE locationappartement;
 -- CLIENTS
 INSERT INTO CLIENTS (FirstName, LastName, email, ID, TELEPHONE, MDP,class)
 VALUES 

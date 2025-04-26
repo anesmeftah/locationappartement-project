@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Payment"
+            stylesheets="/CSS/stylesheet.css,/CSS/Payment.css">
+    <top>
+        <Label text="Payment" styleClass="page-title"/>
+    </top>
+    <center>
+        <VBox spacing="10" alignment="CENTER" padding="20">
+            <Label text="Enter payment details:"/>
+            <!-- form fields: Card Number, Expiry, CVV -->
+            <Button text="Pay Now" styleClass="main-button"/>
+        </VBox>
+    </center>
+</BorderPane>

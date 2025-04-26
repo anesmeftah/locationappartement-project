@@ -3,6 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
+
+import javax.swing.JPanel;
+import javax.swing.JFrame;
+
 /**
  *
  * @author motaz
@@ -25,19 +36,247 @@ public class GererReservations extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        supprimerClient = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        scroll = new javax.swing.JScrollPane();
+        List = new javax.swing.JPanel();
+        showList = new javax.swing.JButton();
+
+        supprimerClient.setText("Supprimer Reservations");
+        supprimerClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprimerClientActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("ADMIN");
+
+        List.setBackground(new java.awt.Color(242, 242, 5));
+
+        javax.swing.GroupLayout ListLayout = new javax.swing.GroupLayout(List);
+        List.setLayout(ListLayout);
+        ListLayout.setHorizontalGroup(
+            ListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 340, Short.MAX_VALUE)
+        );
+        ListLayout.setVerticalGroup(
+            ListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 297, Short.MAX_VALUE)
+        );
+
+        scroll.setViewportView(List);
+
+        showList.setText("Show List");
+        showList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showListActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(showList)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(supprimerClient)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(supprimerClient)
+                    .addComponent(showList))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void supprimerClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerClientActionPerformed
+        String txt = supprimerClient.getText();
+        if(txt.equals("Supprimer Reservations")){
+            supprimerClient.setText("Confirmer");
+        }else{if(txt.equals("Confirmer")){
+            try{
+                String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
+                String uName = "root";
+                String uPass = "root";
 
+                Connection con = DriverManager.getConnection(host, uName, uPass);
+
+                java.awt.Component [] C = List.getComponents();
+                for(int i=0;i<C.length;i++){
+                    if(C[i] instanceof javax.swing.JPanel){
+                        javax.swing.JPanel pan = (javax.swing.JPanel)C[i];
+                        java.awt.Component [] L = pan.getComponents();
+                        String value = null;
+                        Boolean verif = null;
+                        if(L[0] instanceof javax.swing.JLabel){
+                            javax.swing.JLabel lab = (javax.swing.JLabel)L[0];
+                            value = lab.getText();
+                        }
+                        if(L[2] instanceof javax.swing.JCheckBox ){
+                            javax.swing.JCheckBox check = (javax.swing.JCheckBox)L[2];
+                            verif = check.isSelected();
+                        }
+                        if(verif){
+                            String sql = "DELETE FROM RESERVATION WHERE id = ?";
+                            PreparedStatement stmt = con.prepareStatement(sql);
+
+                            stmt.setString(1, value);
+
+                            int rowsAffected = stmt.executeUpdate();
+
+                            System.out.println("Deleted rows: " + rowsAffected);
+                        }
+
+                    }
+                }
+                supprimerClient.setText("Supprimer Reservations");
+            }            catch(SQLException err){
+                System.out.println(err.getMessage());
+            }
+        }
+        }
+    }//GEN-LAST:event_supprimerClientActionPerformed
+
+    private void showListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showListActionPerformed
+        String text = showList.getText();
+        if(text.equals("Show List")){
+            supprimerClient.setVisible(true);
+            scroll.setVisible(true);
+            showList.setText("Hide List");
+        }else{
+            supprimerClient.setVisible(false);
+            scroll.setVisible(false);
+            showList.setText("Show List");
+        }
+
+    }//GEN-LAST:event_showListActionPerformed
+
+
+private void labelSetup(javax.swing.JLabel Label,String str){
+    java.awt.Dimension MINDIM = new java.awt.Dimension(200,30);
+    Label.setLocation(0, 0);
+                    
+    Label.setMinimumSize(MINDIM);
+    Label.setBackground(Color.red);
+    Label.setText(str);
+    Label.setVisible(true);
+}
+private void updateList(){
+try{
+                String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
+                String uName = "root";
+                String uPass = "root";
+
+                Connection con = DriverManager.getConnection(host, uName, uPass);
+                Statement stmt = con.createStatement();
+                Statement stmt2 = con.createStatement();
+                String SQL = "SELECT * FROM RESERVATION";
+                ResultSet rs = stmt.executeQuery(SQL);
+                java.beans.PropertyChangeListener listener =new java.beans.PropertyChangeListener() {
+                public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                supprimerClientPropertyChange(evt);
+                }
+                };
+                supprimerClient.addPropertyChangeListener(listener);
+                List.removeAll();
+                List.setLayout(new javax.swing.BoxLayout(List, javax.swing.BoxLayout.Y_AXIS));
+                while(rs.next()){
+                    String adr = null;
+                    String ID = rs.getString("ID");
+                    String id_adr = rs.getString("ID_APPARTEMENT");
+                    String SQL2 = "SELECT * FROM APPARTEMENT WHERE ID ="+id_adr;
+                    ResultSet rs2 = stmt2.executeQuery(SQL2);
+                    while(rs2.next()){
+                    adr = rs2.getString("ADDRESS");
+                    }
+                    rs2.close();
+                    javax.swing.JPanel pan = new javax.swing.JPanel();
+                    javax.swing.JLabel id = new javax.swing.JLabel();
+                    javax.swing.JLabel adress = new javax.swing.JLabel();
+                    javax.swing.JButton button = new javax.swing.JButton();
+                    javax.swing.JCheckBox check = new javax.swing.JCheckBox();
+                    java.awt.event.ItemListener updateButton = e ->{
+                    if(supprimerClient.getText().equals("Confirmer")){
+                        if(e.getStateChange() == java.awt.event.ItemEvent.SELECTED){
+                            
+                            supprimerClient.removePropertyChangeListener(listener);
+                            supprimerClient.setText("Supprimer Reservations");
+                            supprimerClient.addPropertyChangeListener(listener);
+                        }}};
+                    check.addItemListener(updateButton);
+                    
+                    labelSetup(id,ID);
+                    labelSetup(adress,adr);
+                    
+                    
+                    button.setText("Check");
+                    button.addActionListener(e2->{
+                        InfoReservation mc = new InfoReservation(Integer.parseInt(ID));
+                        JFrame mainFrame = (JFrame)javax.swing.SwingUtilities.getWindowAncestor(button);
+                        mainFrame.getContentPane().removeAll();
+                        mainFrame.getContentPane().add(mc);
+                
+                
+                        
+                        mainFrame.setLayout(new java.awt.FlowLayout());
+                        mainFrame.setLocationRelativeTo(null);   // Center the window
+                        
+                    });
+                    pan.add(id);
+                    pan.add(adress);
+                    pan.add(check);
+                    pan.add(button);
+                    List.add(pan);
+                    
+            
+                }
+            rs.close();
+            stmt.close();
+            List.revalidate();
+            List.repaint();
+            }
+
+            catch(SQLException err){
+                System.out.println(err.getMessage());
+            }
+}
+
+    private void supprimerClientPropertyChange(java.beans.PropertyChangeEvent evt) {                                               
+        if(supprimerClient.getText().equals("Supprimer Reservations")){
+    updateList();
+}
+    }
+public void init(){
+    scroll.setVisible(false);
+    supprimerClient.setVisible(false);
+    updateList();
+    
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel List;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane scroll;
+    private javax.swing.JButton showList;
+    private javax.swing.JButton supprimerClient;
     // End of variables declaration//GEN-END:variables
 }

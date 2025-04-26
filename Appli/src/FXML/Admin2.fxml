@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Admin2"
+            stylesheets="/CSS/stylesheet.css,/CSS/Admin2.css">
+    <top>
+        <Label text="Admin Dashboard" styleClass="page-title"/>   <!-- shared title style -->
+    </top>
+    <center>
+        <VBox spacing="10" alignment="CENTER">
+            <Button text="Manage Users" styleClass="main-button"/>
+            <Button text="View Reports" styleClass="main-button"/>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,59 @@
+/* Base ScrollPane Style */
+.scroll-pane {
+    -fx-background: #f9f9f9;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1;
+    -fx-padding: 10;
+}
+
+/* Each client label */
+.client-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Modifier button */
+.modifier-button {
+    -fx-background-color: #2196f3;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 5 12;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.modifier-button:hover {
+    -fx-background-color: #1976d2;
+}
+
+/* Checkbox spacing */
+.check-box {
+    -fx-padding: 0 10 0 10;
+}
+
+/* Optional: Pane item hover effect */
+.pane:hover {
+    -fx-background-color: #f1f1f1;
+    -fx-background-radius: 4;
+}
+/* Move the checkbox 30px away from the email label */
+.check-box {
+    -fx-cursor: hand;
+    -fx-translate-x: 30;
+}
+
+/* Move the “Modifier” button another 30px to the right */
+.modifier-button {
+    /* existing styles… */
+    -fx-translate-x: 60; /* or whatever offset suits */
+}
+
+/* (Optional) if you’d rather use padding instead of translate */
+.check-box {
+    -fx-padding: 0 30 0 0;
+}
+
