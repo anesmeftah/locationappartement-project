@@ -36,11 +36,7 @@
 }
 
 .google-button {
-<<<<<<< HEAD
     -fx-background-color: #db4437;
-=======
-    -fx-background-color: #db9437;
->>>>>>> 9f08801154f5a954feffc945ca368354939902c9
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-radius: 5;

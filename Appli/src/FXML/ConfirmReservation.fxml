@@ -1,16 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ConfirmReservation"
-            stylesheets="/CSS/stylesheet.css,/CSS/ConfirmReservation.css">
-    <top>
-        <Label text="Confirm Reservation" styleClass="page-title"/>
-    </top>
-    <center>
-        <VBox spacing="10" alignment="CENTER">
-            <Label text="Reservation Details"/>
-            <!-- details here -->
-            <Button text="Confirm" styleClass="main-button"/>
-        </VBox>
-    </center>
-</BorderPane>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<Pane prefHeight="500.0" prefWidth="800.0" stylesheets="@../css/ConfirmReservation.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="your.package.ConfirmReservationController">
+
+  <children>
+    <!-- SIDE ILLUSTRATION -->
+    <ImageView fitHeight="500" fitWidth="200" layoutX="0" layoutY="0" pickOnBounds="true" preserveRatio="false">
+      <image>
+        <Image url="@../images/ResImg.png" />
+      </image>
+    </ImageView>
+
+    <!-- OVERLAY FOR ICON -->
+    <Rectangle fill="#a8e6f833" height="500" layoutX="0" layoutY="0" width="200" />
+
+    <!-- HEADER -->
+    <Text layoutX="240" layoutY="60" styleClass="page-title" text="Reservation Confirmation" />
+
+    <!-- Location -->
+    <Label layoutX="240" layoutY="100" styleClass="form-label" text="Location:" />
+    <Label fx:id="Loc" layoutX="380" layoutY="100" styleClass="form-value" text="—" />
+
+    <!-- Number of rooms -->
+    <Label layoutX="240" layoutY="140" styleClass="form-label" text="Number of Rooms:" />
+    <Label fx:id="Num" layoutX="380" layoutY="140" styleClass="form-value" text="—" />
+
+    <!-- Size -->
+    <Label layoutX="240" layoutY="180" styleClass="form-label" text="Size (m²):" />
+    <Label fx:id="SizeL" layoutX="380" layoutY="180" styleClass="form-value" text="—" />
+
+    <!-- Check-in -->
+    <Label layoutX="240" layoutY="220" styleClass="form-label" text="Check-In:" />
+    <Label fx:id="CheckinF" layoutX="380" layoutY="220" styleClass="form-value" text="—" />
+
+    <!-- Check-out -->
+    <Label layoutX="240" layoutY="260" styleClass="form-label" text="Check-Out:" />
+    <Label fx:id="CheckoutF" layoutX="380" layoutY="260" styleClass="form-value" text="—" />
+
+    <!-- Price -->
+    <Label layoutX="240" layoutY="300" styleClass="form-label" text="Price:" />
+    <Label fx:id="PriceF" layoutX="380" layoutY="300" styleClass="form-value" text="—" />
+
+    <!-- Confirm Button -->
+    <Button fx:id="check" layoutX="240" layoutY="360" onAction="#onConfirm" prefHeight="40" prefWidth="200" styleClass="action-button" text="Confirm Reservation" />
+
+    <!-- Hidden ID -->
+    <Label fx:id="IDL" visible="false" />
+  </children>
+</Pane>

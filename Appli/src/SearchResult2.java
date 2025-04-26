@@ -16,10 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-/**
- *
- * @author motaz
- */
+
 public class SearchResult2 extends javax.swing.JPanel {
 
     /**
@@ -28,7 +25,7 @@ public class SearchResult2 extends javax.swing.JPanel {
     public SearchResult2() {
         initComponents();
     }
-    public SearchResult2(ResultSet rs, String Checkin, String Checkout) {
+    SearchResult2(ResultSet rs, String Checkin, String Checkout) {
         initComponents(); 
         
         JPanel contentPanel = new JPanel();

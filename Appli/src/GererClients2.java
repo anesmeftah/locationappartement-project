@@ -206,6 +206,7 @@ try{
                     }
 };
                     check.addItemListener(updateButton);
+                    System.out.println("Lable added");
                     Label.setLocation(0, 0);
                     java.awt.Dimension MINDIM = new java.awt.Dimension(200,30);
                     Label.setMinimumSize(MINDIM);
@@ -220,7 +221,7 @@ try{
                         mainFrame.getContentPane().add(mc);
                 
                 
-                        
+                        mainFrame.pack();                        // Resize to fit content
                         mainFrame.setLayout(new java.awt.FlowLayout());
                         mainFrame.setLocationRelativeTo(null);   // Center the window
                         

@@ -8,14 +8,6 @@
  * @author anasm
  */
 
-<<<<<<< HEAD
-=======
-import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
->>>>>>> 9f08801154f5a954feffc945ca368354939902c9
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;

@@ -1,9 +1,39 @@
-/* SearchResult2.css */
-.page-title {
-    -fx-font-size: 26px;
-    -fx-text-fill: #2c3e50;
+/* ScrollPane background */
+.result-scroll {
+    -fx-background: transparent;
 }
-.main-button {
-    -fx-background-color: #4a90e2;
+.result-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Each apartment card */
+.result-scroll .vbox > Pane {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-padding: 12 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);
+    -fx-cursor: hand;
+}
+.result-scroll .vbox > Pane:hover {
+    -fx-background-color: #f0f4f8;
+}
+
+/* Info label inside card */
+.apartment-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Reserve button */
+.reserve-button {
+    -fx-background-color: #1abc9c;
     -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-padding: 6 14;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+.reserve-button:hover {
+    -fx-background-color: #16a085;
 }

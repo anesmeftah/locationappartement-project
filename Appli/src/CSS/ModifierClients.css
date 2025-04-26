@@ -1,18 +1,18 @@
-/* 1. Base & Gradient Background */
+/* 1. Base Gradient Background */
 .root {
     -fx-font-family: 'Segoe UI', sans-serif;
     -fx-background-color: linear-gradient(to right, #ece9e6, #ffffff);
 }
 
-/* 2. Sidebar icon */
-.icon-reserve {
+/* 2. Left Pane */
+.icon-user {
     -fx-font-size: 64px;
     -fx-fill: #2c3e50;
 }
 
-/* 3. Page Title */
+/* 3. Title */
 .page-title {
-    -fx-font-size: 24px;
+    -fx-font-size: 26px;
     -fx-font-weight: bold;
     -fx-text-fill: #2c3e50;
 }
@@ -28,15 +28,25 @@
     -fx-text-fill: #636e72;
 }
 
-/* 5. Confirm Button */
-.action-button {
-    -fx-background-color: #4a90e2;
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
+/* 5. Text Fields */
+.text-field {
+    -fx-background-color: #f4f6f8;
+    -fx-border-color:   #dcdfe6;
+    -fx-border-width:   1px;
+    -fx-border-radius:  5px;
     -fx-background-radius: 5px;
-    -fx-cursor: hand;
+    -fx-padding: 8 12;
 }
-.action-button:hover {
+
+/* 6. Change Buttons */
+.change-button {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill:       white;
+    -fx-font-weight:     bold;
+    -fx-background-radius: 5px;
+    -fx-font-size:       14px;
+    -fx-cursor:          hand;
+}
+.change-button:hover {
     -fx-background-color: #357ab8;
 }

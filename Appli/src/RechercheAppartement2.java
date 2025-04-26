@@ -12,10 +12,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import javax.swing.JFrame;
-/**
- *
- * @author motaz
- */
+
 public class RechercheAppartement2 extends javax.swing.JPanel {
 
     /**

@@ -1,0 +1,72 @@
+/* RechercheAppartement.css */
+
+/* 1. Base Gradient Background */
+.root {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-background-color: linear-gradient(to right, #ece9e6, #ffffff);
+}
+
+/* 2. Left Pane */
+.left-pane {
+    -fx-background-color: #a8e6f8;   /* soft teal */
+}
+
+/* 3. White Card Container */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 4);
+}
+
+/* 4. Page Title */
+.page-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* 5. Field Labels */
+.form-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #636e72;
+    -fx-padding: 0 0 4 0;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* 6. Text & Date Fields */
+.text-field, .date-field {
+    -fx-background-color: #ecf0f1;
+    -fx-border-color:     #bdc3c7;
+    -fx-border-width:     1px;
+    -fx-background-radius: 6px;
+    -fx-border-radius:     6px;
+    -fx-padding:          8 12;
+    -fx-font-size:        14px;
+}
+.text-field:focused, .date-field:focused {
+    -fx-border-color: #3498db;
+    -fx-effect: dropshadow(gaussian, rgba(52,152,219,0.3), 6, 0, 0, 2);
+}
+
+/* 7. Main Search Button */
+.main-button {
+    -fx-background-color: #2196f3;
+    -fx-text-fill:        white;
+    -fx-font-weight:      bold;
+    -fx-background-radius: 6px;
+    -fx-padding:          10 20;
+    -fx-cursor:           hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 2);
+}
+.main-button:hover {
+    -fx-background-color: linear-gradient(to right, #5a4eda, #0984e3);
+}
+
+/* 8. Error Message Label */
+.error-label {
+    -fx-text-fill: #e17055;
+    -fx-font-size: 12px;
+    -fx-padding: 8 0 0 0;
+    -fx-font-family: "Segoe UI", sans-serif;
+}

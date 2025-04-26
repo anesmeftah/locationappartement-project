@@ -1,13 +1,33 @@
-/* Admin2.css */
-.page-title {
-    font-size: 26px;
-    -fx-font-size: 26px;
-    color: #2c3e50;
-    -fx-text-fill: #2c3e50;
+/* Base & Gradient Background */
+.root {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-background-color: linear-gradient(to right, #ece9e6, #ffffff);
 }
-.main-button {
-    background-color: #4a90e2;
+
+/* Main Title */
+.label-title {
+    -fx-font-size: 26px;
+    -fx-fill:       #2c3e50;
+    -fx-font-weight: bold;
+}
+
+/* Subtitle Text */
+.subtitle-label {
+    -fx-font-size: 18px;
+    -fx-fill:       #2c3e50;
+    -fx-font-weight: normal;
+}
+
+/* Action Buttons */
+.action-button {
     -fx-background-color: #4a90e2;
-    color: white;
-    -fx-text-fill: white;
+    -fx-text-fill:       white;
+    -fx-font-weight:     bold;
+    -fx-background-radius: 5;
+    -fx-font-size:       14px;
+    -fx-cursor:          hand;
+}
+
+.action-button:hover {
+    -fx-background-color: #357ab8;
 }

@@ -1,16 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Payment"
-            stylesheets="/CSS/stylesheet.css,/CSS/Payment.css">
-    <top>
-        <Label text="Payment" styleClass="page-title"/>
-    </top>
-    <center>
-        <VBox spacing="10" alignment="CENTER" padding="20">
-            <Label text="Enter payment details:"/>
-            <!-- form fields: Card Number, Expiry, CVV -->
-            <Button text="Pay Now" styleClass="main-button"/>
-        </VBox>
-    </center>
-</BorderPane>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="500" prefWidth="800" stylesheets="@../CSS/Payment.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="your.package.PaymentController">
+
+  <children>
+    <HBox alignment="CENTER" prefHeight="500.0" prefWidth="800.0">
+
+      <!-- RIGHT PANE: white card -->
+      <VBox fx:id="card" alignment="TOP_CENTER" prefHeight="500" prefWidth="400.0" spacing="20" styleClass="card">
+        <padding>
+          <Insets bottom="30" left="30" right="30" top="40" />
+        </padding>
+
+        <!-- Header -->
+        <Text styleClass="label-title" text="Payment" />
+        <Label style="-fx-text-fill: #2c3e50; -fx-font-size: 14px;" text="Review your payment details" />
+
+        <!-- Details grid -->
+        <GridPane hgap="10" vgap="10">
+          <columnConstraints>
+            <ColumnConstraints percentWidth="35" />
+            <ColumnConstraints percentWidth="65" />
+          </columnConstraints>
+
+          <Label text="Check-in:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+          <TextField fx:id="checkinField" editable="false" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+          <Label text="Check-out:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+          <TextField fx:id="checkoutField" editable="false" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+          <Label text="Total:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+          <TextField fx:id="totalField" editable="false" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+        </GridPane>
+
+        <!-- Payment inputs -->
+        <TextField fx:id="cardNumberField" promptText="Card Number   1234 5678 9012 3456" styleClass="text-field" />
+        <TextField fx:id="expiryField" promptText="Expiration Date   MM / YY" styleClass="text-field" />
+
+        <!-- Action buttons -->
+        <HBox alignment="CENTER" spacing="20">
+          <Button fx:id="payButton" onAction="#handlePay" prefHeight="35" prefWidth="160" styleClass="login-button" text="Pay Now" />
+          <Button fx:id="cancelButton" onAction="#handleCancel" prefHeight="35" prefWidth="160" styleClass="cancel-button" text="Cancel" />
+        </HBox>
+      </VBox>
+    </HBox>
+  </children>
+</AnchorPane>

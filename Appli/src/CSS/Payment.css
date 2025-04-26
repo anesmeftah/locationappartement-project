@@ -1,9 +1,71 @@
-/* Payment.css */
-.page-title {
+/* payment.css */
+
+/* 1. Base & Gradient Background */
+.root {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-background-color: linear-gradient(to right, #ece9e6, #ffffff);
+}
+
+/* 2. Left Pane (illustration area) */
+.left-pane {
+    -fx-background-color: #a8e6f8;   /* soft teal */
+}
+
+/* 3. White Card Container */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 4);
+}
+
+/* 4. Title */
+.label-title {
     -fx-font-size: 26px;
     -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
 }
-.main-button {
+
+/* 5. Input Fields */
+.text-field, .password-field {
+    -fx-pref-width: 250px;
+    -fx-background-color: #f4f6f8;
+    -fx-border-color:   #dcdfe6;
+    -fx-border-width:   1px;
+    -fx-border-radius:  5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 8 12;
+    -fx-font-size: 14px;
+}
+
+/* 6. Primary Button (“Pay Now”) */
+.login-button {
     -fx-background-color: #4a90e2;
-    -fx-text-fill: white;
+    -fx-text-fill:       white;
+    -fx-font-weight:     bold;
+    -fx-background-radius: 5px;
+    -fx-font-size:       14px;
+    -fx-cursor:          hand;
+    -fx-pref-width:      160px;
+    -fx-pref-height:     35px;
+}
+.login-button:hover {
+    -fx-background-color: #357ab8;
+}
+
+/* 7. Secondary Button (“Cancel”) */
+.cancel-button {
+    -fx-background-color: white;
+    -fx-text-fill:       #2c3e50;
+    -fx-border-color:    #dcdfe6;
+    -fx-border-width:    1px;
+    -fx-border-radius:   5px;
+    -fx-background-radius: 5px;
+    -fx-font-weight:     bold;
+    -fx-font-size:       14px;
+    -fx-cursor:          hand;
+    -fx-pref-width:      160px;
+    -fx-pref-height:     35px;
+}
+.cancel-button:hover {
+    -fx-background-color: #f4f6f8;
 }

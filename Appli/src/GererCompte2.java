@@ -10,10 +10,7 @@ import java.sql.ResultSet;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-/**
- *
- * @author motaz
- */
+
 public class GererCompte2 extends javax.swing.JPanel {
 
     /**
