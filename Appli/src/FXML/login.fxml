@@ -8,12 +8,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.text.Text?>
 
 <Pane prefHeight="400.0" prefWidth="600.0"
-      xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns="http://javafx.com/javafx/24"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="loginController"
       stylesheets="@../CSS/stylesheet.css">
@@ -22,44 +20,46 @@
       <!-- Side Illustration -->
       <ImageView fitHeight="400.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="false">
          <image>
-            <Image url="@../images/loginiamge.png" />
+            <Image url="@../images/loginiamge.png"/>
          </image>
       </ImageView>
 
       <!-- Page Title -->
-      <Text layoutX="390.0" layoutY="54.0" styleClass="label-title" text="Login" />
+      <Text layoutX="390.0" layoutY="54.0"
+            styleClass="label-title"
+            text="Login"/>
 
       <!-- Username Field -->
-      <TextField fx:id="usernameField"
+      <TextField fx:id="Username"
                  layoutX="320.0" layoutY="90.0"
                  promptText="Username or Email"
-                 styleClass="text-field" />
+                 styleClass="text-field"/>
 
       <!-- Password Field -->
-      <PasswordField fx:id="passwordField"
+      <PasswordField fx:id="Password"
                      layoutX="320.0" layoutY="140.0"
                      promptText="Password"
-                     styleClass="password-field" />
+                     styleClass="password-field"/>
 
       <!-- Login Button -->
-      <Button fx:id="loginButton"
+      <Button fx:id="Login"
               layoutX="320.0" layoutY="190.0"
               prefHeight="35.0" prefWidth="250.0"
               text="Login"
-              onAction="#handleLogin"
-              styleClass="login-button" />
+              onAction="#Login"
+              styleClass="login-button"/>
 
       <!-- Login with Google Button -->
-      <Button fx:id="googleLoginButton"
+      <Button fx:id="Gmail"
               layoutX="320.0" layoutY="240.0"
               prefHeight="35.0" prefWidth="250.0"
               text="Login with Google"
-              onAction="#handleGoogleLogin"
+              onAction="#gmailActionPerformed"
               styleClass="google-button">
          <graphic>
             <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
                <image>
-                  <Image url="@../images/google_icn.png" />
+                  <Image url="@../images/google_icn.png"/>
                </image>
             </ImageView>
          </graphic>
@@ -67,19 +67,19 @@
 
       <!-- Signup Prompt -->
       <Label layoutX="320.0" layoutY="290.0"
-             text="Don't have an account?" />
-      <Hyperlink fx:id="signupLink"
+             text="Don't have an account?"/>
+      <Hyperlink fx:id="SignUp"
                  layoutX="445.0" layoutY="290.0"
                  text="Sign Up"
-                 onAction="#handleSignUp"
-                 styleClass="signup-link" />
+                 onAction="#creer"
+                 styleClass="signup-link"/>
 
       <!-- Logo Top-Right -->
       <ImageView fitHeight="70.0" fitWidth="70.0"
                  layoutX="510.0" layoutY="10.0"
                  preserveRatio="true">
          <image>
-            <Image url="@../images/Rentry.png" />
+            <Image url="@../images/Rentry.png"/>
          </image>
       </ImageView>
    </children>
