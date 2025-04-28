@@ -1,3 +1,5 @@
+package login;
+
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXML;
@@ -17,7 +19,7 @@ public class Login2 extends JFrame {
         setTitle("Rentry");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
-        ImageIcon logo = new ImageIcon(getClass().getResource("/images/Rentry.png"));
+        ImageIcon logo = new ImageIcon(getClass().getResource("../images/Rentry.png"));
         this.setIconImage(logo.getImage());
 
         JFXPanel fxPanel = new JFXPanel(); // This is the bridge
@@ -26,7 +28,7 @@ public class Login2 extends JFrame {
         Platform.runLater(() -> {
             try {
                 // Load FXML
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/login.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/login.fxml"));
                 Parent root = loader.load();
                 loginController ctr = loader.getController();
                 ctr.setMainFrame(this);

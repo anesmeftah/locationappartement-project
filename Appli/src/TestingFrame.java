@@ -1,3 +1,6 @@
+
+import admin.*;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -72,7 +75,7 @@ public class TestingFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 TestingFrame frame = new TestingFrame();
-                GererReservations pan = new GererReservations();
+                GererAppartements pan = new GererAppartements();
                 pan.init();
                 
                 

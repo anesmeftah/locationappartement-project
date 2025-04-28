@@ -1,3 +1,5 @@
+package admin;
+
 
 import javax.swing.JFrame;
 

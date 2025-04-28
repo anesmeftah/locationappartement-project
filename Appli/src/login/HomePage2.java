@@ -1,7 +1,11 @@
+package login;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
+import client.RechercheAppartement2;
+import clienp.BecomeHost2;
 import javax.swing.JFrame;
 /**
  *

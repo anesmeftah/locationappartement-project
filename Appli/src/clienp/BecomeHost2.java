@@ -1,7 +1,10 @@
+package clienp;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
+import login.HomePage2;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

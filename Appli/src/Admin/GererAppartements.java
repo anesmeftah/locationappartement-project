@@ -1,8 +1,13 @@
-package admin;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
+package admin;
+
+
+/**
+ *
+ * @author motaz
  */
 
 import java.awt.Color;
@@ -16,16 +21,14 @@ import java.sql.PreparedStatement;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 
-/**
- *
- * @author motaz
- */
-public class GererReservations extends javax.swing.JPanel {
+
+
+public class GererAppartements extends JPanel {
 
     /**
-     * Creates new form GererReservations
+     * Creates new form GererAppartements
      */
-    public GererReservations() {
+    public GererAppartements() {
         initComponents();
     }
 
@@ -44,7 +47,7 @@ public class GererReservations extends javax.swing.JPanel {
         List = new javax.swing.JPanel();
         showList = new javax.swing.JButton();
 
-        supprimerClient.setText("Supprimer Reservations");
+        supprimerClient.setText("Supprimer Appartements");
         supprimerClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 supprimerClientActionPerformed(evt);
@@ -79,41 +82,45 @@ public class GererReservations extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(showList)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addComponent(supprimerClient)))
-                .addContainerGap())
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(29, 29, 29)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addComponent(showList)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                            .addComponent(supprimerClient)))
+                    .addContainerGap(29, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(supprimerClient)
-                    .addComponent(showList))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 329, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel1)
+                    .addGap(43, 43, 43)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(supprimerClient)
+                        .addComponent(showList))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void supprimerClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerClientActionPerformed
         String txt = supprimerClient.getText();
-        if(txt.equals("Supprimer Reservations")){
+        if(txt.equals("Supprimer Appartements")){
             supprimerClient.setText("Confirmer");
         }else{if(txt.equals("Confirmer")){
             try{
@@ -134,12 +141,12 @@ public class GererReservations extends javax.swing.JPanel {
                             javax.swing.JLabel lab = (javax.swing.JLabel)L[0];
                             value = lab.getText();
                         }
-                        if(L[2] instanceof javax.swing.JCheckBox ){
+                        if(L[2] instanceof javax.swing.JCheckBox){
                             javax.swing.JCheckBox check = (javax.swing.JCheckBox)L[2];
                             verif = check.isSelected();
                         }
                         if(verif){
-                            String sql = "DELETE FROM RESERVATION WHERE id = ?";
+                            String sql = "DELETE FROM APPARTEMENT WHERE ID = ?";
                             PreparedStatement stmt = con.prepareStatement(sql);
 
                             stmt.setString(1, value);
@@ -151,7 +158,7 @@ public class GererReservations extends javax.swing.JPanel {
 
                     }
                 }
-                supprimerClient.setText("Supprimer Reservations");
+                supprimerClient.setText("Supprimer Appartements");
             }            catch(SQLException err){
                 System.out.println(err.getMessage());
             }
@@ -172,8 +179,6 @@ public class GererReservations extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_showListActionPerformed
-
-
 private void labelSetup(javax.swing.JLabel Label,String str){
     java.awt.Dimension MINDIM = new java.awt.Dimension(200,30);
     Label.setLocation(0, 0);
@@ -191,8 +196,7 @@ try{
 
                 Connection con = DriverManager.getConnection(host, uName, uPass);
                 Statement stmt = con.createStatement();
-                Statement stmt2 = con.createStatement();
-                String SQL = "SELECT * FROM RESERVATION";
+                String SQL = "SELECT * FROM Appartement";
                 ResultSet rs = stmt.executeQuery(SQL);
                 java.beans.PropertyChangeListener listener =new java.beans.PropertyChangeListener() {
                 public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -203,18 +207,11 @@ try{
                 List.removeAll();
                 List.setLayout(new javax.swing.BoxLayout(List, javax.swing.BoxLayout.Y_AXIS));
                 while(rs.next()){
-                    String adr = null;
-                    String ID = rs.getString("ID");
-                    String id_adr = rs.getString("ID_APPARTEMENT");
-                    String SQL2 = "SELECT * FROM APPARTEMENT WHERE ID ="+id_adr;
-                    ResultSet rs2 = stmt2.executeQuery(SQL2);
-                    while(rs2.next()){
-                    adr = rs2.getString("ADDRESS");
-                    }
-                    rs2.close();
+                    int id = rs.getInt("ID");
+                    String adress = rs.getString("ADDRESS");
                     javax.swing.JPanel pan = new javax.swing.JPanel();
-                    javax.swing.JLabel id = new javax.swing.JLabel();
-                    javax.swing.JLabel adress = new javax.swing.JLabel();
+                    javax.swing.JLabel Label = new javax.swing.JLabel();
+                    javax.swing.JLabel Label2 = new javax.swing.JLabel();
                     javax.swing.JButton button = new javax.swing.JButton();
                     javax.swing.JCheckBox check = new javax.swing.JCheckBox();
                     java.awt.event.ItemListener updateButton = e ->{
@@ -222,38 +219,38 @@ try{
                         if(e.getStateChange() == java.awt.event.ItemEvent.SELECTED){
                             
                             supprimerClient.removePropertyChangeListener(listener);
-                            supprimerClient.setText("Supprimer Reservations");
+                            supprimerClient.setText("Supprimer Appartements");
                             supprimerClient.addPropertyChangeListener(listener);
-                        }}};
+                        }
+                    }
+};
                     check.addItemListener(updateButton);
-                    
-                    labelSetup(id,ID);
-                    labelSetup(adress,adr);
-                    
-                    
+                    System.out.println("Lable added");
+                    java.awt.Dimension MINDIM = new java.awt.Dimension(200,30);
+                    labelSetup(Label,id+"");
+                    labelSetup(Label2 , adress);
                     button.setText("Check");
-                    button.addActionListener(e2->{
-                        InfoReservation mc = new InfoReservation(Integer.parseInt(ID));
+                    button.addActionListener(e->{
+                        ModifierAppartements mc = new ModifierAppartements(id);
                         JFrame mainFrame = (JFrame)javax.swing.SwingUtilities.getWindowAncestor(button);
                         mainFrame.getContentPane().removeAll();
                         mainFrame.getContentPane().add(mc);
                 
                 
-                        
+                                             
                         mainFrame.setLayout(new java.awt.FlowLayout());
+                        mainFrame.revalidate();
+                        mainFrame.repaint();
                         mainFrame.setLocationRelativeTo(null);   // Center the window
                         
                     });
-                    pan.add(id);
-                    pan.add(adress);
+                    pan.add(Label);
+                    pan.add(Label2);
                     pan.add(check);
                     pan.add(button);
                     List.add(pan);
                     
-            
-                }
-            rs.close();
-            stmt.close();
+            }
             List.revalidate();
             List.repaint();
             }
@@ -264,7 +261,7 @@ try{
 }
 
     private void supprimerClientPropertyChange(java.beans.PropertyChangeEvent evt) {                                               
-        if(supprimerClient.getText().equals("Supprimer Reservations")){
+        if(supprimerClient.getText().equals("Supprimer Appartements")){
     updateList();
 }
     }
@@ -274,6 +271,7 @@ public void init(){
     updateList();
     
 }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel List;
     private javax.swing.JLabel jLabel1;
