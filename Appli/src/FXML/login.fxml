@@ -13,7 +13,7 @@
 <Pane prefHeight="400.0" prefWidth="600.0"
       xmlns="http://javafx.com/javafx/24"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="login.loginController"
+      fx:controller="control.loginController"
       stylesheets="@../CSS/stylesheet.css">
 
    <children>

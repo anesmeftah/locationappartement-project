@@ -1,0 +1,8 @@
+- na77i "Appartement name" min BecomeHost2.fxml
+- implementi il fonctionalité mte3 BecomeHost2.fxml
+- a3ti asemi les variables fi BecomeHost2.fxml
+- zid system points
+- zid system penalité
+- zid il interface ta3 GererAppartement 
+- Enable il interface fi AdminController
+- kammal il configuration mta3 les interfaces

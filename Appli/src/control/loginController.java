@@ -1,4 +1,4 @@
-package login;
+package control;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -10,8 +10,6 @@ package login;
  * @author motaz
  */
 import util.GmailAuth;
-import login.HomePage2;
-import admin.Admin2;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -34,11 +32,9 @@ import javax.swing.*;
 import java.util.Random;
 import java.awt.event.*;
 
-public class loginController {
-    private JFrame mainFrame;
-    public void setMainFrame(JFrame F){
-        this.mainFrame = F;
-    }
+import util.RentryException;
+
+public class loginController extends baseController{
     private void showDialoge(){
     JOptionPane optionPane = new JOptionPane(
                 "You can now login with this account",
@@ -91,31 +87,16 @@ public class loginController {
                 
                 int Class = rs.getInt("class");
                 if(Class ==2){
-                Admin2 admin = new Admin2();
-                mainFrame.getContentPane().removeAll();
-                mainFrame.getContentPane().add(admin);
-                mainFrame.setAlwaysOnTop(true);
-                mainFrame.toFront();
-                mainFrame.repaint();
-                mainFrame.setAlwaysOnTop(false);
+                try{
+                    controlUtil control = new controlUtil();
+                    control.set(mainFrame,"Admin2.fxml",AdminController.class);
+                }catch(RentryException r){}
                 
-                
-                
-                mainFrame.setLayout(new java.awt.FlowLayout());
-                mainFrame.setLocationRelativeTo(null);   // Center the window
-                mainFrame.repaint();
-                mainFrame.revalidate();
                 }else{
-                HomePage2 home = new HomePage2();
-                mainFrame.getContentPane().removeAll();
-                mainFrame.getContentPane().add(home);
-                
-                
-                
-                mainFrame.setLayout(new java.awt.FlowLayout());
-                mainFrame.setLocationRelativeTo(null);   // Center the window
-                mainFrame.repaint();
-                mainFrame.revalidate();
+                try{
+                    controlUtil control = new controlUtil();
+                    control.set(mainFrame,"HomePage.fxml",HomeController.class);
+                }catch(RentryException r){}
                 }                                       
                 
                 

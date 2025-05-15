@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="IdL" prefHeight="40.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ReservationListItemController">
+   <children>
+      <Label fx:id="label" layoutX="10.0" layoutY="10.0" styleClass="client-label" text="id" />
+      <CheckBox fx:id="CbC" layoutX="365.0" layoutY="12.0" />
+      <Button fx:id="button" layoutX="410.0" layoutY="8.0" onAction="#buttonAction" styleClass="modifier-button" text="Modifier" />
+      <Label fx:id="AdL" layoutX="195.0" layoutY="12.0" styleClass="client-label" text="adr" />
+   </children>
+</Pane>

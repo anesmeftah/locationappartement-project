@@ -45,13 +45,15 @@
     <Label fx:id="CheckoutF" layoutX="380" layoutY="260" styleClass="form-value" text="—" />
 
     <!-- Price -->
-    <Label layoutX="240" layoutY="300" styleClass="form-label" text="Price:" />
-    <Label fx:id="PriceF" layoutX="380" layoutY="300" styleClass="form-value" text="—" />
+    <Label layoutX="240" layoutY="300" styleClass="form-label" text="Number of people :" />
+    <Label fx:id="NbrPL" layoutX="380.0" layoutY="300.0" styleClass="form-value" text="—" />
 
     <!-- Confirm Button -->
-    <Button fx:id="check" layoutX="240" layoutY="360" onAction="#onConfirm" prefHeight="40" prefWidth="200" styleClass="action-button" text="Confirm Reservation" />
+    <Button fx:id="check" layoutX="240.0" layoutY="389.0" onAction="#onConfirm" prefHeight="40" prefWidth="200" styleClass="action-button" text="Confirm Reservation" />
 
     <!-- Hidden ID -->
     <Label fx:id="IDL" visible="false" />
+      <Label layoutX="240.0" layoutY="342.0" styleClass="form-label" text="Price:" />
+      <Label fx:id="PriceF1" layoutX="380.0" layoutY="342.0" styleClass="form-value" text="—" />
   </children>
 </Pane>

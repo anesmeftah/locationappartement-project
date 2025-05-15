@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/homepage.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/homepage.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.HomeController">
 
    <children>
       <!-- Background Image / Side Illustration -->
@@ -24,10 +24,10 @@
       <Label layoutX="336.0" layoutY="91.0" styleClass="subtitle-label" text="What would you like to do?" />
 
       <!-- Search Button -->
-      <Button layoutX="320.0" layoutY="140.0" prefHeight="35.0" prefWidth="250.0" styleClass="action-button" text="Search for an apartment" />
+      <Button fx:id="searchB" layoutX="320.0" layoutY="140.0" onAction="#SearchAction" prefHeight="35.0" prefWidth="250.0" styleClass="action-button" text="Search for an apartment" />
 
       <!-- Host Button -->
-      <Button layoutX="320.0" layoutY="190.0" prefHeight="35.0" prefWidth="250.0" styleClass="action-button" text="Become a Host" />
+      <Button fx:id="hostB" layoutX="320.0" layoutY="190.0" onAction="#hostAction" prefHeight="35.0" prefWidth="250.0" styleClass="action-button" text="Become a Host" />
 
       <!-- Logo on top right -->
       <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="510.0" layoutY="10.0" preserveRatio="true">

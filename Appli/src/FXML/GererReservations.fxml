@@ -10,57 +10,35 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefWidth="800.0" prefHeight="500.0"
-      xmlns="http://javafx.com/javafx/23.0.1"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="your.package.GererReservationsController"
-      stylesheets="@../css/GererReservation.css">
+<Pane prefHeight="500.0" prefWidth="800.0" stylesheets="@../css/GererReservation.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.GererReservationsController">
 
   <children>
     <!-- Side Illustration -->
-    <ImageView layoutX="0" layoutY="0"
-               fitWidth="300" fitHeight="500"
-               pickOnBounds="true" preserveRatio="false">
+    <ImageView fitHeight="500" fitWidth="300" layoutX="0" layoutY="0" pickOnBounds="true" preserveRatio="false">
       <image>
-        <Image url="@../images/GRSB.png"/>
+        <Image url="@../images/GRSB.png" />
       </image>
     </ImageView>
 
     <!-- Overlay + Icon -->
-    <Rectangle layoutX="0" layoutY="0" width="300" height="500"
-               fill="#a8e6f833"/>
-    <Text layoutX="120" layoutY="160" text="📋" styleClass="icon-reserve"/>
+    <Rectangle fill="#a8e6f833" height="500" layoutX="0" layoutY="0" width="300" />
+    <Text layoutX="120" layoutY="160" styleClass="icon-reserve" text="📋" />
 
     <!-- ADMIN Title -->
-    <Text layoutX="350" layoutY="80" text="ADMIN" styleClass="page-title"/>
+    <Text layoutX="350" layoutY="80" styleClass="page-title" text="ADMIN" />
 
     <!-- Show/Hide List Button -->
-    <Button fx:id="showList"
-            layoutX="350" layoutY="120"
-            prefWidth="200" prefHeight="35"
-            text="Show List"
-            onAction="#showListAction"
-            styleClass="action-button"/>
+    <Button fx:id="showList" layoutX="350" layoutY="120" onAction="#showListAction" prefHeight="35" prefWidth="200" styleClass="action-button" text="Show List" />
 
     <!-- Delete Reservations Button -->
-    <Button fx:id="supprimerClient"
-            layoutX="570" layoutY="120"
-            prefWidth="200" prefHeight="35"
-            text="Supprimer Reservations"
-            onAction="#supprimerClientAction"
-            styleClass="action-button"
-            visible="false"/>
+    <Button fx:id="supprimerClient" layoutX="570" layoutY="120" onAction="#supprimerClientAction" prefHeight="35" prefWidth="200" styleClass="action-button" text="Supprimer Reservations" visible="false" />
 
     <!-- Scrollable Reservations List -->
-    <ScrollPane fx:id="scroll"
-                layoutX="350" layoutY="180"
-                prefWidth="420" prefHeight="300"
-                visible="false"
-                styleClass="scroll-pane">
+    <ScrollPane fx:id="scroll" layoutX="350" layoutY="180" prefHeight="300" prefWidth="420" styleClass="scroll-pane" visible="false">
       <content>
-        <VBox fx:id="listContainer" spacing="8">
+        <VBox fx:id="listContainer" prefHeight="296.0" prefWidth="415.0" spacing="8">
           <padding>
-            <Insets top="8" right="8" bottom="8" left="8"/>
+            <Insets bottom="8" left="8" right="8" top="8" />
           </padding>
         </VBox>
       </content>
