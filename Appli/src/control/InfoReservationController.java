@@ -64,7 +64,6 @@ public class InfoReservationController extends baseController{
     @FXML
     public void initialize() {}
     public InfoReservationController(int id){
-        
         this.ID = id;
         update();
     }

@@ -76,9 +76,9 @@ public <T> FXMLLoader loadpara(Class<T> clazz, int id, String fxml) throws IOExc
             try {
                 fxPanel = new JFXPanel();
                 // Load FXML
-                FXMLLoader loader = loadpara(clazz,id,fxmlFile);
+                FXMLLoader loader = loadpara(clazz.getClass(),id,fxmlFile);
                 Parent root = loader.getRoot();
-                T ctr = loader.getController();
+                /*T ctr = loader.getController();
                 if(ctr instanceof baseController){
                 ((baseController)ctr).setMainFrame(mainFrame);
                 }
@@ -90,7 +90,7 @@ public <T> FXMLLoader loadpara(Class<T> clazz, int id, String fxml) throws IOExc
                 
 });
                 
-
+*/
             } catch (IOException e) {
                 e.printStackTrace();
                 
