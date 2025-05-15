@@ -38,3 +38,37 @@
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
 }
+
+/* Apartment item styling */
+.apartment-item {
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-padding: 5;
+    -fx-alignment: center-left;
+    -fx-spacing: 10;
+}
+
+.apartment-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #333333;
+    -fx-font-size: 14;
+    -fx-cursor: hand;
+    -fx-alignment: center-left;
+}
+
+/* Selected apartment for deletion */
+.selected-apartment {
+    -fx-background-color: #ffe6e6;
+    -fx-text-fill: #cc0000;
+    -fx-border-color: #cc0000;
+    -fx-border-width: 2;
+}
+
+/* Back button styling */
+.back-button {
+    -fx-background-color: #4caf50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
