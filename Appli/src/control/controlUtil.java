@@ -37,8 +37,7 @@ public <T> FXMLLoader loadpara(Class<T> clazz, int id, String fxml) throws IOExc
 
     loader.load();
     return loader;
-}
-    private <T> JFXPanel load(JFrame mainFrame,String fxmlFile,Class<T> clazz) throws RentryException{
+}    private <T> JFXPanel load(JFrame mainFrame,String fxmlFile,Class<T> clazz) throws RentryException{
     if(!Platform.isFxApplicationThread()){
     throw(new RentryException("Not in a thread , which causes future errors so check that",23,true));
     }
@@ -46,7 +45,19 @@ public <T> FXMLLoader loadpara(Class<T> clazz, int id, String fxml) throws IOExc
             try {
                 fxPanel = new JFXPanel();
                 // Load FXML
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/"+fxmlFile));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/"+fxmlFile));
+                // Make sure the controller is properly set
+                loader.setControllerFactory(param -> {
+                    try {
+                        if (clazz.equals(param)) {
+                            return clazz.getDeclaredConstructor().newInstance();
+                        } else {
+                            return param.getDeclaredConstructor().newInstance();
+                        }
+                    } catch (Exception e) {
+                        throw new RuntimeException("Failed to create controller instance", e);
+                    }
+                });
                 Parent root = loader.load();
                 T ctr = loader.getController();
                 if(ctr instanceof baseController){
