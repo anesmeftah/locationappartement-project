@@ -1,0 +1,50 @@
+/* Base */
+.root {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-background-color: linear-gradient(to right, #ece9e6, #ffffff);
+}
+
+/* Title */
+.label-title {
+    -fx-font-size: 26px;
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+}
+
+/* Labels & values */
+.form-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+}
+.form-value {
+    -fx-font-size: 14px;
+    -fx-text-fill: #636e72;
+}
+
+/* Editable text field */
+.edit-field {
+    -fx-background-color: #f4f6f8;
+    -fx-border-color: #dcdfe6;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 6 8;
+    -fx-font-size: 14px;
+}
+
+/* Main & small buttons */
+.action-button, .small-button {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+.small-button {
+    -fx-pref-width: 80;
+    -fx-pref-height: 24;
+    -fx-font-size: 12px;
+}
+.action-button:hover, .small-button:hover {
+    -fx-background-color: #357ab8;
+}
