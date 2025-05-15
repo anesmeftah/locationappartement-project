@@ -50,7 +50,8 @@ public class InfoReservationController extends baseController{
     @FXML private DatePicker dateTillPicker;
     @FXML private DatePicker payLimitPicker;
     @FXML private TextField addressField;
-    @FXML private ComboBox StatusCombo;      @FXML 
+    @FXML private ComboBox StatusCombo;      
+    @FXML 
     public void onChangeFrom() {
         if (dateFromPicker.getValue() == null) {
             showAlert("Please select a date before changing");
@@ -370,10 +371,8 @@ public class InfoReservationController extends baseController{
         updateAddress();
     }    @FXML
     public void initialize() {
-<<<<<<< HEAD
+            
             update();
-        
-=======
         try {
             // Initialize the status combo box with possible values
             StatusCombo.getItems().addAll("Accepted", "Pending", "Declined");
@@ -394,7 +393,7 @@ public class InfoReservationController extends baseController{
             System.out.println("Error during initialization: " + e.getMessage());
             e.printStackTrace();
         }
->>>>>>> 6b7d4f422d9be8a688c073323a0abe52a01f3757
+
     }
     
     /**

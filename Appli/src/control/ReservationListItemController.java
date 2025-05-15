@@ -6,6 +6,7 @@ package control;
 
 
 
+import admin.InfoReservation;
 import control.GererClientsController;
 import control.baseController;
 import control.controlUtil;
@@ -51,6 +52,21 @@ public class ReservationListItemController extends baseController{
     public void setMainFrame(JFrame mainFrame) {
         this.mainFrame = mainFrame;
     }    public void buttonAction(){
+        InfoReservation mc = new InfoReservation(Integer.parseInt(id));
+                        
+                        mainFrame.getContentPane().removeAll();
+                        mainFrame.getContentPane().add(mc);
+                
+                
+                        
+                        mainFrame.setLayout(new java.awt.FlowLayout());
+                        mainFrame.setLocationRelativeTo(null);
+                        mainFrame.revalidate();
+                        mainFrame.repaint();
+        
+        
+        
+        /*
         try{
             controlUtil control = new controlUtil();
             
@@ -128,7 +144,7 @@ public class ReservationListItemController extends baseController{
                 "An unexpected error occurred: " + e.getMessage()
             );
             alert.showAndWait();
-        }
+        }*/
     }
 
     public void init(String id,String adr){
