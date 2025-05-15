@@ -20,6 +20,7 @@ public class GererCompte2 extends javax.swing.JPanel {
      */
     public GererCompte2() {
         initComponents();
+        refreshAllLabels();
     }
 
     /**
@@ -335,7 +336,15 @@ public class GererCompte2 extends javax.swing.JPanel {
             System.out.println(err.getMessage());
         }
     }//GEN-LAST:event_ChangerLastNameB
-String GetCookie(){
+
+    private void refreshAllLabels() {
+        UpdateLabel("EMAIL", EmailL);
+        UpdateLabel("TELEPHONE", Tele);
+        UpdateLabel("FIRSTNAME", FirstNameL);
+        UpdateLabel("LASTNAME", LastNameL);
+    }
+
+    String GetCookie(){
         try{
                 File myObj = new File("cookie.txt");
                 Scanner Reader = new Scanner(myObj);

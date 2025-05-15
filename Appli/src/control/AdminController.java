@@ -37,12 +37,20 @@ public class AdminController extends baseController{
                     controlUtil control = new controlUtil();
                     control.set(mainFrame,"GererAppartements.fxml",GererAppartementsController.class);
                 }catch(RentryException r){}*/
-    }
-    @FXML
+    }    @FXML
     public void reservationButtontoAppartementTab(){
     try{
+                    if (mainFrame == null) {
+                        mainFrame = findMainFrame();
+                        System.out.println("AdminController found mainFrame: " + mainFrame);
+                    }
+                    
                     controlUtil control = new controlUtil();
                     control.set(mainFrame,"GererReservations.fxml",GererReservationsController.class);
-                }catch(RentryException r){}
+                    
+                    System.out.println("AdminController loaded GererReservationsController with mainFrame: " + mainFrame);
+                }catch(RentryException r){
+                    r.printStackTrace();
+                }
     }
 }

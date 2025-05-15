@@ -21,9 +21,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JFrame;
 import java.util.ResourceBundle;
 
-public class GererReservationsController implements Initializable {
+public class GererReservationsController extends baseController implements Initializable {
 
     @FXML
     private Button supprimerClient;
@@ -34,16 +35,37 @@ public class GererReservationsController implements Initializable {
     @FXML
     private ScrollPane scroll;
     
-
+    // Keep a list of all sub controllers
+    private java.util.List<ReservationListItemController> subControllers = new java.util.ArrayList<>();
+    
     private boolean listenerEnabled = true;
 
     /**
      * Appelée automatiquement par JavaFX après l'injection des @FXML
-     */
-    @Override
+     */    @Override
     public void initialize(URL location, ResourceBundle resources) {
         listContainer.setVisible(false);
         supprimerClient.setVisible(false);
+        
+        // Add a listener to wait until the scene is attached to get the mainFrame
+        showList.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                // Now we can get window and try to find the mainFrame
+                newScene.windowProperty().addListener((obs2, oldWindow, newWindow) -> {
+                    if (newWindow != null) {
+                        // Wait until everything is set up
+                        javafx.application.Platform.runLater(() -> {
+                            try {
+                                updateList();
+                            } catch (RentryException e) {
+                                e.printStackTrace();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+        
         try {
             updateList();
         } catch (RentryException e) {
@@ -147,15 +169,32 @@ public class GererReservationsController implements Initializable {
                 if (rs2.next()) {
                     adr = rs2.getString("ADDRESS");
                 }
-                rs2.close();
-
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/ReservationListItem.fxml"));
+                rs2.close();                try {                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/ReservationListItem.fxml"));
                     Pane pan = loader.load();
 
                     ReservationListItemController controller = loader.getController();
                     controller.init(ID, adr);
                     
+                    // Pass the mainFrame to the ReservationListItemController
+                    controller.setMainFrame(this.mainFrame);
+                    
+                    // Add to our list of controllers
+                    subControllers.add(controller);
+                    
+                    // If we have a mainFrame, log it for troubleshooting
+                    if (this.mainFrame != null) {
+                        System.out.println("Setting mainFrame for controller: " + this.mainFrame);
+                    } else {
+                        System.out.println("Warning: mainFrame is null in GererReservationsController");
+                        
+                        // Try to find the mainFrame
+                        JFrame frame = findMainFrame();
+                        if (frame != null) {
+                            System.out.println("Found mainFrame: " + frame);
+                            this.mainFrame = frame;
+                            controller.setMainFrame(frame);
+                        }
+                    }
 
                     ((CheckBox) pan.getChildren().get(1)).selectedProperty().addListener((obs, oldVal, newVal) -> {
                         listenerEnabled = false;
@@ -176,5 +215,23 @@ public class GererReservationsController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Update the mainFrame reference in all sub-controllers
+     * @param frame The JFrame to set
+     */
+    @Override
+    public void setMainFrame(JFrame frame) {
+        super.setMainFrame(frame);
+        
+        // Also update all sub controllers
+        if (subControllers != null) {
+            for (ReservationListItemController controller : subControllers) {
+                controller.setMainFrame(frame);
+            }
+        }
+        
+        System.out.println("MainFrame updated in GererReservationsController: " + frame);
     }
 }
