@@ -93,7 +93,15 @@ public class Admin2 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void appartementButtontoAppartementTab(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appartementButtontoAppartementTab
-        // TODO add your handling code here:
+        JFrame mainFrame = (JFrame)javax.swing.SwingUtilities.getWindowAncestor(this);
+        GererAppartements search = new GererAppartements();
+        search.init();
+        mainFrame.getContentPane().removeAll();
+        mainFrame.getContentPane().add(search);
+        mainFrame.setLayout(new java.awt.FlowLayout());
+        mainFrame.setLocationRelativeTo(null);   // Center the window
+        mainFrame.revalidate();
+        mainFrame.repaint();
     }//GEN-LAST:event_appartementButtontoAppartementTab
 
     private void clienButtontoClientTab(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienButtontoClientTab

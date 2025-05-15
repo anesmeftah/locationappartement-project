@@ -14,6 +14,11 @@ public class baseController {
     protected JFrame mainFrame;
     
     public void setMainFrame(JFrame F){
+        if (F == null) {
+            System.out.println("Warning: Attempting to set null mainFrame");
+        } else {
+            System.out.println("Setting mainFrame: " + F);
+        }
         this.mainFrame = F;
     }
     

@@ -30,14 +30,24 @@ public class AdminController extends baseController{
                     controlUtil control = new controlUtil();
                     control.set(mainFrame,"GererClients2.fxml",GererClientsController.class);
                 }catch(RentryException r){}
+    }    @FXML
+    public void appartementButtontoAppartementTab() {
+        try {
+            if (mainFrame == null) {
+                mainFrame = findMainFrame();
+                System.out.println("AdminController found mainFrame for Appartements: " + mainFrame);
+            }
+            
+            System.out.println("Loading GererAppartements.fxml...");
+            controlUtil control = new controlUtil();
+            control.set(mainFrame, "GererAppartements.fxml", GererAppartementsController.class);
+            System.out.println("GererAppartements.fxml loaded successfully");
+        } catch (Exception e) {
+            System.err.println("Error loading GererAppartements.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
     @FXML
-    public void appartementButtontoAppartementTab(){/*
-    try{
-                    controlUtil control = new controlUtil();
-                    control.set(mainFrame,"GererAppartements.fxml",GererAppartementsController.class);
-                }catch(RentryException r){}*/
-    }    @FXML
     public void reservationButtontoAppartementTab(){
     try{
                     if (mainFrame == null) {
