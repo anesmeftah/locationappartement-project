@@ -7,13 +7,12 @@
 
 <Pane prefHeight="465.0" prefWidth="600.0" stylesheets="@../CSS/gererclients2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.GererClientsController">
 
-   <children>
-      <!-- Scrollable Client List -->
-      <ScrollPane layoutX="20.0" layoutY="91.0" prefHeight="360.0" prefWidth="560.0">
+   <children>      <!-- Scrollable Client List -->
+      <ScrollPane fx:id="scroll" layoutX="20.0" layoutY="91.0" prefHeight="360.0" prefWidth="560.0">
          <content>
-            <VBox fx:id="List" spacing="10.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" />
+            <VBox fx:id="listContainer" spacing="10.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" />
          </content>
-      </ScrollPane>
+      </ScrollPane>      <Button fx:id="backButton" layoutX="20.0" layoutY="54.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="25.0" prefWidth="80.0" text="Back" />
       <Button fx:id="showList" layoutX="417.0" layoutY="54.0" mnemonicParsing="false" onAction="#showListAction" text="Show List" />
       <Button fx:id="suppB" layoutX="512.0" layoutY="54.0" mnemonicParsing="false" onAction="#suppBAction" prefHeight="25.0" prefWidth="66.0" text="Delete" />
    </children>

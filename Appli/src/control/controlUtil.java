@@ -37,7 +37,26 @@ public <T> FXMLLoader loadpara(Class<T> clazz, int id, String fxml) throws IOExc
 
     loader.load();
     return loader;
-}    private <T> JFXPanel load(JFrame mainFrame,String fxmlFile,Class<T> clazz) throws RentryException{
+}
+
+public <T> FXMLLoader loadparaEmail(Class<T> clazz, String email, String fxml) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/" + fxml));
+
+    loader.setControllerFactory(param -> {
+        try {
+            if (clazz.equals(param)) {
+                return clazz.getConstructor(String.class).newInstance(email);
+            } else {
+                return param.getDeclaredConstructor().newInstance();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create controller instance", e);
+        }
+    });
+
+    loader.load();
+    return loader;
+}private <T> JFXPanel load(JFrame mainFrame,String fxmlFile,Class<T> clazz) throws RentryException{
     if(!Platform.isFxApplicationThread()){
     throw(new RentryException("Not in a thread , which causes future errors so check that",23,true));
     }
@@ -126,10 +145,45 @@ public <T> FXMLLoader loadpara(Class<T> clazz, int id, String fxml) throws IOExc
         mainFrame.setLocationRelativeTo(null);   // Center the window
         mainFrame.repaint();
         mainFrame.revalidate();
-    }
-    public <T> void set(JFrame mainFrame,String fxmlFile,Class<T> clazz,int id) throws RentryException{
+    }    public <T> void set(JFrame mainFrame,String fxmlFile,Class<T> clazz,int id) throws RentryException{
         controlUtil control = new controlUtil();
         JFXPanel pan = control.load(mainFrame,fxmlFile,clazz,id);
+    
+        mainFrame.getContentPane().removeAll();
+        mainFrame.getContentPane().add(pan);
+        mainFrame.setAlwaysOnTop(true);
+    }
+    
+    private <T> JFXPanel loadWithEmail(JFrame mainFrame, String fxmlFile, Class<T> clazz, String email) throws RentryException {
+        if(!Platform.isFxApplicationThread()) {
+            throw(new RentryException("Not in a thread, which causes future errors so check that", 23, true));
+        }
+        JFXPanel fxPanel = null;
+        try {
+            fxPanel = new JFXPanel();
+            // Load FXML
+            FXMLLoader loader = loadparaEmail(clazz, email, fxmlFile);
+            Parent root = loader.getRoot();
+            T ctr = loader.getController();
+            if(ctr instanceof baseController) {
+                ((baseController)ctr).setMainFrame(mainFrame);
+            }
+
+            // Set scene to fxPanel
+            Scene scene = new Scene(root);
+            fxPanel.setScene(scene);
+            scene.setOnKeyPressed(e -> {
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        return(fxPanel);
+    }
+    
+    public <T> void setWithEmail(JFrame mainFrame, String fxmlFile, Class<T> clazz, String email) throws RentryException {
+        controlUtil control = new controlUtil();
+        JFXPanel pan = control.loadWithEmail(mainFrame, fxmlFile, clazz, email);
     
         mainFrame.getContentPane().removeAll();
         mainFrame.getContentPane().add(pan);
