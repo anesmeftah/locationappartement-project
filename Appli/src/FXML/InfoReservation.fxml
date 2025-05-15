@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<Pane prefHeight="500.0" prefWidth="535.0" stylesheets="@../css/InfoReservation.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+
+        <!-- Page title -->
+        <Text layoutX="155.0" layoutY="63.0" styleClass="label-title" text="Reservation Infos" wrappingWidth="240.0" />
+
+        <!-- ID -->
+        <Label layoutX="95.0" layoutY="108.0" styleClass="form-label" text="ID :" />
+        <Label fx:id="idLabel" layoutX="245.0" layoutY="108.0" styleClass="form-value" text="–" />
+
+        <!-- Client username -->
+        <Label layoutX="95.0" layoutY="148.0" styleClass="form-label" text="Client :" />
+        <Label fx:id="usernameLabel" layoutX="245.0" layoutY="148.0" styleClass="form-value" text="–" />
+
+        <!-- Address (éditable) -->
+        <Label layoutX="95.0" layoutY="188.0" styleClass="form-label" text="Adresse :" />
+        <TextField fx:id="addressField" layoutX="210.0" layoutY="183.0" prefHeight="32.0" prefWidth="275.0" styleClass="edit-field" />
+
+        <!-- Reserved from -->
+        <Label layoutX="95.0" layoutY="228.0" styleClass="form-label" text="From :" />
+        <DatePicker fx:id="dateFromPicker" layoutX="209.0" layoutY="226.0" />
+        <Button fx:id="changeFromBtn" layoutX="405.0" layoutY="223.0" onAction="#onChangeFrom" styleClass="small-button" text="Change" />
+
+        <!-- Reserved till -->
+        <Label layoutX="95.0" layoutY="268.0" styleClass="form-label" text="To:" />
+        <DatePicker fx:id="dateTillPicker" layoutX="208.0" layoutY="264.0" />
+        <Button fx:id="changeTillBtn" layoutX="405.0" layoutY="263.0" onAction="#onChangeTill" styleClass="small-button" text="Change" />
+
+        <!-- Paying limit -->
+        <Label layoutX="69.0" layoutY="306.0" styleClass="form-label" text="Paiment Limit :" />
+        <DatePicker fx:id="payLimitPicker" layoutX="209.0" layoutY="304.0" />
+        <Button fx:id="changePayBtn" layoutX="405.0" layoutY="303.0" onAction="#onChangePay" styleClass="small-button" text="Change" />
+
+        <!-- Status -->
+        <Label layoutX="95.0" layoutY="348.0" styleClass="form-label" text="Status:" />
+        <Label fx:id="statusLabel" layoutX="204.0" layoutY="348.0" styleClass="form-value" text="–" />
+        <ComboBox fx:id="statusCombo" layoutX="275.0" layoutY="345.0" prefWidth="120" />
+        <Button fx:id="changeStatusBtn" layoutX="405.0" layoutY="345.0" onAction="#onChangeStatus" styleClass="small-button" text="Change" />
+
+        <!-- Close -->
+        <Button fx:id="closeBtn" layoutX="152.0" layoutY="410.0" onAction="#onClose" prefHeight="35" prefWidth="200" styleClass="action-button" text="Close" />
+    </children>
+</Pane>

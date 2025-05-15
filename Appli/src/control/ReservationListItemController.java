@@ -48,7 +48,7 @@ public class ReservationListItemController extends baseController{
     public void buttonAction(){
     try{
                     controlUtil control = new controlUtil();
-                    control.set(mainFrame,"GererClients2.fxml",GererClientsController.class);
+                    control.set(mainFrame,"InfoReservation.fxml",InfoReservationController.class,Integer.parseInt(id));
                 }catch(RentryException r){}
     }
     public void init(String id,String adr){

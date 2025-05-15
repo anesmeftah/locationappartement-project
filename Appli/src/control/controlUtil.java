@@ -20,20 +20,24 @@ import util.RentryException;
  * @author motaz
  */
 public class controlUtil {
-    public <T> FXMLLoader loadpara(Class<T> clazz,int id,String fxml) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/"+fxml));
+public <T> FXMLLoader loadpara(Class<T> clazz, int id, String fxml) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/" + fxml));
 
-    // Set a custom controller factory to inject your argument
-    loader.setControllerFactory(param -> {try {
-            // Find a constructor that takes an int
-            return clazz.getConstructor(int.class).newInstance(id);
+    loader.setControllerFactory(param -> {
+        try {
+            if (clazz.equals(param)) {
+                return clazz.getConstructor(int.class).newInstance(id);
+            } else {
+                return param.getDeclaredConstructor().newInstance();
+            }
         } catch (Exception e) {
             throw new RuntimeException("Failed to create controller instance", e);
-        }});
+        }
+    });
 
-    return loader; // This returns the root Node of the FXML
+    loader.load();
+    return loader;
 }
-    public controlUtil(){}
     private <T> JFXPanel load(JFrame mainFrame,String fxmlFile,Class<T> clazz) throws RentryException{
     if(!Platform.isFxApplicationThread()){
     throw(new RentryException("Not in a thread , which causes future errors so check that",23,true));
@@ -73,7 +77,7 @@ public class controlUtil {
                 fxPanel = new JFXPanel();
                 // Load FXML
                 FXMLLoader loader = loadpara(clazz,id,fxmlFile);
-                Parent root = loader.load();
+                Parent root = loader.getRoot();
                 T ctr = loader.getController();
                 if(ctr instanceof baseController){
                 ((baseController)ctr).setMainFrame(mainFrame);

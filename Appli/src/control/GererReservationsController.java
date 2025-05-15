@@ -155,6 +155,7 @@ public class GererReservationsController implements Initializable {
 
                     ReservationListItemController controller = loader.getController();
                     controller.init(ID, adr);
+                    
 
                     ((CheckBox) pan.getChildren().get(1)).selectedProperty().addListener((obs, oldVal, newVal) -> {
                         listenerEnabled = false;
