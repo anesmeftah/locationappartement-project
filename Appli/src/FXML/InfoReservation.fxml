@@ -21,11 +21,10 @@
 
         <!-- Client username -->
         <Label layoutX="95.0" layoutY="148.0" styleClass="form-label" text="Client :" />
-        <Label fx:id="usernameLabel" layoutX="245.0" layoutY="148.0" styleClass="form-value" text="–" />
-
-        <!-- Address (éditable) -->
+        <Label fx:id="usernameLabel" layoutX="245.0" layoutY="148.0" styleClass="form-value" text="–" />        <!-- Address (éditable) -->
         <Label layoutX="95.0" layoutY="188.0" styleClass="form-label" text="Adresse :" />
-        <TextField fx:id="addressField" layoutX="210.0" layoutY="183.0" prefHeight="32.0" prefWidth="275.0" styleClass="edit-field" />
+        <TextField fx:id="addressField" layoutX="210.0" layoutY="183.0" prefHeight="32.0" prefWidth="185.0" styleClass="edit-field" />
+        <Button fx:id="changeAddressBtn" layoutX="405.0" layoutY="183.0" onAction="#onChangeAddress" styleClass="small-button" text="Change" />
 
         <!-- Reserved from -->
         <Label layoutX="95.0" layoutY="228.0" styleClass="form-label" text="From :" />
