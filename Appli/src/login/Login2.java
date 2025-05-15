@@ -19,6 +19,7 @@ public class Login2 extends JFrame {
         setTitle("Rentry");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
+        setLocationRelativeTo(null);
         ImageIcon logo = new ImageIcon(getClass().getResource("../images/Rentry.png"));
         this.setIconImage(logo.getImage());
 

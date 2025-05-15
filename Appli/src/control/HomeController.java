@@ -56,6 +56,7 @@ public class HomeController extends baseController{
     private void SearchAction() {
         try{
         controlUtil control = new controlUtil();
+        mainFrame.setSize(800,500);
         control.set(mainFrame,"RechercheAppartement2.fxml",RechercheController.class);
         }catch(RentryException r){}
 
@@ -66,6 +67,7 @@ public class HomeController extends baseController{
         
         try{
         controlUtil control = new controlUtil();
+        mainFrame.setSize(800,500);
         control.set(mainFrame,"BecomeHost2.fxml",HostController.class);
         }catch(RentryException r){}
     }

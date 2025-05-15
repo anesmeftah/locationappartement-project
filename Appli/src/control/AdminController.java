@@ -28,6 +28,7 @@ public class AdminController extends baseController{
     public void clienButtontoClientTab(){
     try{
                     controlUtil control = new controlUtil();
+                    mainFrame.setSize(600,485);
                     control.set(mainFrame,"GererClients2.fxml",GererClientsController.class);
                 }catch(RentryException r){}
     }    @FXML
@@ -39,7 +40,9 @@ public class AdminController extends baseController{
             }
             
             System.out.println("Loading GererAppartements.fxml...");
+            
             controlUtil control = new controlUtil();
+            mainFrame.setSize(800,500);
             control.set(mainFrame, "GererAppartements.fxml", GererAppartementsController.class);
             System.out.println("GererAppartements.fxml loaded successfully");
         } catch (Exception e) {
@@ -56,6 +59,7 @@ public class AdminController extends baseController{
                     }
                     
                     controlUtil control = new controlUtil();
+                    mainFrame.setSize(800,500);
                     control.set(mainFrame,"GererReservations.fxml",GererReservationsController.class);
                     
                     System.out.println("AdminController loaded GererReservationsController with mainFrame: " + mainFrame);

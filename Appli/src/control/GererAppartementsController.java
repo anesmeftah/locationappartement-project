@@ -44,9 +44,6 @@ public class GererAppartementsController extends baseController implements Initi
     }
       @FXML
     public void supprimerClientAction() {
-        // Implement the functionality to delete selected apartments
-        System.out.println("Delete apartments action triggered");
-        // Add your code to handle apartment deletion here
     }
     
     @Override

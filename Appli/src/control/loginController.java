@@ -89,12 +89,14 @@ public class loginController extends baseController{
                 if(Class ==2){
                 try{
                     controlUtil control = new controlUtil();
+                    mainFrame.setSize(800,500);
                     control.set(mainFrame,"Admin2.fxml",AdminController.class);
                 }catch(RentryException r){}
                 
                 }else{
                 try{
                     controlUtil control = new controlUtil();
+                    mainFrame.setSize(600,400);
                     control.set(mainFrame,"HomePage.fxml",HomeController.class);
                 }catch(RentryException r){}
                 }                                       
