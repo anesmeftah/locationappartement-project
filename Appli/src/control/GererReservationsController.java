@@ -33,6 +33,7 @@ public class GererReservationsController implements Initializable {
     private Button showList;
     @FXML
     private ScrollPane scroll;
+    
 
     private boolean listenerEnabled = true;
 
@@ -58,6 +59,8 @@ public class GererReservationsController implements Initializable {
         }
         if (showList.getText().equals("Show List")) {
             supprimerClient.setVisible(true);
+            scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+            scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
             // Show the scroll pane (not just the VBox)
             if (scroll != null) scroll.setVisible(true);
             listContainer.setVisible(true);
@@ -160,6 +163,9 @@ public class GererReservationsController implements Initializable {
                     });
 
                     listContainer.getChildren().add(pan);
+                    if(listContainer.getChildren().size()>9){
+                        listContainer.setPrefHeight(listContainer.getPrefHeight()+48);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

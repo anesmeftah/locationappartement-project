@@ -6,6 +6,9 @@ package control;
 
 
 
+import control.GererClientsController;
+import control.baseController;
+import control.controlUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
@@ -31,7 +34,7 @@ import javafx.collections.ObservableList;
  *
  * @author motaz
  */
-public class ReservationListItemController {
+public class ReservationListItemController extends baseController{
     @FXML
     private Label label;
     @FXML
@@ -42,7 +45,12 @@ public class ReservationListItemController {
     private Button button;
     @FXML
     private String id;
-    public void buttonAction(){/*ADD CHANGE SCENE*/}
+    public void buttonAction(){
+    try{
+                    controlUtil control = new controlUtil();
+                    control.set(mainFrame,"GererClients2.fxml",GererClientsController.class);
+                }catch(RentryException r){}
+    }
     public void init(String id,String adr){
         label.setText(id);
         this.id = id;

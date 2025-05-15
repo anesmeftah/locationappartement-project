@@ -9,14 +9,31 @@ import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javax.swing.JFrame;
+
 import util.RentryException;
+
 /**
  *
  * @author motaz
  */
 public class controlUtil {
+    public <T> FXMLLoader loadpara(Class<T> clazz,int id,String fxml) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/"+fxml));
+
+    // Set a custom controller factory to inject your argument
+    loader.setControllerFactory(param -> {try {
+            // Find a constructor that takes an int
+            return clazz.getConstructor(int.class).newInstance(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create controller instance", e);
+        }});
+
+    return loader; // This returns the root Node of the FXML
+}
+    public controlUtil(){}
     private <T> JFXPanel load(JFrame mainFrame,String fxmlFile,Class<T> clazz) throws RentryException{
     if(!Platform.isFxApplicationThread()){
     throw(new RentryException("Not in a thread , which causes future errors so check that",23,true));
@@ -47,9 +64,57 @@ public class controlUtil {
      
     return(fxPanel);
     }
+    private <T> JFXPanel load(JFrame mainFrame,String fxmlFile,Class<T> clazz,int id) throws RentryException{
+    if(!Platform.isFxApplicationThread()){
+    throw(new RentryException("Not in a thread , which causes future errors so check that",23,true));
+    }
+    JFXPanel fxPanel = null;
+            try {
+                fxPanel = new JFXPanel();
+                // Load FXML
+                FXMLLoader loader = loadpara(clazz,id,fxmlFile);
+                Parent root = loader.load();
+                T ctr = loader.getController();
+                if(ctr instanceof baseController){
+                ((baseController)ctr).setMainFrame(mainFrame);
+                }
+
+                // Set scene to fxPanel
+                Scene scene = new Scene(root);
+                fxPanel.setScene(scene);
+                scene.setOnKeyPressed(e -> {
+                
+});
+                
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                
+            }
+     
+    return(fxPanel);
+    }
     public <T> void set(JFrame mainFrame,String fxmlFile,Class<T> clazz) throws RentryException{
         controlUtil control = new controlUtil();
         JFXPanel pan = control.load(mainFrame,fxmlFile,clazz);
+    
+        mainFrame.getContentPane().removeAll();
+        mainFrame.getContentPane().add(pan);
+        mainFrame.setAlwaysOnTop(true);
+        mainFrame.toFront();
+        mainFrame.repaint();
+        mainFrame.setAlwaysOnTop(false);
+                
+                
+                
+        mainFrame.setLayout(new java.awt.FlowLayout());
+        mainFrame.setLocationRelativeTo(null);   // Center the window
+        mainFrame.repaint();
+        mainFrame.revalidate();
+    }
+    public <T> void set(JFrame mainFrame,String fxmlFile,Class<T> clazz,int id) throws RentryException{
+        controlUtil control = new controlUtil();
+        JFXPanel pan = control.load(mainFrame,fxmlFile,clazz,id);
     
         mainFrame.getContentPane().removeAll();
         mainFrame.getContentPane().add(pan);

@@ -36,7 +36,7 @@
     <!-- Scrollable Reservations List -->
     <ScrollPane fx:id="scroll" layoutX="350" layoutY="180" prefHeight="300" prefWidth="420" styleClass="scroll-pane" visible="false">
       <content>
-        <VBox fx:id="listContainer" prefHeight="296.0" prefWidth="415.0" spacing="8">
+        <VBox fx:id="listContainer" prefHeight="280.0" prefWidth="400.0" spacing="8">
           <padding>
             <Insets bottom="8" left="8" right="8" top="8" />
           </padding>
