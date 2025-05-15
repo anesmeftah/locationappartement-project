@@ -61,16 +61,14 @@ public class InfoReservationController extends baseController{
     public void onChangePay(){}
     @FXML 
     public void onClose(){
-        // Close the window
         if (closeBtn != null && closeBtn.getScene() != null && closeBtn.getScene().getWindow() != null) {
             closeBtn.getScene().getWindow().hide();
         }
     }
     @FXML
     public void initialize() {
-        if (ID != 0) {
             update();
-        }
+        
     }
     public InfoReservationController(int id){
         this.ID = id;
