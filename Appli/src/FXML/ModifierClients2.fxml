@@ -13,7 +13,7 @@
 <Pane prefHeight="500.0" prefWidth="800.0"
       xmlns="http://javafx.com/javafx/23.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="your.package.ModifierClients2Controller"
+      fx:controller="control.ModifierClients2Controller"
       stylesheets="@../css/ModifierClients.css">
 
     <children>
@@ -58,19 +58,21 @@
         <Label fx:id="Tele"
                layoutX="340.0" layoutY="140.0"
                styleClass="form-value"
-               text="Telephone" />
-
-        <!-- 7) Change Class -->
+               text="Telephone" />        <!-- 7) Change Class -->
         <Label layoutX="241.0" layoutY="173.0"
                styleClass="form-label"
                text="Class :" />
+        <Label fx:id="classL"
+               layoutX="300.0" layoutY="173.0"
+               styleClass="form-value"
+               text="class" />
         <ComboBox fx:id="ClassF"
                   layoutX="340.0" layoutY="170.0"
-                  prefWidth="120.0" />
-        <Button fx:id="ClassB"
+                  prefWidth="120.0" />        <Button fx:id="ClassB"
                 layoutX="480.0" layoutY="170.0"
                 prefWidth="80.0"
                 styleClass="change-button"
+                onAction="#changeClass"
                 text="Change" />
 
         <!-- 8) Change ID -->
@@ -85,11 +87,11 @@
                    layoutX="380.0" layoutY="207.0"
                    prefWidth="80.0"
                    promptText="New ID"
-                   styleClass="text-field" />
-        <Button fx:id="IdB"
+                   styleClass="text-field" />        <Button fx:id="IdB"
                 layoutX="480.0" layoutY="210.0"
                 prefWidth="80.0"
                 styleClass="change-button"
+                onAction="#changeId"
                 text="Change" />
     </children>
 </Pane>

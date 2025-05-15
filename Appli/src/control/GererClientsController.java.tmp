@@ -1,0 +1,62 @@
+package control;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.VBox;
+
+/**
+ * Controller for GererClients2.fxml
+ * This controller is responsible for managing clients.
+ * 
+ * @author motaz
+ */
+public class GererClientsController extends baseController {
+    
+    @FXML
+    private Button showList;
+    
+    @FXML
+    private Button suppB; // Delete button
+    
+    @FXML 
+    private ScrollPane scroll;
+    
+    @FXML
+    private VBox List; // VBox containing client list
+    
+    /**
+     * Show or hide the client list
+     */
+    @FXML
+    public void showListAction() {
+        // Implementation will toggle visibility of client list
+        System.out.println("Show list action triggered");
+        // TODO: Implement list visibility toggle
+    }
+    
+    /**
+     * Delete selected client
+     */
+    @FXML
+    public void suppBAction() {
+        // Implementation will handle client deletion
+        System.out.println("Delete client action triggered");
+        // TODO: Implement client deletion
+    }
+    
+    /**
+     * Open the modifier client view for a specific client
+     * @param email The email of the client to modify
+     */
+    public void openModifierClient(String email) {
+        try {
+            // Load the ModifierClients2.fxml file with the specified email
+            controlUtil control = new controlUtil();
+            control.setWithEmail(mainFrame, "ModifierClients2.fxml", ModifierClients2Controller.class, email);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
