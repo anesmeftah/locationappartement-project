@@ -29,6 +29,8 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import util.RentryException;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Controller for managing apartments in the system
@@ -53,6 +55,7 @@ public class GererAppartementsController extends baseController implements Initi
     private Button backButton;
     
     // Currently selected apartment for deletion
+    private List<Button> dynamicButtons = new ArrayList<>();
     private Button selectedApartmentButton = null;
     
     // List of apartment IDs
@@ -99,13 +102,16 @@ public class GererAppartementsController extends baseController implements Initi
      */
     @FXML
     public void supprimerClientAction() {
-<<<<<<< HEAD
-=======
+
         System.out.println("Delete apartment action triggered");
         
         // Check if an apartment is selected for deletion
-        if (selectedApartmentButton != null) {
+        /*if (selectedApartmentButton != null) */
+        if (!dynamicButtons.isEmpty())
+            {for(int i=dynamicButtons.size()-1;i>=0;i--){
+                selectedApartmentButton=dynamicButtons.get(i);
             try {
+                
                 // Get the apartment ID
                 String buttonText = selectedApartmentButton.getText();
                 int apartmentId = extractApartmentId(buttonText);
@@ -124,11 +130,11 @@ public class GererAppartementsController extends baseController implements Initi
                 System.err.println("Error deleting apartment: " + e.getMessage());
                 e.printStackTrace();
             }
-        } else {
+            }} else {
             showAlert("No Selection", "No apartment selected", 
                      "Please select an apartment to delete first (click on an apartment from the list).");
         }
->>>>>>> 5cf44b578ab1abf3d616358a172eb35c714d6b1f
+
     }
     
     /**
@@ -219,9 +225,11 @@ public class GererAppartementsController extends baseController implements Initi
                 selectApartmentForDeletion(apartmentBtn);
             } else if (e.getClickCount() == 2) {
                 // Double click opens modification form
+                selectApartmentForSelection(apartmentBtn);
+            } else if (e.getClickCount() == 3) {
+                // Double click opens modification form
                 openModifierAppartement(id);
-            }
-        });
+        }});
         
         // Add button to HBox with growth priority
         HBox.setHgrow(apartmentBtn, Priority.ALWAYS);
@@ -240,13 +248,33 @@ public class GererAppartementsController extends baseController implements Initi
         }
         
         // Set new selection
-        selectedApartmentButton = apartmentBtn;
         apartmentBtn.getStyleClass().add("selected-apartment");
+        dynamicButtons.add(apartmentBtn);
+        
         
         // Extract ID for logging
         int id = extractApartmentId(apartmentBtn.getText());
         System.out.println("Selected apartment for deletion: ID = " + id);
     }
+    private void selectApartmentForSelection(Button apartmentBtn) {
+        // Reset previous selection style
+        if (selectedApartmentButton != null) {
+            selectedApartmentButton.getStyleClass().remove("selected-apartment2");
+        }
+        dynamicButtons.remove(apartmentBtn);
+        
+        // Set new selection
+        apartmentBtn.getStyleClass().add("selected-apartment2");
+        selectedApartmentButton=apartmentBtn;
+        
+
+        
+        
+        // Extract ID for logging
+        int id = extractApartmentId(apartmentBtn.getText());
+        System.out.println("Selected apartment for deletion: ID = " + id);
+    }
+
     
     /**
      * Extract apartment ID from button text
@@ -318,7 +346,8 @@ public class GererAppartementsController extends baseController implements Initi
             // 1. Using controlUtil class with the mainFrame
             if (mainFrame != null) {
                 controlUtil control = new controlUtil();
-                control.set(mainFrame, "ModifierAppartements.fxml", ModifierAppartementsController.class, apartmentId);
+                mainFrame.setSize(800,500);
+                control.setWithId(mainFrame, "ModifierAppartements.fxml", ModifierAppartementsController.class, apartmentId);
             } 
             // 2. Alternative: Open in a new window
             else {

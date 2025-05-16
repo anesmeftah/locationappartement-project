@@ -66,6 +66,13 @@
     -fx-border-width: 2;
 }
 
+.selected-apartment2 {
+    -fx-background-color: #90EE90;
+    -fx-text-fill: #cc0000;
+    -fx-border-color: #cc0000;
+    -fx-border-width: 2;
+}
+
 /* Back button styling */
 .back-button {
     -fx-background-color: #4caf50;

@@ -98,7 +98,7 @@ public <T> FXMLLoader loadparaEmail(Class<T> clazz, String email, String fxml) t
      
     return(fxPanel);
     }
-    private <T> JFXPanel load(JFrame mainFrame,String fxmlFile,Class<T> clazz,int id) throws RentryException{
+    private <T> JFXPanel loadWithId(JFrame mainFrame,String fxmlFile,Class<T> clazz,int id) throws RentryException{
     if(!Platform.isFxApplicationThread()){
     throw(new RentryException("Not in a thread , which causes future errors so check that",23,true));
     }
@@ -145,9 +145,10 @@ public <T> FXMLLoader loadparaEmail(Class<T> clazz, String email, String fxml) t
         mainFrame.setLocationRelativeTo(null);   // Center the window
         mainFrame.repaint();
         mainFrame.revalidate();
-    }    public <T> void set(JFrame mainFrame,String fxmlFile,Class<T> clazz,int id) throws RentryException{
+    }    
+    public <T> void setWithId(JFrame mainFrame,String fxmlFile,Class<T> clazz,int id) throws RentryException{
         controlUtil control = new controlUtil();
-        JFXPanel pan = control.load(mainFrame,fxmlFile,clazz,id);
+        JFXPanel pan = control.loadWithId(mainFrame,fxmlFile,clazz,id);
     
         mainFrame.getContentPane().removeAll();
         mainFrame.getContentPane().add(pan);

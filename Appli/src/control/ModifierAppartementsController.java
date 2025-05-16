@@ -109,8 +109,9 @@ public class ModifierAppartementsController extends baseController implements In
      * Load apartment data from database
      */
     private void loadAppartement() {
+        System.out.println(appartementId);
         if (appartementId <= 0) {
-            System.err.println("Cannot load apartment: Invalid ID " + appartementId);
+            System.out.println("Cannot load apartment: Invalid ID " + appartementId);
             return;
         }
         
@@ -119,11 +120,11 @@ public class ModifierAppartementsController extends baseController implements In
             if (idLabel == null || addressField == null || roomsField == null || 
                 sizeField == null || priceField == null || statusLabel == null || 
                 statusCombo == null) {
-                System.err.println("UI components not initialized yet. Trying again later...");
+                System.out.println("UI components not initialized yet. Trying again later...");
                 // Try again after a short delay
                 Platform.runLater(() -> {
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(1);
                         loadAppartement();
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
@@ -140,6 +141,7 @@ public class ModifierAppartementsController extends baseController implements In
                 ResultSet rs = stmt.executeQuery();
                 
                 if (rs.next()) {
+                    System.out.println("In DB");
                     idLabel.setText(String.valueOf(appartementId));
                     addressField.setText(rs.getString("ADDRESS"));
                     roomsField.setText(String.valueOf(rs.getInt("NUMBEROFROOMS")));
