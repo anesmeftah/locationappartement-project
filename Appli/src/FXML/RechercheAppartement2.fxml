@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<<<<<<< HEAD
+
 <AnchorPane prefHeight="500" prefWidth="800" stylesheets="@../css/RechercheAppartement.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.RechercheController">
-=======
+
 <AnchorPane prefHeight="500" prefWidth="800" stylesheets="@../css/RechercheAppartement.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RechercheAppartementController">
->>>>>>> f829bde7df985d3621b9dc7479507cf695a4de7c
+
 
   <children>
     <HBox prefHeight="500" prefWidth="800">
@@ -31,11 +31,8 @@
       </StackPane>
 
       <!-- RIGHT PANE: white card -->
-<<<<<<< HEAD
       <VBox alignment="TOP_LEFT" prefHeight="500" prefWidth="400" spacing="20" styleClass="card">
-=======
       <VBox alignment="TOP_LEFT" prefHeight="506.0" prefWidth="400" spacing="20" styleClass="card">
->>>>>>> f829bde7df985d3621b9dc7479507cf695a4de7c
         <padding>
           <Insets bottom="30" left="30" right="30" top="40" />
         </padding>
