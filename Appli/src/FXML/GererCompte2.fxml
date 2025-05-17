@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="500.0" prefWidth="800.0" stylesheets="@../CSS/GererCompte.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="your.package.GererCompte2Controller">
+<Pane prefHeight="500.0" prefWidth="800.0" stylesheets="@../CSS/GererCompte.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.GererCompte2Controller">
 
     <children>
         <!-- Left colored block -->

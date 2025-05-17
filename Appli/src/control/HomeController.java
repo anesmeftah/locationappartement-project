@@ -75,17 +75,10 @@ public class HomeController extends baseController{
     }
     @FXML
     private void gererCompte(){
-    GererCompte2 mc = new GererCompte2();
-                        
-                        mainFrame.getContentPane().removeAll();
-                        mainFrame.getContentPane().add(mc);
-                
-                
-                        
-                        mainFrame.setLayout(new java.awt.FlowLayout());
-                        mainFrame.setLocationRelativeTo(null);
-                        mainFrame.revalidate();
-                        mainFrame.repaint();
+        try{
+        controlUtil control = new controlUtil();
+        control.set(mainFrame,"GererCompte2.fxml",GererCompte2Controller.class);
+        }catch(RentryException r){}
     }
     
     
