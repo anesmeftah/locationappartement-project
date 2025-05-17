@@ -65,6 +65,17 @@
     -fx-pref-width:      80px;
     -fx-pref-height:     30px;
 }
+.check-button {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill:       white;
+    -fx-font-weight:     bold;
+    -fx-background-radius: 5px;
+    -fx-font-size:       14px;
+    -fx-cursor:          hand;
+}
 .change-button:hover {
+    -fx-background-color: #357ab8;
+}
+.check-button:hover {
     -fx-background-color: #357ab8;
 }

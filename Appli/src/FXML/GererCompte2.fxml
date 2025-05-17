@@ -60,5 +60,7 @@
         <!-- Row 8: Current Last -->
         <Label layoutX="240.0" layoutY="400.0" styleClass="form-label" text="Current Last:" />
         <Label fx:id="LastNameL" layoutX="380.0" layoutY="400.0" styleClass="form-value" text="Last" />
+      <Button fx:id="checkB" layoutX="380.0" layoutY="436.0" onAction="#onCheck" prefHeight="28.0" prefWidth="151.0" styleClass="check-button" text="Check Reservations" />
+      <Button fx:id="backB" layoutX="600.0" layoutY="435.0" onAction="#onBack" prefWidth="80.0" styleClass="change-button" text="Back" />
     </children>
 </Pane>

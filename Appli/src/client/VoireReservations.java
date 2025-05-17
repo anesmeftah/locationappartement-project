@@ -4,12 +4,16 @@
  */
 package client;
 
+import control.GererCompte2Controller;
+import control.baseController;
+import control.controlUtil;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -21,7 +25,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javax.swing.JFrame;
+import util.RentryException;
 /**
  *
  * @author motaz
@@ -208,7 +218,16 @@ public class VoireReservations extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        
+        try{
         JFrame mainFrame = (JFrame)javax.swing.SwingUtilities.getWindowAncestor(this);
+        System.out.println("QQQ "+mainFrame.toString());
+        controlUtil control = new controlUtil();
+        control.set(mainFrame,"GererCompte2.fxml",GererCompte2Controller.class);
+        }catch(RentryException r){}
+        
+        /*JFrame mainFrame = (JFrame)javax.swing.SwingUtilities.getWindowAncestor(this);
             GererCompte2 search = new GererCompte2();
             mainFrame.getContentPane().removeAll();
             mainFrame.getContentPane().add(search);
@@ -218,7 +237,7 @@ public class VoireReservations extends javax.swing.JPanel {
             mainFrame.setLayout(new java.awt.FlowLayout());
             mainFrame.setLocationRelativeTo(null);   // Center the window
             mainFrame.repaint();
-            mainFrame.revalidate();
+            mainFrame.revalidate();*/
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
