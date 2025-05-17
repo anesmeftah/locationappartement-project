@@ -12,12 +12,14 @@ import java.sql.ResultSet;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import javax.swing.JFrame;
 
 public class GererCompte2 extends javax.swing.JPanel {
 
     /**
      * Creates new form GererCompte2
      */
+    private int id;
     public GererCompte2() {
         initComponents();
         refreshAllLabels();
@@ -53,6 +55,7 @@ public class GererCompte2 extends javax.swing.JPanel {
         LastNameB = new javax.swing.JButton();
         FirstNameL = new javax.swing.JLabel();
         LastNameL = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setText("Current Email : ");
 
@@ -119,6 +122,13 @@ public class GererCompte2 extends javax.swing.JPanel {
 
         LastNameL.setText("Last");
 
+        jButton1.setText("Check Reservations");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,6 +172,10 @@ public class GererCompte2 extends javax.swing.JPanel {
                             .addComponent(FirstNameB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(LastNameB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(140, 140, 140)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +215,9 @@ public class GererCompte2 extends javax.swing.JPanel {
                     .addComponent(LastNameF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LastNameB)
                     .addComponent(LastNameL))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -337,11 +353,27 @@ public class GererCompte2 extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_ChangerLastNameB
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JFrame mainFrame = (JFrame)javax.swing.SwingUtilities.getWindowAncestor(this);
+            VoireReservations search = new VoireReservations(id);
+            mainFrame.getContentPane().removeAll();
+            mainFrame.getContentPane().add(search);
+                
+                
+                
+            mainFrame.setLayout(new java.awt.FlowLayout());
+            mainFrame.setLocationRelativeTo(null);   // Center the window
+            mainFrame.repaint();
+            mainFrame.revalidate();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void refreshAllLabels() {
         UpdateLabel("EMAIL", EmailL);
         UpdateLabel("TELEPHONE", Tele);
         UpdateLabel("FIRSTNAME", FirstNameL);
         UpdateLabel("LASTNAME", LastNameL);
+        this.id = setid();
     }
 
     String GetCookie(){
@@ -390,6 +422,39 @@ public class GererCompte2 extends javax.swing.JPanel {
             System.out.println(err.getMessage());
         }
     }
+    int setid(){
+        int Id =-1; 
+        try{
+            String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
+            String uName = "root";
+            String uPass = "root";
+
+            Connection con = DriverManager.getConnection(host, uName, uPass);
+            Statement stmt = con.createStatement();
+            String cookies = GetCookie();
+            if(cookies.equals("-1")){
+
+                System.out.println("sad");
+
+            }
+            else{
+                
+                String SQL = "SELECT id FROM CLIENTS WHERE COOKIE = '" + cookies + "'";
+                ResultSet rs = stmt.executeQuery(SQL);
+                if(rs.next()){
+                    Id = rs.getInt("id");
+                }
+                else{
+                    System.out.println("sad");
+                }
+            }  
+        }
+        catch(SQLException err){
+            System.out.println(err.getMessage());
+        }
+        
+        return(Id);
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -406,6 +471,7 @@ public class GererCompte2 extends javax.swing.JPanel {
     private javax.swing.JTextField Numero;
     private javax.swing.JButton Password;
     private javax.swing.JLabel Tele;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

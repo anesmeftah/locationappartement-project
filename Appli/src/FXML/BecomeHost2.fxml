@@ -11,7 +11,8 @@
 <?import javafx.scene.text.Text?>
 
 <Pane prefHeight="500.0" prefWidth="800.0" stylesheets="@../CSS/BecomeHost2.css"
-      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="control.HostController">
 
    <children>
       <!-- Side Illustration -->
@@ -25,21 +26,19 @@
       <Text layoutX="400.0" layoutY="50.0" styleClass="page-title" text="Become a Host" />
 
       <!-- Subtitle -->
-      <Text layoutX="400.0" layoutY="80.0" styleClass="label-subtitle" text="List your apartment and start earning." />
-
-      <!-- Input Fields -->
-      <TextField layoutX="400.0" layoutY="110.0" promptText="Apartment Name" styleClass="text-field" />
-      <TextField layoutX="400.0" layoutY="150.0" promptText="Location" styleClass="text-field" />
-      <TextField layoutX="400.0" layoutY="190.0" promptText="Price per Night ($)" styleClass="text-field" />
-      <TextField layoutX="400.0" layoutY="230.0" promptText="Size in meters (m²)" styleClass="text-field" />
-      <TextField layoutX="400.0" layoutY="270.0" promptText="Number of rooms" styleClass="text-field" />
+      <Text layoutX="400.0" layoutY="80.0" styleClass="label-subtitle" text="List your apartment and start earning." />      <!-- Input Fields -->
+      <TextField fx:id="apartmentNameField" layoutX="400.0" layoutY="110.0" promptText="Apartment Name" styleClass="text-field" />
+      <TextField fx:id="locationField" layoutX="400.0" layoutY="150.0" promptText="Location" styleClass="text-field" />
+      <TextField fx:id="priceField" layoutX="400.0" layoutY="190.0" promptText="Price per Night ($)" styleClass="text-field" />
+      <TextField fx:id="sizeField" layoutX="400.0" layoutY="230.0" promptText="Size in meters (m²)" styleClass="text-field" />
+      <TextField fx:id="roomsField" layoutX="400.0" layoutY="270.0" promptText="Number of rooms" styleClass="text-field" />
 
       <!-- Description Text Area -->
-      <TextArea layoutX="400.0" layoutY="310.0" promptText="Description" styleClass="text-area" prefWidth="350.0" prefHeight="60.0" />
+      <TextArea fx:id="descriptionArea" layoutX="400.0" layoutY="310.0" promptText="Description" styleClass="text-area" prefWidth="350.0" prefHeight="60.0" />
 
       <!-- Action Buttons -->
-      <Button layoutX="400.0" layoutY="390.0" prefWidth="160.0" text="Submit Listing" styleClass="main-button" />
-      <Button layoutX="590.0" layoutY="390.0" prefWidth="160.0" text="Cancel" styleClass="cancel-button" />
+      <Button fx:id="submitButton" layoutX="400.0" layoutY="390.0" prefWidth="160.0" text="Submit Listing" styleClass="main-button" onAction="#handleSubmitAction" />
+      <Button fx:id="cancelButton" layoutX="590.0" layoutY="390.0" prefWidth="160.0" text="Cancel" styleClass="cancel-button" onAction="#handleCancelAction" />
 
       <!-- Logo -->
       <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="720.0" layoutY="10.0" preserveRatio="true">

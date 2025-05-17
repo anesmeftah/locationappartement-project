@@ -12,6 +12,8 @@ import javafx.scene.Parent;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import java.awt.FlowLayout;
 
 import util.RentryException;
 
@@ -106,7 +108,7 @@ public <T> FXMLLoader loadparaEmail(Class<T> clazz, String email, String fxml) t
             try {
                 fxPanel = new JFXPanel();
                 // Load FXML
-                FXMLLoader loader = loadpara(clazz.getClass(),id,fxmlFile);
+                FXMLLoader loader = loadpara(clazz,id,fxmlFile);
                 Parent root = loader.getRoot();
                 T ctr = loader.getController();
                 if(ctr instanceof baseController){
@@ -131,11 +133,14 @@ public <T> FXMLLoader loadparaEmail(Class<T> clazz, String email, String fxml) t
     public <T> void set(JFrame mainFrame,String fxmlFile,Class<T> clazz) throws RentryException{
         controlUtil control = new controlUtil();
         JFXPanel pan = control.load(mainFrame,fxmlFile,clazz);
-    
+        
+        
         mainFrame.getContentPane().removeAll();
         mainFrame.getContentPane().add(pan);
         mainFrame.setAlwaysOnTop(true);
         mainFrame.toFront();
+        
+        mainFrame.setLayout(new FlowLayout());
         mainFrame.repaint();
         mainFrame.setAlwaysOnTop(false);
                 
@@ -145,6 +150,8 @@ public <T> FXMLLoader loadparaEmail(Class<T> clazz, String email, String fxml) t
         mainFrame.setLocationRelativeTo(null);   // Center the window
         mainFrame.repaint();
         mainFrame.revalidate();
+        
+        mainFrame.setSize(pan.getPreferredSize());
     }    
     public <T> void setWithId(JFrame mainFrame,String fxmlFile,Class<T> clazz,int id) throws RentryException{
         controlUtil control = new controlUtil();
@@ -153,6 +160,22 @@ public <T> FXMLLoader loadparaEmail(Class<T> clazz, String email, String fxml) t
         mainFrame.getContentPane().removeAll();
         mainFrame.getContentPane().add(pan);
         mainFrame.setAlwaysOnTop(true);
+        mainFrame.toFront();
+        mainFrame.setLayout(new FlowLayout());
+        mainFrame.repaint();
+        mainFrame.setAlwaysOnTop(false);
+                
+                
+                
+        mainFrame.setLayout(new java.awt.FlowLayout());
+        mainFrame.setLocationRelativeTo(null);   // Center the window
+        mainFrame.repaint();
+        mainFrame.revalidate();
+        if(pan.getPreferredSize().height==0&&pan.getPreferredSize().width==0){
+        pan  = control.loadWithId(mainFrame,fxmlFile,clazz,id);}
+        else{
+        mainFrame.setSize(pan.getPreferredSize());}
+        
     }
     
     private <T> JFXPanel loadWithEmail(JFrame mainFrame, String fxmlFile, Class<T> clazz, String email) throws RentryException {
@@ -190,6 +213,7 @@ public <T> FXMLLoader loadparaEmail(Class<T> clazz, String email, String fxml) t
         mainFrame.getContentPane().add(pan);
         mainFrame.setAlwaysOnTop(true);
         mainFrame.toFront();
+        mainFrame.setLayout(new FlowLayout());
         mainFrame.repaint();
         mainFrame.setAlwaysOnTop(false);
                 
@@ -199,5 +223,9 @@ public <T> FXMLLoader loadparaEmail(Class<T> clazz, String email, String fxml) t
         mainFrame.setLocationRelativeTo(null);   // Center the window
         mainFrame.repaint();
         mainFrame.revalidate();
+        if(pan.getPreferredSize().height==0&&pan.getPreferredSize().width==0){
+        pan = control.loadWithEmail(mainFrame, fxmlFile, clazz, email);}
+        else{
+        mainFrame.setSize(pan.getPreferredSize());}
     }
 }

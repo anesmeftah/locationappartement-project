@@ -10,88 +10,41 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="500.0" prefWidth="800.0"
-      xmlns="http://javafx.com/javafx/23.0.1"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="control.ModifierClients2Controller"
-      stylesheets="@../css/ModifierClients.css">
+<Pane prefHeight="500.0" prefWidth="800.0" stylesheets="@../css/ModifierClients.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ModifierClients2Controller">
 
     <children>
         <!-- 1) Sidebar image -->
-        <ImageView layoutX="0.0" layoutY="0.0"
-                   fitWidth="200.0" fitHeight="500.0"
-                   pickOnBounds="true" preserveRatio="false">
+        <ImageView fitHeight="500.0" fitWidth="200.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false">
             <image>
                 <!-- swap with your actual sidebar graphic -->
-                <Image url="@../images/AdminSide.png"/>
+                <Image url="@../images/AdminSide.png" />
             </image>
         </ImageView>
 
         <!-- 2) Teal overlay for icon contrast -->
-        <Rectangle layoutX="0.0" layoutY="0.0"
-                   width="200.0" height="500.0"
-                   fill="#a8e6f833"/>
+        <Rectangle fill="#a8e6f833" height="500.0" layoutX="0.0" layoutY="0.0" width="200.0" />
 
         <!-- 3) Icon on sidebar -->
-        <Text layoutX="68.0" layoutY="144.0"
-              styleClass="icon-user"
-              text="🛠" />
+        <Text layoutX="68.0" layoutY="144.0" styleClass="icon-user" text="🛠" />
 
         <!-- 4) ADMIN title -->
-        <Text layoutX="240.0" layoutY="60.0"
-              styleClass="page-title"
-              text="ADMIN" />
+        <Text layoutX="240.0" layoutY="60.0" styleClass="page-title" text="ADMIN" />
 
         <!-- 5) Current Email -->
-        <Label layoutX="240.0" layoutY="100.0"
-               styleClass="form-label"
-               text="Email :" />
-        <Label fx:id="EmailL"
-               layoutX="340.0" layoutY="100.0"
-               styleClass="form-value"
-               text="Email" />
+        <Label layoutX="240.0" layoutY="100.0" styleClass="form-label" text="Email :" />
+        <Label fx:id="EmailL" layoutX="340.0" layoutY="100.0" styleClass="form-value" text="Email" />
 
         <!-- 6) Current Number -->
-        <Label layoutX="240.0" layoutY="140.0"
-               styleClass="form-label"
-               text="Numero :" />
-        <Label fx:id="Tele"
-               layoutX="340.0" layoutY="140.0"
-               styleClass="form-value"
-               text="Telephone" />        <!-- 7) Change Class -->
-        <Label layoutX="241.0" layoutY="173.0"
-               styleClass="form-label"
-               text="Class :" />
-        <Label fx:id="classL"
-               layoutX="300.0" layoutY="173.0"
-               styleClass="form-value"
-               text="class" />
-        <ComboBox fx:id="ClassF"
-                  layoutX="340.0" layoutY="170.0"
-                  prefWidth="120.0" />        <Button fx:id="ClassB"
-                layoutX="480.0" layoutY="170.0"
-                prefWidth="80.0"
-                styleClass="change-button"
-                onAction="#changeClass"
-                text="Change" />
+        <Label layoutX="240.0" layoutY="140.0" styleClass="form-label" text="Numero :" />
+        <Label fx:id="Tele" layoutX="340.0" layoutY="140.0" styleClass="form-value" text="Telephone" />        <!-- 7) Change Class -->
+        <Label layoutX="241.0" layoutY="173.0" styleClass="form-label" text="Class :" />
+        <Label fx:id="classL" layoutX="300.0" layoutY="173.0" styleClass="form-value" text="class" />
+        <ComboBox fx:id="ClassF" layoutX="340.0" layoutY="170.0" prefWidth="120.0" />        <Button fx:id="ClassB" layoutX="480.0" layoutY="170.0" onAction="#changeClass" prefWidth="80.0" styleClass="change-button" text="Change" />
 
         <!-- 8) Change ID -->
-        <Label layoutX="240.0" layoutY="215.0"
-               styleClass="form-label"
-               text="ID :" />
-        <Label fx:id="id"
-               layoutX="340.0" layoutY="215.0"
-               styleClass="form-value"
-               text="id" />
-        <TextField fx:id="IdF"
-                   layoutX="380.0" layoutY="207.0"
-                   prefWidth="80.0"
-                   promptText="New ID"
-                   styleClass="text-field" />        <Button fx:id="IdB"
-                layoutX="480.0" layoutY="210.0"
-                prefWidth="80.0"
-                styleClass="change-button"
-                onAction="#changeId"
-                text="Change" />
+        <Label layoutX="240.0" layoutY="215.0" styleClass="form-label" text="ID :" />
+        <Label fx:id="id" layoutX="340.0" layoutY="215.0" styleClass="form-value" text="id" />
+        <TextField fx:id="IdF" layoutX="380.0" layoutY="207.0" prefWidth="80.0" promptText="New ID" styleClass="text-field" />        <Button fx:id="IdB" layoutX="480.0" layoutY="210.0" onAction="#changeId" prefWidth="80.0" styleClass="change-button" text="Change" />
+      <Button fx:id="backB" layoutX="360.0" layoutY="314.0" onAction="#backB" prefWidth="80.0" styleClass="change-button" text="Back" />
     </children>
 </Pane>

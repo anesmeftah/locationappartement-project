@@ -49,8 +49,7 @@ public class GererClientsController extends baseController implements Initializa
     private Button selectedClientButton = null;
     
     // List of client emails
-    private ObservableList<String> clientsList = FXCollections.observableArrayList();    
-    @Override
+    private ObservableList<String> clientsList = FXCollections.observableArrayList();    @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Initialize UI
         System.out.println("GererClientsController initialized");
@@ -171,7 +170,6 @@ public class GererClientsController extends baseController implements Initializa
         try {
             if (mainFrame != null) {
                 controlUtil control = new controlUtil();
-                mainFrame.setSize(800,500);
                 control.set(mainFrame, "Admin2.fxml", AdminController.class);
             }
         } catch (Exception e) {
@@ -246,7 +244,6 @@ public class GererClientsController extends baseController implements Initializa
             // 1. Using the controlUtil class like other controllers with email parameter
             if (mainFrame != null) {
                 controlUtil control = new controlUtil();
-                mainFrame.setSize(800,500);
                 control.setWithEmail(mainFrame, "ModifierClients2.fxml", ModifierClients2Controller.class, email);
             } 
             // 2. Alternative: Open in a new window

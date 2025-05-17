@@ -35,5 +35,6 @@
             <Image url="@../images/Rentry.png" /> <!-- Replace with actual image path -->
          </image>
       </ImageView>
+      <Button fx:id="cmptB" layoutX="320.0" layoutY="241.0" onAction="#gererCompte" prefHeight="35.0" prefWidth="250.0" styleClass="action-button" text="Check Account" />
    </children>
 </Pane>

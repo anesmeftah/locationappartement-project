@@ -52,21 +52,11 @@ public class ReservationListItemController extends baseController{
     public void setMainFrame(JFrame mainFrame) {
         this.mainFrame = mainFrame;
     }    public void buttonAction(){
-        InfoReservation mc = new InfoReservation(Integer.parseInt(id));
-                        
-                        mainFrame.getContentPane().removeAll();
-                        mainFrame.getContentPane().add(mc);
-                
-                
-                        
-                        mainFrame.setLayout(new java.awt.FlowLayout());
-                        mainFrame.setLocationRelativeTo(null);
-                        mainFrame.revalidate();
-                        mainFrame.repaint();
         
         
         
-        /*
+        
+        
         try{
             controlUtil control = new controlUtil();
             
@@ -129,7 +119,7 @@ public class ReservationListItemController extends baseController{
             }
             
             // If we have a mainFrame, use the normal approach
-            control.set(mainFrame, "InfoReservation.fxml", InfoReservationController.class, Integer.parseInt(id));
+            control.setWithId(mainFrame, "InfoReservation.fxml", InfoReservationController.class, Integer.parseInt(id));
         } catch(RentryException r){
             r.printStackTrace();
             javafx.scene.control.Alert alert = new javafx.scene.control.Alert(
@@ -144,7 +134,7 @@ public class ReservationListItemController extends baseController{
                 "An unexpected error occurred: " + e.getMessage()
             );
             alert.showAndWait();
-        }*/
+        }
     }
 
     public void init(String id,String adr){

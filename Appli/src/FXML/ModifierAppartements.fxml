@@ -1,101 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefWidth="800.0" prefHeight="500.0"
-      xmlns="http://javafx.com/javafx/23.0.1"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="control.ModifierAppartementsController"
-      stylesheets="@../css/ModifierAppartements.css">
+<Pane prefHeight="500.0" prefWidth="800.0" stylesheets="@../css/ModifierAppartements.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ModifierAppartementsController">
 
     <children>
 
         <!-- Illustration latérale -->
-        <ImageView layoutX="0" layoutY="0"
-                   fitWidth="300" fitHeight="500"
-                   pickOnBounds="true" preserveRatio="false">
+        <ImageView fitHeight="500" fitWidth="300" layoutX="0" layoutY="0" pickOnBounds="true" preserveRatio="false">
             <image>
                 <!-- remplacez par votre image -->
-                <Image url="@../images/sidebar_apartments.png"/>
+                <Image url="@../images/sidebar_apartments.png" />
             </image>
         </ImageView>
 
         <!-- Titre -->
-        <Text layoutX="350" layoutY="60"
-              styleClass="label-title"
-              text="Modifier Appartement"/>
+        <Text layoutX="350" layoutY="60" styleClass="label-title" text="Modifier Appartement" />
 
         <!-- ID (non éditable) -->
-        <Label layoutX="350" layoutY="110" styleClass="form-label" text="ID :"/>
-        <Label fx:id="idLabel" layoutX="500" layoutY="110"
-               styleClass="form-value" text="–"/>
+        <Label layoutX="350" layoutY="110" styleClass="form-label" text="ID :" />
+        <Label fx:id="idLabel" layoutX="500" layoutY="110" styleClass="form-value" text="–" />
 
         <!-- Adresse -->
-        <Label layoutX="350" layoutY="150" styleClass="form-label" text="Adresse :"/>
-        <TextField fx:id="addressField" layoutX="500" layoutY="145"
-                   prefWidth="240" styleClass="edit-field"/>
-        <Button fx:id="addressBtn" layoutX="750" layoutY="145"
-                text="↻" styleClass="small-button"
-                onAction="#onUpdateAddress"/>
+        <Label layoutX="350" layoutY="150" styleClass="form-label" text="Adresse :" />
+        <TextField fx:id="addressField" layoutX="500" layoutY="145" prefWidth="240" styleClass="edit-field" />
+        <Button fx:id="addressBtn" layoutX="750" layoutY="145" onAction="#onUpdateAddress" styleClass="small-button" text="↻" />
 
         <!-- Nombre de pièces -->
-        <Label layoutX="350" layoutY="190" styleClass="form-label" text="Nb pièces :"/>
-        <TextField fx:id="roomsField" layoutX="500" layoutY="185"
-                   prefWidth="80" styleClass="edit-field"/>
-        <Button fx:id="roomsBtn" layoutX="590" layoutY="185"
-                text="↻" styleClass="small-button"
-                onAction="#onUpdateRooms"/>
+        <Label layoutX="350" layoutY="190" styleClass="form-label" text="Nb pièces :" />
+        <TextField fx:id="roomsField" layoutX="500" layoutY="185" prefWidth="80" styleClass="edit-field" />
+        <Button fx:id="roomsBtn" layoutX="590" layoutY="185" onAction="#onUpdateRooms" styleClass="small-button" text="↻" />
 
         <!-- Surface -->
-        <Label layoutX="350" layoutY="230" styleClass="form-label" text="Surface (m²) :"/>
-        <TextField fx:id="sizeField" layoutX="500" layoutY="225"
-                   prefWidth="80" styleClass="edit-field"/>
-        <Button fx:id="sizeBtn" layoutX="590" layoutY="225"
-                text="↻" styleClass="small-button"
-                onAction="#onUpdateSize"/>
+        <Label layoutX="350" layoutY="230" styleClass="form-label" text="Surface (m²) :" />
+        <TextField fx:id="sizeField" layoutX="500" layoutY="225" prefWidth="80" styleClass="edit-field" />
+        <Button fx:id="sizeBtn" layoutX="590" layoutY="225" onAction="#onUpdateSize" styleClass="small-button" text="↻" />
 
         <!-- Prix -->
-        <Label layoutX="350" layoutY="270" styleClass="form-label" text="Prix (€) :"/>
-        <TextField fx:id="priceField" layoutX="500" layoutY="265"
-                   prefWidth="100" styleClass="edit-field"/>
-        <Button fx:id="priceBtn" layoutX="610" layoutY="265"
-                text="↻" styleClass="small-button"
-                onAction="#onUpdatePrice"/>
+        <Label layoutX="350" layoutY="270" styleClass="form-label" text="Prix (€) :" />
+        <TextField fx:id="priceField" layoutX="500" layoutY="265" prefWidth="100" styleClass="edit-field" />
+        <Button fx:id="priceBtn" layoutX="610" layoutY="265" onAction="#onUpdatePrice" styleClass="small-button" text="↻" />
 
         <!-- Disponibilité -->
-        <Label layoutX="350" layoutY="310" styleClass="form-label" text="Disponibilité :"/>
-        <Label fx:id="statusLabel" layoutX="500" layoutY="310"
-               styleClass="form-value" text="–"/>
-        <ComboBox fx:id="statusCombo" layoutX="560" layoutY="305"
-                  prefWidth="120"/>
-        <Button fx:id="statusBtn" layoutX="690" layoutY="305"
-                text="↻" styleClass="small-button"
-                onAction="#onUpdateStatus"/>
+        <Label layoutX="350" layoutY="310" styleClass="form-label" text="Disponibilité :" />
+        <Label fx:id="statusLabel" layoutX="500" layoutY="310" styleClass="form-value" text="–" />
+        <ComboBox fx:id="statusCombo" layoutX="560" layoutY="305" prefWidth="120" />
+        <Button fx:id="statusBtn" layoutX="690" layoutY="305" onAction="#onUpdateStatus" styleClass="small-button" text="↻" />
 
         <!-- Boutons principaux -->
-        <Button fx:id="saveBtn" layoutX="350" layoutY="370"
-                prefWidth="200" prefHeight="35"
-                text="Enregistrer"
-                styleClass="action-button"
-                onAction="#onSave"/>
+        <Button fx:id="saveBtn" layoutX="350" layoutY="370" onAction="#onSave" prefHeight="35" prefWidth="200" styleClass="action-button" text="Save" />
 
-        <Button fx:id="deleteBtn" layoutX="570" layoutY="370"
-                prefWidth="200" prefHeight="35"
-                text="Supprimer"
-                styleClass="danger-button"
-                onAction="#onDelete"/>
+        <Button fx:id="deleteBtn" layoutX="570" layoutY="370" onAction="#onDelete" prefHeight="35" prefWidth="200" styleClass="danger-button" text="Delete" />
 
-        <Button fx:id="closeBtn" layoutX="350" layoutY="420"
-                prefWidth="420" prefHeight="35"
-                text="Fermer"
-                styleClass="action-button"
-                onAction="#onClose"/>
+        <Button fx:id="closeBtn" layoutX="350" layoutY="420" onAction="#onClose" prefHeight="35" prefWidth="420" styleClass="action-button" text="Close" />
 
         <!-- ID caché si besoin -->
-        <Label fx:id="hiddenId" visible="false"/>
+        <Label fx:id="hiddenId" visible="false" />
     </children>
 </Pane>

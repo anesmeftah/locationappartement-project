@@ -1,5 +1,6 @@
 package control;
 
+import client.SearchResult2;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -27,6 +28,9 @@ import java.io.IOException;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.DatePicker;
+import javax.swing.JFrame;
+import util.RentryException;
 
 public class RechercheController extends baseController {
     // Apartment class to store search results
@@ -63,49 +67,35 @@ public class RechercheController extends baseController {
     @FXML
     private TextField locField;
     @FXML
-    private TextField locField1;
+    private TextField perF;
     @FXML
-    private TextField dayIn;
+    private DatePicker dateIn;
     @FXML
-    private TextField monthIn;
-    @FXML
-    private TextField yearIn;
-    @FXML
-    private TextField dayOut;
-    @FXML
-    private TextField monthOut;
-    @FXML
-    private TextField yearOut;
+    private DatePicker dateOut;
     @FXML
     private Button searchButton;
     @FXML
     private Label errorMsg;
-
+    @FXML
+    private Button backB;
+    @FXML
+    private void onBack(){
+    try{
+                    controlUtil control = new controlUtil();
+                    mainFrame.setSize(600,400);
+                    control.set(mainFrame,"HomePage.fxml",HomeController.class);
+                }catch(RentryException r){}
+    }
     @FXML
     public void handleSearch() {
         // Clear previous error
         errorMsg.setText("");
 
         String location = locField.getText().trim();
-        String personsStr = locField1.getText().trim();
-        String checkIn = yearIn.getText().trim() + "-" + monthIn.getText().trim() + "-" + dayIn.getText().trim();
-        String checkOut = yearOut.getText().trim() + "-" + monthOut.getText().trim() + "-" + dayOut.getText().trim();
+        String personsStr = perF.getText().trim();
 
-        // Validate dates
-        LocalDate dateDebut;
-        LocalDate dateFin;
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-M-d");
-        try {
-            dateDebut = LocalDate.parse(checkIn, dtf);
-            dateFin = LocalDate.parse(checkOut, dtf);
-            if (dateDebut.isAfter(dateFin)) {
-                errorMsg.setText("Check-out date must be after check-in date");
-                return;
-            }
-        } catch (DateTimeParseException e) {
-            errorMsg.setText("Invalid date format. Please use DD, MM, YYYY");
-            return;
-        }
+        LocalDate dateDebut = dateIn.getValue();
+        LocalDate dateFin = dateOut.getValue();
 
         // Validate number of persons
         int persons;
@@ -125,7 +115,7 @@ public class RechercheController extends baseController {
         String user = "root";
         String pass = "root";        // Build SQL query using PreparedStatement to prevent SQL injection
         String sql = "SELECT * FROM appartement a WHERE a.ADDRESS LIKE ?"
-                   + " AND a.NombreOfPerson >= ?"
+                   + " AND a.NombreOfRooms >= ?"
                    + " AND NOT EXISTS ("
                    + " SELECT 1 FROM reservation r2"
                    + " WHERE r2.ID_APPARTEMENT = a.ID"
@@ -149,7 +139,18 @@ public class RechercheController extends baseController {
             stmt.setString(8, dateFin.toString());
             
             // Execute query
-            try (ResultSet rs = stmt.executeQuery()) {
+            try {
+                ResultSet rs = stmt.executeQuery();
+                SearchResult2 search = new SearchResult2(rs,dateDebut.toString(),dateFin.toString());
+                mainFrame.getContentPane().removeAll();
+                mainFrame.getContentPane().add(search);
+
+
+
+                mainFrame.setLayout(new java.awt.FlowLayout());
+                mainFrame.setLocationRelativeTo(null);   // Center the window
+                mainFrame.repaint();
+                mainFrame.revalidate();/*
                 while (rs.next()) {
                     // Handle null values gracefully
                     String description = rs.getString("DESCRIPTION");
@@ -171,14 +172,16 @@ public class RechercheController extends baseController {
                         imageUrl
                     );
                     foundApartments.add(apartment);
-                }
+                }*/
             } catch (SQLException ex) {
                 errorMsg.setText("Database error: " + ex.getMessage());
                 return;
-            }
+            }/*
         // Store the search dates for reservation purposes
         this.searchStartDate = dateDebut;
         this.searchEndDate = dateFin;
+        
+        
         
         if (foundApartments.isEmpty()) {
             errorMsg.setText("No apartments found for these criteria.");
@@ -186,7 +189,7 @@ public class RechercheController extends baseController {
             errorMsg.setText(foundApartments.size() + " apartments available.");
             // Display the results in a new window
             displaySearchResults();
-        }
+        }*/
         } catch (SQLException e) {
             errorMsg.setText("Database connection error: " + e.getMessage());
             e.printStackTrace();}
@@ -220,7 +223,7 @@ public class RechercheController extends baseController {
                 locField.getText().trim(),
                 searchStartDate.toString(),
                 searchEndDate.toString(),
-                locField1.getText().trim()
+                perF.getText().trim()
             );
             Text summaryText = new Text(searchSummary);
             summaryText.setStyle("-fx-font-size: 14px;");
@@ -314,12 +317,7 @@ public class RechercheController extends baseController {
                 return;
             }
             
-            // Here you would typically:
-            // 1. Get the current user ID
-            // 2. Create a reservation entry
-            // 3. Navigate to a confirmation page
             
-            // For now, we'll just show a success message
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Booking Initiated");
             alert.setHeaderText("Booking Process Started");

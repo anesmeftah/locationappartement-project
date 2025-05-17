@@ -12,6 +12,8 @@ import java.util.Scanner;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
+import java.time.LocalDate;
+import javax.swing.JFrame;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -33,11 +35,11 @@ public class Payment extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Payment(int reservationId, String checkin, String checkout) {
+    public Payment(int reservationId, LocalDate checkin, LocalDate checkout) {
         initComponents();
         ID = reservationId;
-        this.CIL.setText(checkin);
-        this.COL.setText(checkout);
+        this.CIL.setText(checkin.toString());
+        this.COL.setText(checkout.toString());
         
     }
     
@@ -196,7 +198,7 @@ public class Payment extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(ApL))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -256,13 +258,15 @@ public class Payment extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "You have to login first");
                 }
             }
+            this.dispose();
+            
         } catch (SQLException err) {
             System.out.println(err.getMessage());
         }
     }//GEN-LAST:event_PayButtonActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     /**

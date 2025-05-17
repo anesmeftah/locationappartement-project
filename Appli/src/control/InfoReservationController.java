@@ -5,23 +5,12 @@
 package control;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.control.ScrollPane;
-import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.DatePicker;
 
-import util.RentryException;
-
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,15 +18,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
+import util.RentryException;
+
 /**
  *
  * @author motaz
  */
-public class InfoReservationController extends baseController{
-    private int ID;
+public class InfoReservationController extends baseController implements Initializable{
+    private int ID=-1;
     @FXML private Label idLabel;
     @FXML private Label usernameLabel;
     @FXML private Label statusLabel;
@@ -50,7 +41,41 @@ public class InfoReservationController extends baseController{
     @FXML private DatePicker dateTillPicker;
     @FXML private DatePicker payLimitPicker;
     @FXML private TextField addressField;
-    @FXML private ComboBox StatusCombo;      
+    @FXML private ComboBox statusCombo;  
+    public InfoReservationController(){
+        System.out.println("default");
+    }
+    public InfoReservationController(int id){
+        this.ID = id;
+    }
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+            System.out.println("InfoReservations initialized");
+        try {
+            // Initialize the status combo box with possible values
+            statusCombo.getItems().addAll("Accepted", "Pending", "Declined");
+            
+            // Set default selection to Pending
+            statusCombo.setValue("Pending");
+            
+            // Set up date validators for the date pickers
+            setupDateValidation();
+            
+            // If we have an ID, load the reservation data
+            if (ID >= 0) {
+                update();
+            } else {
+                System.out.println("Warning: Reservation ID is <0, no data will be loaded");
+            }
+        } catch (Exception e) {
+            System.out.println("Error during initialization: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
+    
+    
     @FXML 
     public void onChangeFrom() {
         if (dateFromPicker.getValue() == null) {
@@ -237,18 +262,18 @@ public class InfoReservationController extends baseController{
         }
     }@FXML 
     public void onChangeStatus() {
-        if (StatusCombo.getValue() == null) {
+        if (statusCombo.getValue() == null) {
             showAlert("Please select a status before changing");
             return;
         }
         
-        if (ID == 0) {
+        if (ID < 0) {
             showAlert("Reservation ID is not valid");
             return;
         }
         
         try {
-            String selectedStatus = StatusCombo.getValue().toString();
+            String selectedStatus = statusCombo.getValue().toString();
             
             // Validate status value
             if (!selectedStatus.equals("Accepted") && 
@@ -362,39 +387,25 @@ public class InfoReservationController extends baseController{
     }
     @FXML 
     public void onClose(){
-        if (closeBtn != null && closeBtn.getScene() != null && closeBtn.getScene().getWindow() != null) {
-            closeBtn.getScene().getWindow().hide();
-        }
+        try{
+                    if (mainFrame == null) {
+                        mainFrame = findMainFrame();
+                        System.out.println("AdminController found mainFrame: " + mainFrame);
+                    }
+                    
+                    controlUtil control = new controlUtil();
+                    mainFrame.setSize(800,500);
+                    control.set(mainFrame,"GererReservations.fxml",GererReservationsController.class);
+                    
+                    System.out.println("AdminController loaded GererReservationsController with mainFrame: " + mainFrame);
+                }catch(RentryException r){
+                    r.printStackTrace();
+                }
     }    
     @FXML 
     public void onChangeAddress() {
         updateAddress();
-    }    @FXML
-    public void initialize() {
-            
-            update();
-        try {
-            // Initialize the status combo box with possible values
-            StatusCombo.getItems().addAll("Accepted", "Pending", "Declined");
-            
-            // Set default selection to Pending
-            StatusCombo.setValue("Pending");
-            
-            // Set up date validators for the date pickers
-            setupDateValidation();
-            
-            // If we have an ID, load the reservation data
-            if (ID != 0) {
-                update();
-            } else {
-                System.out.println("Warning: Reservation ID is 0, no data will be loaded");
-            }
-        } catch (Exception e) {
-            System.out.println("Error during initialization: " + e.getMessage());
-            e.printStackTrace();
-        }
-
-    }
+    }    
     
     /**
      * Set up date validation for the date pickers
@@ -419,10 +430,7 @@ public class InfoReservationController extends baseController{
             }
         });
     }
-    public InfoReservationController(int id){
-        this.ID = id;
-    }
-    public InfoReservationController(){}
+    
     private void update(){
     try{
                 String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
@@ -467,7 +475,7 @@ public class InfoReservationController extends baseController{
                     String status = rs.getString("STATUT");
                     if (status != null) {
                         statusLabel.setText(status);
-                        StatusCombo.setValue(status);
+                        statusCombo.setValue(status);
                     }
                     
                     // Update payment limit if available

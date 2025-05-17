@@ -2,21 +2,19 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="500" prefWidth="800" stylesheets="@../css/RechercheAppartement.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.RechercheController">
-
-<AnchorPane prefHeight="500" prefWidth="800" stylesheets="@../css/RechercheAppartement.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RechercheAppartementController">
-
 
   <children>
     <HBox prefHeight="500" prefWidth="800">
@@ -32,7 +30,6 @@
 
       <!-- RIGHT PANE: white card -->
       <VBox alignment="TOP_LEFT" prefHeight="500" prefWidth="400" spacing="20" styleClass="card">
-      <VBox alignment="TOP_LEFT" prefHeight="506.0" prefWidth="400" spacing="20" styleClass="card">
         <padding>
           <Insets bottom="30" left="30" right="30" top="40" />
         </padding>
@@ -43,26 +40,26 @@
         <!-- Location Field -->
         <Label styleClass="form-label" text="Location" />
         <TextField fx:id="locField" prefWidth="300" promptText="Enter location" styleClass="text-field" />
+            <Label styleClass="form-label" text="Persons" />
+            <TextField fx:id="perF" prefWidth="300" promptText="Number of persons" styleClass="text-field" />
 
         <!-- Check-in Date -->
         <Label styleClass="form-label" text="Check-in Date" />
-        <HBox spacing="10">
-          <TextField fx:id="dayIn" prefWidth="60" promptText="DD" styleClass="date-field" />
-          <TextField fx:id="monthIn" prefWidth="60" promptText="MM" styleClass="date-field" />
-          <TextField fx:id="yearIn" prefWidth="80" promptText="YYYY" styleClass="date-field" />
-        </HBox>
+            <DatePicker fx:id="dateIn" />
+        <HBox spacing="10" />
 
         <!-- Check-out Date -->
         <Label styleClass="form-label" text="Check-out Date" />
-        <HBox spacing="10">
-          <TextField fx:id="dayOut" prefWidth="60" promptText="DD" styleClass="date-field" />
-          <TextField fx:id="monthOut" prefWidth="60" promptText="MM" styleClass="date-field" />
-          <TextField fx:id="yearOut" prefWidth="80" promptText="YYYY" styleClass="date-field" />
-        </HBox>
-            <TextField fx:id="locField1" prefWidth="300" promptText="Nombre des personnes" styleClass="text-field" />
-
-        <!-- Search Button -->
-        <Button fx:id="searchButton" onAction="#handleSearch" prefWidth="120" styleClass="main-button" text="Search" />
+        <HBox spacing="10" />
+            <DatePicker fx:id="dateOut" />
+            <Pane prefHeight="30.0" prefWidth="339.0">
+               <children>
+      
+              <!-- Search Button -->
+              <Button fx:id="searchButton" onAction="#handleSearch" prefWidth="120" styleClass="main-button" text="Search" />
+                  <Button fx:id="backB" layoutX="213.0" onAction="#onBack" prefWidth="120" styleClass="main-button" text="Back" />
+               </children>
+            </Pane>
 
         <!-- Error Message -->
         <Label fx:id="errorMsg" styleClass="error-label" text="" />

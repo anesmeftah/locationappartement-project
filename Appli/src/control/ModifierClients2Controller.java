@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import util.RentryException;
 
 /**
  * JavaFX Controller for ModifierClients2.fxml
@@ -84,6 +85,14 @@ public class ModifierClients2Controller extends baseController implements Initia
     /**
      * Initialize the controller
      */
+    @FXML 
+    private void backB(){
+    try{
+                    controlUtil control = new controlUtil();
+                    mainFrame.setSize(800,500);
+                    control.set(mainFrame,"Admin2.fxml",AdminController.class);
+                }catch(RentryException r){}
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Initialize components

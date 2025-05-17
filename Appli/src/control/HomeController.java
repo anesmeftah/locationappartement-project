@@ -10,7 +10,7 @@ package control;
  * @author motaz
  */
 
-import clienp.BecomeHost2;
+import client.GererCompte2;
 import client.RechercheAppartement2;
 import java.awt.Component;
 
@@ -54,11 +54,13 @@ public class HomeController extends baseController{
     // Tes méthodes d'action ici
     @FXML
     private void SearchAction() {
+        
+            
         try{
         controlUtil control = new controlUtil();
-        mainFrame.setSize(800,500);
         control.set(mainFrame,"RechercheAppartement2.fxml",RechercheController.class);
         }catch(RentryException r){}
+        
 
     }
 
@@ -71,5 +73,20 @@ public class HomeController extends baseController{
         control.set(mainFrame,"BecomeHost2.fxml",HostController.class);
         }catch(RentryException r){}
     }
+    @FXML
+    private void gererCompte(){
+    GererCompte2 mc = new GererCompte2();
+                        
+                        mainFrame.getContentPane().removeAll();
+                        mainFrame.getContentPane().add(mc);
+                
+                
+                        
+                        mainFrame.setLayout(new java.awt.FlowLayout());
+                        mainFrame.setLocationRelativeTo(null);
+                        mainFrame.revalidate();
+                        mainFrame.repaint();
+    }
+    
     
 }

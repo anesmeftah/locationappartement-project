@@ -1,78 +1,127 @@
-package client;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
+package client;
+
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JButton;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-public class SearchResult2 extends javax.swing.JPanel {
+/**
+ *
+ * @author motaz
+ */
+public class VoireReservations extends javax.swing.JPanel {
 
     /**
-     * Creates new form SearchResult2
+     * Creates new form VoireReservations
      */
-    public SearchResult2() {
-        initComponents();
-    }
-    public SearchResult2(ResultSet rs, String Checkin, String Checkout) {
+    private int id;
+    private long calculPen(){
+        LocalDate currentDate = LocalDate.now();
+        String status = "";
+        long daysBetween = 0;
+        try {
+        String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
+            String uName = "root";
+            String uPass = "root";
+
+            Connection con = DriverManager.getConnection(host, uName, uPass);
+            Statement stmt = con.createStatement();
+            
+            String SQL = "select * from reservation where id_client = "+id;
+            ResultSet rs = stmt.executeQuery(SQL);
+            if(rs.next()){
+                LocalDate endDate  = rs.getDate("DATEFIN").toLocalDate();
+                status = rs.getString("Statut");
+                daysBetween = ChronoUnit.DAYS.between(endDate,currentDate);
+            }
+        
+        }
+        catch(SQLException err){
+            System.out.println("SQL Error: " + err.getMessage());
+        }
+        if(daysBetween >0 && !(status.equals("Paid"))){
+        return(daysBetween*20);}else{return(0);}}
+        
+    public VoireReservations(int ID) {
+        this.id = ID;
         initComponents(); 
+        boolean hasResults = false;
         
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         jScrollPane1.setViewportView(contentPanel);
         
         try {
-            boolean hasResults = false;
+            long sum = calculPen();
+            String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
+            String uName = "root";
+            String uPass = "root";
+
+            Connection con = DriverManager.getConnection(host, uName, uPass);
+            Statement stmt = con.createStatement();
+            Statement stmt2 = con.createStatement();
             
-            
+            String SQL = "select * from reservation where id_client = "+ID;
+            ResultSet rs = stmt.executeQuery(SQL);
             while(rs.next()){
                 hasResults = true;
                 String id = rs.getString("ID");
-                String address = rs.getString("ADDRESS");
-                String price = rs.getString("Prix");
-                String size = rs.getString("SizeInSquareMeters");
-                String description = rs.getString("DESCRIP");
+                String id_app = rs.getString("ID_appartement");
+                String SQLAPP = "select * from appartement where id = "+id_app;
+                LocalDate endDate  = rs.getDate("DATEFIN").toLocalDate();
+                LocalDate startDate  = rs.getDate("DATEDEBUT").toLocalDate();
+                long daysBetween = ChronoUnit.DAYS.between(startDate,endDate);
+                
+                ResultSet rsp = stmt2.executeQuery(SQLAPP);
+                rsp.next();
+                long Prix = (long)rsp.getDouble("Prix");
+                sum = calculPen() + Prix*daysBetween;
                 
                 
-                JPanel apartmentPanel = new JPanel();
-                apartmentPanel.setPreferredSize(new Dimension(650, 50));
-                apartmentPanel.setMaximumSize(new Dimension(650, 50));
-                apartmentPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(200, 200, 200)));
-                apartmentPanel.setBackground(Color.white);
-                apartmentPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+                JPanel reservationPanel = new JPanel();
+                reservationPanel.setPreferredSize(new Dimension(650, 50));
+                reservationPanel.setMaximumSize(new Dimension(650, 50));
+                reservationPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(200, 200, 200)));
+                reservationPanel.setBackground(Color.white);
+                reservationPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
                 
                 
                 JLabel infoLabel = new JLabel();
                 infoLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 14));
-                infoLabel.setText("ID: " + id + " - " + address + ", " + size + " - $" + price + "\n" + description);
+                infoLabel.setText("ID: " + id + " - ID appartement : " + id_app + ", Penality " + calculPen() + " DT , Sum = "+sum+ " DT\n");
                 
-                apartmentPanel.add(infoLabel);
-                
-                
-                JButton reserveButton = new JButton("Reserve");
+                reservationPanel.add(infoLabel);
+                JButton reserveButton = new JButton("Pay");
                 reserveButton.setFont(new Font("Bahnschrift", Font.PLAIN, 14));
                 reserveButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        new ConfirmReservation(id, Checkin, Checkout).setVisible();
+                        new Payment(Integer.parseInt(id), endDate, startDate).setVisible(true);
+                        
                         
                     }
                 });
                 
-                apartmentPanel.add(reserveButton);
-                contentPanel.add(apartmentPanel);
+                
+                reservationPanel.add(reserveButton);
+                
+                contentPanel.add(reservationPanel);
                 
                 
                 JPanel spacer = new JPanel();
@@ -81,7 +130,7 @@ public class SearchResult2 extends javax.swing.JPanel {
                 spacer.setOpaque(false);
                 contentPanel.add(spacer);
                 
-                System.out.println("Added apartment: " + address);
+                System.out.println("Added apartment: " + id_app);
             }
             
             // If no apartments found
@@ -90,7 +139,7 @@ public class SearchResult2 extends javax.swing.JPanel {
                 noResultsPanel.setPreferredSize(new Dimension(650, 50));
                 noResultsPanel.setBackground(Color.white);
                 
-                JLabel noResultsLabel = new JLabel("No apartments found matching your criteria");
+                JLabel noResultsLabel = new JLabel("No reservations found");
                 noResultsLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 14));
                 noResultsLabel.setForeground(Color.RED);
                 
@@ -105,6 +154,7 @@ public class SearchResult2 extends javax.swing.JPanel {
             System.out.println("SQL Error: " + err.getMessage());
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -142,7 +192,7 @@ public class SearchResult2 extends javax.swing.JPanel {
                         .addGap(27, 27, 27)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(320, 320, 320)
+                        .addGap(319, 319, 319)
                         .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -159,7 +209,7 @@ public class SearchResult2 extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFrame mainFrame = (JFrame)javax.swing.SwingUtilities.getWindowAncestor(this);
-            RechercheAppartement2 search = new RechercheAppartement2();
+            GererCompte2 search = new GererCompte2();
             mainFrame.getContentPane().removeAll();
             mainFrame.getContentPane().add(search);
                 

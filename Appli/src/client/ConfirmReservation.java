@@ -215,13 +215,17 @@ public class ConfirmReservation extends javax.swing.JFrame {
 
             Connection con = DriverManager.getConnection(host, uName, uPass);
             Statement stmt = con.createStatement();
+            
 
             String cookies = GetCookie();
             if (cookies.equals("-1")) {
                 JOptionPane.showMessageDialog(null, "You have to login first");
             } else {
+                
                 String SQL = "SELECT ID FROM CLIENTS WHERE COOKIE = '" + cookies + "'";
                 ResultSet rs = stmt.executeQuery(SQL);
+                
+                
                 if (rs.next()) {
                     String SQLI = "INSERT INTO reservation(ID_CLIENT, ID_APPARTEMENT, DATEDEBUT, DATEFIN) VALUES ("
                             + rs.getString("ID") + ", " + IDL.getText() + ", '"
@@ -230,13 +234,14 @@ public class ConfirmReservation extends javax.swing.JFrame {
                     stmt.executeUpdate(SQLI, Statement.RETURN_GENERATED_KEYS);
 
                     ResultSet generatedKeys = stmt.getGeneratedKeys();
-                    if (generatedKeys.next()) {
+                    /*if (generatedKeys.next()) {
                         int reservationId = generatedKeys.getInt(1);
                         new Payment(reservationId, CheckinF.getText(), CheckoutF.getText()).setVisible(true);
                         dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, "Failed to retrieve reservation ID.");
-                    }
+                    }*/
+                    JOptionPane.showMessageDialog(null, "Reservation Confirmed ; Check your account!");
                 } else {
                     JOptionPane.showMessageDialog(null, "You have to login first");
                 }

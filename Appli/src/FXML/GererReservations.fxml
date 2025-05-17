@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="500.0" prefWidth="800.0" stylesheets="@../css/GererReservation.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.GererReservationsController">
+<Pane prefHeight="500.0" prefWidth="800.0" stylesheets="@../css/GererAppartements.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.GererReservationsController">
 
   <children>
     <!-- Side Illustration -->
@@ -28,7 +28,7 @@
     <Text layoutX="350" layoutY="80" styleClass="page-title" text="ADMIN" />
 
     <!-- Show/Hide List Button -->
-    <Button fx:id="showList" layoutX="350" layoutY="120" onAction="#showListAction" prefHeight="35" prefWidth="200" styleClass="action-button" text="Show List" />
+    <Button fx:id="showList" layoutX="350.0" layoutY="145.0" onAction="#showListAction" prefHeight="35" prefWidth="200" styleClass="action-button" text="Show List" />
 
     <!-- Delete Reservations Button -->
     <Button fx:id="supprimerClient" layoutX="570" layoutY="120" onAction="#supprimerClientAction" prefHeight="35" prefWidth="200" styleClass="action-button" text="Supprimer Reservations" visible="false" />
@@ -43,5 +43,6 @@
         </VBox>
       </content>
     </ScrollPane>
+      <Button fx:id="showList1" layoutX="350.0" layoutY="91.0" onAction="#onBack" prefHeight="35" prefWidth="84.0" styleClass="back-button" text="Back" />
   </children>
 </Pane>

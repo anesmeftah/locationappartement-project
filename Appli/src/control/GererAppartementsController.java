@@ -4,6 +4,7 @@
  */
 package control;
 
+import admin.ModifierAppartements;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -31,6 +32,7 @@ import javafx.stage.Stage;
 import util.RentryException;
 import java.util.List;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 /**
  * Controller for managing apartments in the system
@@ -301,7 +303,7 @@ public class GererAppartementsController extends baseController implements Initi
 
             Connection con = DriverManager.getConnection(host, uName, uPass);
             
-            // Check for related reservations first
+           /* // Check for related reservations first
             String checkSql = "SELECT COUNT(*) FROM RESERVATION WHERE APPARTEMENT_ID = ?";
             PreparedStatement checkStmt = con.prepareStatement(checkSql);
             checkStmt.setInt(1, apartmentId);
@@ -315,7 +317,7 @@ public class GererAppartementsController extends baseController implements Initi
                 con.close();
                 return;
             }
-            
+            */
             // Delete the apartment
             String sql = "DELETE FROM APPARTEMENT WHERE ID = ?";
             PreparedStatement pstmt = con.prepareStatement(sql);
@@ -341,6 +343,8 @@ public class GererAppartementsController extends baseController implements Initi
      * Open modifier form for an apartment
      */
     private void openModifierAppartement(int apartmentId) {
+           
+
         try {
             // Two options to open the form:
             // 1. Using controlUtil class with the mainFrame

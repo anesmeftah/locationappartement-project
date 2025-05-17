@@ -10,6 +10,7 @@ package control;
  * @author motaz
  */
 import util.GmailAuth;
+import util.RentryException;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -63,12 +64,10 @@ public class loginController extends baseController{
     @FXML
     private PasswordField Password;
 
-    @FXML
-    private void Login() {                       
-        // TODO add your handling code here:
+    
+    private void doLogin() throws RentryException{
         String user = Username.getText();
         String pass = Password.getText();
-        
         try{
             String host = "jdbc:mysql://127.0.0.1:3306/locationappartement";
             String uName = "root";
@@ -130,6 +129,8 @@ public class loginController extends baseController{
             }
             else{
                 System.out.println("Email ou mot de passe invalide");
+                throw(new RentryException("Email ou mot de passe invalide",10,true));
+                
             }
             
             
@@ -138,6 +139,14 @@ public class loginController extends baseController{
         catch(SQLException err){
             System.out.println(err.getMessage());
         }
+    }
+    @FXML
+    private void Login() {                       
+        // TODO add your handling code here:
+        try{
+            doLogin();
+        }catch(RentryException e){}
+        
         
     }
     @FXML
