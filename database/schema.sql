@@ -23,7 +23,7 @@ CREATE TABLE APPARTEMENT(
 );
 
 CREATE TABLE RESERVATION (
-    ID INT PRIMARY KEY,                          
+    ID INT PRIMARY KEY auto_increment,                          
     ID_CLIENT INT,                              
     ID_APPARTEMENT INT,                         
     DATEDEBUT DATE,                              
